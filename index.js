@@ -1,19 +1,18 @@
 import { Font } from "canvacord";
-import { GreetingsCard } from "./GreetingsCard.js";
+import { NymPost } from "./templates/NymPost.js";
 import fs from 'fs';
 
-// load font, in this case we are loading the bundled font from canvacord
-Font.loadDefault();
+// Load fonts
+Font.fromFileSync("assets/fonts/Inter/Inter-Italic.ttf");
+Font.fromFileSync("assets/fonts/Cardo/Cardo-Bold.ttf");
+Font.fromFileSync("assets/fonts/Inter/Inter-Regular.ttf");
 
-// create card
-const card = new GreetingsCard()
-  .setAvatar("https://cdn.discordapp.com/embed/avatars/0.png")
-  .setDisplayName("Wumpus")
-  .setType("welcome")
-  .setMessage("Welcome to the server!");
+// create post
+const card = new NymPost()
+  .setNym("Snackccident")
+  .setType("noun.")
+  .setDefinition("The unintentional consumption of an entire bag of chips in one sitting.");
 
 const image = await card.build({ format: "png" });
 
-// now do something with the image buffer
-fs.writeFileSync('greeting_card.png', image);
-console.log('Image saved as greeting_card.png');
+fs.writeFileSync('assets/images/nym_post.png', image);
