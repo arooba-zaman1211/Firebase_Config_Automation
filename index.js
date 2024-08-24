@@ -3,9 +3,9 @@ import { NymPost } from "./templates/NymPost.js";
 import fs from 'fs';
 
 // Load fonts
-Font.fromFileSync("assets/fonts/Inter/Inter-Italic.ttf");
-Font.fromFileSync("assets/fonts/Cardo/Cardo-Bold.ttf");
-Font.fromFileSync("assets/fonts/Inter/Inter-Regular.ttf");
+Font.fromFileSync("assets/fonts/Cardo/Cardo-Bold.ttf", 'Cardo-Bold');
+Font.fromFileSync("assets/fonts/Inter/Inter-Italic.ttf", 'Inter-Italic');
+Font.fromFileSync("assets/fonts/Inter/Inter-Regular.ttf", 'Inter-Regular');
 
 // create post
 const card = new NymPost()

@@ -58,12 +58,12 @@ export class NymPost extends Builder {
           flexDirection: "column",
           alignItems: "flex-start",
           justifyContent: "flex-start",
-          backgroundImage: `url(${this.backgroundImage.toDataURL()})`, // Use the preloaded background image
-          backgroundSize: "cover", // Cover the entire area
-          backgroundPosition: "center", // Center the image
+          backgroundImage: `url(${this.backgroundImage.toDataURL()})`,
+          backgroundSize: "cover",
+          backgroundPosition: "center",
           width: "100%",
           height: "100%",
-          padding: "80px", // Adjust padding to match the design
+          padding: "240px 150px", // Increased padding to position text better
           boxSizing: "border-box",
         },
       },
@@ -72,10 +72,11 @@ export class NymPost extends Builder {
         "h1",
         {
           style: {
-            fontSize: "80px", // Font size for the Nym
-            fontFamily: "CardoBold", // Cardo font, bold
-            color: "#000000", // Black color
-            marginBottom: "20px", // Space between Nym and type
+            fontSize: "100px", // Adjusted Font size for the Nym
+            fontFamily: "Cardo-Bold", 
+            color: "#000000",
+            marginBottom: "0",
+            lineHeight: "1",
           },
         },
         Nym
@@ -85,11 +86,11 @@ export class NymPost extends Builder {
         "span",
         {
           style: {
-            fontSize: "40px", // Font size for the type
-            fontFamily: "Inter-Italic", // Inter font, regular
-            color: "#545454", // Gray color for the type
-            marginBottom: "40px", // Space between type and definition
-            // fontStyle: "normal",
+            fontSize: "48px", // Adjusted Font size for the type
+            fontFamily: "Inter-Italic",
+            color: "#7D7D7D", // Adjusted color to a lighter gray
+            marginBottom: "50px", // Reduced space between type and definition
+            marginTop: "0",
           },
         },
         type
@@ -99,11 +100,12 @@ export class NymPost extends Builder {
         "p",
         {
           style: {
-            fontSize: "40px", // Font size for the definition
-            fontFamily: "Inter-Regular", // Inter font, regular
-            color: "#000000", // Black color
-            lineHeight: "1.4", // Line height for readability
-            marginTop: "0", // Remove top margin
+            fontSize: "50px", // Adjusted Font size for the definition
+            fontFamily: "Inter-Regular",
+            color: "#000000",
+            lineHeight: "1.4", // Adjusted line height for better readability
+            marginTop: "50px", // Remove top margin
+            marginBottom: "0", // Remove bottom margin
           },
         },
         definition
