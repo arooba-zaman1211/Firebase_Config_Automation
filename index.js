@@ -13,6 +13,6 @@ const card = new NymPost()
   .setType("noun.")
   .setDefinition("The unintentional consumption of an entire bag of chips in one sitting.");
 
-const image = await card.build({ format: "png" });
+const image = await card.build({ format: "jpeg" });
 
-fs.writeFileSync('assets/images/nym_post.png', image);
+fs.writeFileSync('assets/images/nym_post.jpeg', image);
