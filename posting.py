@@ -10,9 +10,11 @@ load_dotenv()
 
 # Retrieve the access token and Instagram user ID
 access_token = os.getenv('ACCESS_TOKEN')
+os.environ['ACCESS_TOKEN'] = access_token
 # ig_user_id = os.getenv('IG_ID')
 
 print(access_token)
+print(type(access_token))
 
 # response = requests.post(
 #   f'https://graph.instagram.com/v20.0/{ig_user_id}/media',
@@ -27,7 +29,7 @@ print(access_token)
 me = requests.get(
     'https://graph.facebook.com/v20.0/me',
     params={
-    'fields': 'id',
+    'fields': 'user_id,username',
     'access_token': access_token
     }
 )
