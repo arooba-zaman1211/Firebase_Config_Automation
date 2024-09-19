@@ -1,5 +1,4 @@
 {
-<<<<<<< HEAD
   "scripts": {
     "start": "node app/index.js"
   },
@@ -14,20 +13,5 @@
     "instagram-private-api": "^1.46.1",
     "path": "^0.12.7",
     "request-promise": "^4.2.6"
-=======
-  "name": "whimnym",
-  "version": "1.0.0",
-  "type": "module",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "dependencies": {
-    "canvacord": "^6.0.2"
->>>>>>> origin/main
   }
 }
