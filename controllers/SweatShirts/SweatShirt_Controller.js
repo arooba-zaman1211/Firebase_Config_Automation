@@ -4,11 +4,13 @@ const axios = require("axios");
 const { Font } = require("canvacord");
 const { NymPost } = require("../../services/NymPost.jsx"); // Import your NymPost class
 require("dotenv").config();
+const { IgApiClient } = require("instagram-private-api");
+const { get } = require("request-promise");
 
 const token = process.env.PRINTIFY_ACCESS_TOKEN;
 const shopId = process.env.PRINTIFY_SHOP_ID;
-const INSTAGRAM_BUSINESS_ACCOUNT_ID = process.env.INSTAGRAM_BUSINESS_ACCOUNT_ID;
-const ACCESS_TOKEN = process.env.ACCESS_TOKEN;
+const IG_username = process.env.IG_USERNAME;
+const IG_password = process.env.IG_PASSWORD;
 
 Font.fromFileSync("public/assets/fonts/Cardo/Cardo-Bold.ttf", "Cardo-Bold");
 Font.fromFileSync("public/assets/fonts/Inter/Inter-Italic.ttf", "Inter-Italic");
@@ -39,26 +41,26 @@ const generateUniqueFileName = () => {
 // Function to post to Instagram
 const postToInsta = async ({ caption, image_url }) => {
   try {
-    const mediaUploadResponse = await axios.post(
-      `https://graph.facebook.com/v20.0/${INSTAGRAM_BUSINESS_ACCOUNT_ID}/media`,
-      {
-        image_url,
-        caption,
-        access_token: ACCESS_TOKEN,
-      }
-    );
+    const ig = new IgApiClient();
+    ig.state.generateDevice(IG_username);
 
-    const mediaId = mediaUploadResponse.data.id;
+    // Login
+    await ig.account.login(IG_username, IG_password);
 
-    const publishResponse = await axios.post(
-      `https://graph.facebook.com/v20.0/${INSTAGRAM_BUSINESS_ACCOUNT_ID}/media_publish`,
-      {
-        creation_id: mediaId,
-        access_token: ACCESS_TOKEN,
-      }
-    );
+    // Get the image as a buffer
+    const imageBuffer = await get({
+      url: image_url,
+      encoding: null, // Ensures the image is returned as a buffer
+    });
+
+    // Publish the photo with caption
+    const publishResponse = await ig.publish.photo({
+      file: imageBuffer,
+      caption: caption,
+    });
 
     console.log("Instagram publish response:", publishResponse);
+
     return publishResponse.data;
   } catch (error) {
     console.error("Error posting to Instagram:", error);
@@ -195,19 +197,44 @@ const createAndUploadImage = async (req, res) => {
       }
     );
 
+    const productId = productResponse.data.id;
+
+    // 4. Publish the product to Shopify
+    const requestData = {
+      title: true,
+      description: true,
+      images: true,
+      variants: true,
+      tags: true,
+      keyFeatures: true,
+      shipping_template: true,
+    };
+
+    const publishResponse = await axios.post(
+      `https://api.printify.com/v1/shops/${shopId}/products/${productId}/publish.json`,
+      requestData,
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
+        },
+      }
+    );
+
+    console.log("Product published to Shopify:", publishResponse.data);
     // 5. Fetch the image URL for the white variant
     const whiteImageUrl = getImageUrlForColor(productResponse.data, "Asphalt");
 
     // 6. Post the product image to Instagram
     if (whiteImageUrl) {
       await postToInsta({
-        caption: `Check out our new White T-Shirt! #CustomTshirt #Printify`,
+        caption: `Check out our new Asphalt T-Shirt! #CustomTshirt #Printify`,
         image_url: whiteImageUrl,
       });
 
       res.status(200).json(productResponse.data);
     } else {
-      res.status(404).send("White variant image URL not found");
+      res.status(404).send("Asphalt variant image URL not found");
     }
   } catch (error) {
     console.error(
