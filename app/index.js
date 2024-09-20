@@ -24,23 +24,19 @@ const fetchPrintifyBlueprints = async () => {
   }
 };
 
-// Simplified filter function based only on category
-const filterBlueprints = (blueprints, category) => {
+// Filter function based on the product name
+const filterBlueprintsByName = (blueprints, name) => {
   return blueprints.filter((blueprint) =>
-    blueprint.brand.toLowerCase().includes(category.toLowerCase())
+    blueprint.title.toLowerCase().includes(name.toLowerCase())
   );
 };
 
 const printFilteredBlueprints = async () => {
   const blueprints = await fetchPrintifyBlueprints();
   if (blueprints) {
-    const unisexTshirts = filterBlueprints(blueprints, "printify choice");
-    const hoodies = filterBlueprints(blueprints, "hoodie");
-    const mugs = filterBlueprints(blueprints, "mug");
+    const hoodie = filterBlueprintsByName(blueprints, "Unisex Heavy Blend");
 
-    console.log("Unisex T-shirts:", unisexTshirts);
-    console.log("Hoodies:", hoodies);
-    console.log("Mugs:", mugs);
+    console.log("Unisex Heavy Blend Hooded Sweatshirt:", hoodie);
   }
 };
 
