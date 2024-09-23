@@ -1,8 +1,8 @@
 const { JSX, Builder } = require("canvacord");
 
 class NymPost extends Builder {
-  constructor() {
-    super(3590, 2203);
+  constructor(width = 3590, height = 2203) {
+    super(width, height);
     this.bootstrap({
       Nym: "",
       NymColor: "#000000", // Default Nym color (black)
@@ -10,6 +10,9 @@ class NymPost extends Builder {
       typeColor: "#7D7D7D", // Default type color (gray)
       definition: "",
       definitionColor: "#000000", // Default definition color (black)
+      nymFontSize: "610px", // Default font size for Nym
+      typeFontSize: "210px", // Default font size for type
+      definitionFontSize: "313px", // Default font size for definition
     });
 
     this.backgroundImage = null;
@@ -46,9 +49,33 @@ class NymPost extends Builder {
     return this;
   }
 
+  setNymFontSize(size) {
+    this.options.set("nymFontSize", size);
+    return this;
+  }
+
+  setTypeFontSize(size) {
+    this.options.set("typeFontSize", size);
+    return this;
+  }
+
+  setDefinitionFontSize(size) {
+    this.options.set("definitionFontSize", size);
+    return this;
+  }
+
   async render() {
-    const { type, Nym, definition, NymColor, typeColor, definitionColor } =
-      this.options.getOptions();
+    const {
+      type,
+      Nym,
+      definition,
+      NymColor,
+      typeColor,
+      definitionColor,
+      nymFontSize,
+      typeFontSize,
+      definitionFontSize,
+    } = this.options.getOptions();
 
     return JSX.createElement(
       "div",
@@ -59,21 +86,22 @@ class NymPost extends Builder {
           alignItems: "flex-start",
           justifyContent: "flex-start",
           backgroundSize: "cover",
-          backgroundPosition: "center",
+          backgroundPosition: "start",
           width: "100%",
           height: "100%",
           padding: "200px 100px",
           boxSizing: "border-box",
+          marginTop: "20px",
         },
       },
       JSX.createElement(
         "h1",
         {
           style: {
-            fontSize: "610px",
+            fontSize: nymFontSize, // Use dynamic font size for Nym
             fontFamily: "Cardo-Bold",
-            color: NymColor, // Apply dynamic color to Nym
-            marginBottom: "0",
+            color: NymColor,
+            marginBottom: "10px", // Reduced space below h1
             lineHeight: "1",
             height: "870px",
             width: "3533px",
@@ -86,37 +114,34 @@ class NymPost extends Builder {
         "span",
         {
           style: {
-            fontSize: "210px",
+            fontSize: typeFontSize, // Use dynamic font size for type
             fontFamily: "Inter-Italic",
-            color: typeColor, // Apply dynamic color to type
+            color: typeColor,
             marginBottom: "50px",
-            marginTop: "30px",
+            marginTop: "0", // Adjusted to bring it closer to h1
           },
         },
         type
       ),
 
-      JSX.createElement(
-        "div", // Horizontal line after type
-        {
-          style: {
-            display: "flex",
-            width: "70%",
-            height: "4px", // Thickness of the line
-            backgroundColor: definitionColor, // Color of the line (black, but can be customized)
-            margin: "20px 0",
-            marginTop: "30px",
-          },
-        }
-      ),
+      JSX.createElement("div", {
+        style: {
+          display: "flex",
+          width: "70%",
+          height: "4px", // Thickness of the line
+          backgroundColor: definitionColor,
+          margin: "20px 0",
+          marginTop: "30px",
+        },
+      }),
 
       JSX.createElement(
         "p",
         {
           style: {
-            fontSize: "313px",
+            fontSize: definitionFontSize, // Use dynamic font size for definition
             fontFamily: "Inter-Regular",
-            color: definitionColor, // Apply dynamic color to definition
+            color: definitionColor,
             lineHeight: "1.4",
             marginTop: "30px",
             marginBottom: "0",

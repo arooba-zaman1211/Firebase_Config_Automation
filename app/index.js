@@ -2,10 +2,14 @@ const express = require("express");
 const axios = require("axios");
 const app = express();
 const imageRoutes = require("../routes/SweatShirt_Routes"); // Import the routes
+const mugRoutes = require("../routes/Latte_Routes");
+const hoodieRoutes = require("../routes/Hoodie_Routes");
 
 app.use(express.json()); // To parse JSON body data
 
 app.use("/api/images", imageRoutes);
+app.use("/api/mugs", mugRoutes);
+app.use("/api/hoodie", hoodieRoutes);
 
 // Function to fetch and filter Printify blueprints
 const fetchPrintifyBlueprints = async () => {

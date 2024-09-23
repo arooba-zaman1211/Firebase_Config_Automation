@@ -26,16 +26,13 @@ Font.fromFileSync(
 const createAndUploadImage = async (req, res) => {
   try {
     // 1. Generate the image using Canvacord and save it locally
-    const whiteCard = new NymPost(3951, 4919)
+    const whiteCard = new NymPost(3531, 2352)
       .setNym(req.body.nym)
       .setType(req.body.type)
       .setDefinition(req.body.definition)
       .setNymColor("white")
       .setTypeColor("white")
-      .setDefinitionColor("white")
-      .setNymFontSize("500px")
-      .setTypeFontSize("200px")
-      .setDefinitionFontSize("250px");
+      .setDefinitionColor("white");
 
     const whiteImage = await whiteCard.build({ format: "png" });
     const whiteFileName = generateUniqueFileName();
@@ -60,16 +57,13 @@ const createAndUploadImage = async (req, res) => {
     console.log(`White card uploaded with ID: ${whiteImageId}`);
 
     // 2. Create the second card (Black Text)
-    const blackCard = new NymPost(3951, 4919)
+    const blackCard = new NymPost(3531, 2352)
       .setNym(req.body.nym)
       .setType(req.body.type)
       .setDefinition(req.body.definition)
       .setNymColor("black")
       .setTypeColor("black")
-      .setDefinitionColor("black")
-      .setNymFontSize("500px")
-      .setTypeFontSize("150px")
-      .setDefinitionFontSize("200px");
+      .setDefinitionColor("black");
 
     const blackImage = await blackCard.build({ format: "png" });
     const blackFileName = generateUniqueFileName();
@@ -97,95 +91,70 @@ const createAndUploadImage = async (req, res) => {
     const productResponse = await axios.post(
       `https://api.printify.com/v1/shops/${shopId}/products.json`,
       {
-        title: "Custom T-Shirt",
+        title: "Custom Hoodie",
         description: "A high-quality custom t-shirt with your design.",
-        blueprint_id: 6,
+        blueprint_id: 77,
         print_provider_id: 72,
         variants: [
           {
-            id: 12059, // Sapphire (White)
+            id: 64682, // Sapphire (White)
             price: 2000,
             is_enabled: true,
           },
           {
-            id: 12061, // Sapphire (White)
+            id: 64683, // Sapphire (White)
             price: 2000,
             is_enabled: true,
           },
           {
-            id: 12070, // Sports Grey (Black)
+            id: 32903, // Sports Grey (Black)
             price: 2000,
             is_enabled: true,
           },
           {
-            id: 12071, // Sports Grey (Black)
+            id: 32904, // Sports Grey (Black)
             price: 2000,
             is_enabled: true,
           },
           {
-            id: 12124, // Black (White)
+            id: 32919, // Black (White)
             price: 2000,
             is_enabled: true,
           },
           {
-            id: 12125, // Black (White)
+            id: 32920, // Black (White)
             price: 2000,
             is_enabled: true,
           },
           {
-            id: 12154, // Graphite Heather (White)
+            id: 33426, // Military Green (White)
             price: 2000,
             is_enabled: true,
           },
           {
-            id: 12155, // Graphite Heather (White)
+            id: 33427, // Military Green (White)
             price: 2000,
             is_enabled: true,
           },
           {
-            id: 12190, // Military Green (White)
+            id: 32887, // Maroon (White)
             price: 2000,
             is_enabled: true,
           },
           {
-            id: 12191, // Military Green (White)
+            id: 32886, // Maroon (White)
             price: 2000,
             is_enabled: true,
           },
           {
-            id: 11975, // Maroon (White)
-            price: 2000,
-            is_enabled: true,
-          },
-          {
-            id: 11974, // Maroon (White)
-            price: 2000,
-            is_enabled: true,
-          },
-          {
-            id: 11940, // Heather Sapphire
-            price: 2000,
-            is_enabled: true,
-          },
-          {
-            id: 11941, // Heather Sapphire
-            price: 2000,
-            is_enabled: true,
-          },
-          {
-            id: 11820, // Blackberry
-            price: 2000,
-            is_enabled: true,
-          },
-          {
-            id: 11819, // Blackberry
+            id: 32888, // Maroon (White)
             price: 2000,
             is_enabled: true,
           },
         ],
         print_areas: [
           {
-            variant_ids: [12070, 12071], // Assign black image to these variants
+            variant_ids: [32903, 32904], // Assign black image to these variants
             placeholders: [
               {
                 position: "front",
@@ -203,8 +172,7 @@ const createAndUploadImage = async (req, res) => {
           },
           {
             variant_ids: [
-              11975, 11974, 12190, 12191, 12059, 12061, 11820, 11819, 12124,
-              12125, 12154, 12155, 11940, 11941, 12070, 12071,
+              32887, 32886, 32888, 33426, 33427, 64682, 64683, 32919, 32920,
             ],
             placeholders: [
               {
@@ -232,7 +200,7 @@ const createAndUploadImage = async (req, res) => {
     );
 
     const productId = productResponse.data.id;
-
+    console.log("images: ", productResponse.data.images);
     // 4. Publish the product to Shopify
     const requestData = {
       title: true,
@@ -257,15 +225,13 @@ const createAndUploadImage = async (req, res) => {
 
     console.log("Product published to Shopify:", publishResponse.data);
     // 5. Fetch the image URL for the white variant
-    const whiteImageUrl = getImageUrlForColor(
-      productResponse.data,
-      "Sport Grey"
-    );
+    const whiteImageUrl = getImageUrlForColor(productResponse.data, "Maroon");
+    console.log("Image url:", whiteImageUrl);
 
     // 6. Post the product image to Instagram
     if (whiteImageUrl) {
       await postToInsta({
-        caption: `Check out our new Asphalt T-Shirt! #CustomTshirt #Printify`,
+        caption: `Check out our new Maroon Hoodie! #CustomTshirt #Printify`,
         image_url: whiteImageUrl,
       });
 
