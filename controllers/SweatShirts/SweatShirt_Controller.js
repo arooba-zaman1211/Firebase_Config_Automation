@@ -35,7 +35,8 @@ const createAndUploadImage = async (req, res) => {
       .setDefinitionColor("white")
       .setNymFontSize("500px")
       .setTypeFontSize("200px")
-      .setDefinitionFontSize("250px");
+      .setDefinitionFontSize("250px")
+      .setMarginTop("322px");
 
     const whiteImage = await whiteCard.build({ format: "png" });
     const whiteFileName = generateUniqueFileName();
@@ -68,8 +69,9 @@ const createAndUploadImage = async (req, res) => {
       .setTypeColor("black")
       .setDefinitionColor("black")
       .setNymFontSize("500px")
-      .setTypeFontSize("150px")
-      .setDefinitionFontSize("200px");
+      .setTypeFontSize("200px")
+      .setDefinitionFontSize("250px")
+      .setMarginTop("322px");
 
     const blackImage = await blackCard.build({ format: "png" });
     const blackFileName = generateUniqueFileName();
@@ -97,95 +99,179 @@ const createAndUploadImage = async (req, res) => {
     const productResponse = await axios.post(
       `https://api.printify.com/v1/shops/${shopId}/products.json`,
       {
-        title: "Custom T-Shirt",
-        description: "A high-quality custom t-shirt with your design.",
+        title: `${req.body.nym} Unisex Heavy Cotton Tee`,
+        description:
+          "The unisex heavy cotton tee is the basic staple of any wardrobe. It is the foundation upon which casual fashion grows. All it needs is a personalized design to elevate things to profitability. The specially spun fibers provide a smooth surface for premium printing vividity and sharpness. No side seams mean there are no itchy interruptions under the arms. The shoulders have tape for improved durability.<div>.:Made with medium fabric (5.3 oz/yd² (180 g/m²)) consisting of 100% cotton for year-round comfort that is sustainable and highly durable. </div><br /><div>.:The classic fit of this shirt ensures a comfy, relaxed wear while the crew neckline adds that neat, timeless look that can blend into any occasion, casual or semi-formal.</div><br /><div>.:The tear-away label means a scratch-free experience with no irritation or discomfort whatsoever.</div><br /><div>.:Made using 100% US cotton that is ethically grown and harvested. Gildan is also a proud member of the US Cotton Trust Protocol ensuring ethical and sustainable means of production. This blank tee is certified by Oeko-Tex for safety and quality assurance.</div>",
         blueprint_id: 6,
-        print_provider_id: 72,
+        print_provider_id: 29,
         variants: [
           {
-            id: 12059, // Sapphire (White)
+            id: 11974, // Maroon
             price: 2000,
             is_enabled: true,
           },
           {
-            id: 12061, // Sapphire (White)
+            id: 11975, // Maroon
             price: 2000,
             is_enabled: true,
           },
           {
-            id: 12070, // Sports Grey (Black)
+            id: 11976, // Maroon
             price: 2000,
             is_enabled: true,
           },
           {
-            id: 12071, // Sports Grey (Black)
+            id: 11977, // Maroon
             price: 2000,
             is_enabled: true,
           },
           {
-            id: 12124, // Black (White)
+            id: 11978, // Maroon
             price: 2000,
             is_enabled: true,
           },
           {
-            id: 12125, // Black (White)
+            id: 11979, // Maroon
             price: 2000,
             is_enabled: true,
           },
           {
-            id: 12154, // Graphite Heather (White)
+            id: 12070, // Sport Grey
             price: 2000,
             is_enabled: true,
           },
           {
-            id: 12155, // Graphite Heather (White)
+            id: 12071, // Sport Grey
             price: 2000,
             is_enabled: true,
           },
           {
-            id: 12190, // Military Green (White)
+            id: 12072, // Sport Grey
             price: 2000,
             is_enabled: true,
           },
           {
-            id: 12191, // Military Green (White)
+            id: 12073, // Sport Grey
             price: 2000,
             is_enabled: true,
           },
           {
-            id: 11975, // Maroon (White)
+            id: 12074, // Sport Grey
             price: 2000,
             is_enabled: true,
           },
           {
-            id: 11974, // Maroon (White)
+            id: 12075, // Sport Grey
+            price: 2000,
+            is_enabled: true,
+          },
+
+          {
+            id: 12124, // Black
             price: 2000,
             is_enabled: true,
           },
           {
-            id: 11940, // Heather Sapphire
+            id: 12125, // Black
             price: 2000,
             is_enabled: true,
           },
           {
-            id: 11941, // Heather Sapphire
+            id: 12126, // Black
             price: 2000,
             is_enabled: true,
           },
           {
-            id: 11820, // Blackberry
+            id: 12127, // Black
             price: 2000,
             is_enabled: true,
           },
           {
-            id: 11819, // Blackberry
+            id: 12128, // Black
+            price: 2000,
+            is_enabled: true,
+          },
+          {
+            id: 12129, // Black
+            price: 2000,
+            is_enabled: true,
+          },
+          {
+            id: 12190, // Military Green
+            price: 2000,
+            is_enabled: true,
+          },
+          {
+            id: 12191, // Military Green
+            price: 2000,
+            is_enabled: true,
+          },
+          {
+            id: 12192, // Military Green
+            price: 2000,
+            is_enabled: true,
+          },
+          {
+            id: 12193, // Military Green
+            price: 2000,
+            is_enabled: true,
+          },
+          {
+            id: 12194, // Military Green
+            price: 2000,
+            is_enabled: true,
+          },
+          {
+            id: 12195, // Military Green
+            price: 2000,
+            is_enabled: true,
+          },
+          {
+            id: 23989, // Maroon
+            price: 2000,
+            is_enabled: true,
+          },
+          {
+            id: 24021, // Sport Grey
+            price: 2000,
+            is_enabled: true,
+          },
+          {
+            id: 24039, // Black
+            price: 2000,
+            is_enabled: true,
+          },
+          {
+            id: 24060, // Military Green
+            price: 2000,
+            is_enabled: true,
+          },
+          {
+            id: 24122, // Maroon
+            price: 2000,
+            is_enabled: true,
+          },
+          {
+            id: 24153, // Sport Grey
+            price: 2000,
+            is_enabled: true,
+          },
+          {
+            id: 24171, // Black
+            price: 2000,
+            is_enabled: true,
+          },
+          {
+            id: 24194, // Military Green
             price: 2000,
             is_enabled: true,
           },
         ],
         print_areas: [
           {
-            variant_ids: [12070, 12071], // Assign black image to these variants
+            variant_ids: [
+              12070, 12071, 12072, 12073, 12074, 12075, 24021, 24153,
+            ], // Assign black image to these variants
             placeholders: [
               {
                 position: "front",
@@ -203,8 +289,30 @@ const createAndUploadImage = async (req, res) => {
           },
           {
             variant_ids: [
-              11975, 11974, 12190, 12191, 12059, 12061, 11820, 11819, 12124,
-              12125, 12154, 12155, 11940, 11941, 12070, 12071,
+              11974,
+              11975,
+              11976,
+              11977,
+              11978,
+              11979, // Maroon
+              12124,
+              12125,
+              12126,
+              12127,
+              12128,
+              12129, // Black
+              12190,
+              12191,
+              12192,
+              12193,
+              12194,
+              12195, // Military Green
+              23989, // Maroon
+              24039, // Black
+              24060, // Military Green
+              24122, // Maroon
+              24171, // Black
+              24194, // Military Green
             ],
             placeholders: [
               {

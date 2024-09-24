@@ -13,6 +13,7 @@ class NymPost extends Builder {
       nymFontSize: "610px", // Default font size for Nym
       typeFontSize: "210px", // Default font size for type
       definitionFontSize: "313px", // Default font size for definition
+      marginTop: "",
     });
 
     this.backgroundImage = null;
@@ -64,6 +65,11 @@ class NymPost extends Builder {
     return this;
   }
 
+  setMarginTop(margin) {
+    this.options.set("marginTop", margin);
+    return this;
+  }
+
   async render() {
     const {
       type,
@@ -75,6 +81,7 @@ class NymPost extends Builder {
       nymFontSize,
       typeFontSize,
       definitionFontSize,
+      marginTop,
     } = this.options.getOptions();
 
     return JSX.createElement(
@@ -87,11 +94,11 @@ class NymPost extends Builder {
           justifyContent: "flex-start",
           backgroundSize: "cover",
           backgroundPosition: "start",
-          width: "100%",
-          height: "100%",
+          width: "3014px",
+          height: "1946px",
           padding: "200px 100px",
           boxSizing: "border-box",
-          marginTop: "20px",
+          marginTop: marginTop,
         },
       },
       JSX.createElement(
@@ -101,10 +108,10 @@ class NymPost extends Builder {
             fontSize: nymFontSize, // Use dynamic font size for Nym
             fontFamily: "Cardo-Bold",
             color: NymColor,
-            marginBottom: "10px", // Reduced space below h1
             lineHeight: "1",
             height: "870px",
-            width: "3533px",
+            width: "3014px",
+            marginBottom: "0px",
           },
         },
         Nym
@@ -119,6 +126,8 @@ class NymPost extends Builder {
             color: typeColor,
             marginBottom: "50px",
             marginTop: "0", // Adjusted to bring it closer to h1
+            width: "516px",
+            height: "165px",
           },
         },
         type
@@ -128,7 +137,7 @@ class NymPost extends Builder {
         style: {
           display: "flex",
           width: "70%",
-          height: "4px", // Thickness of the line
+          height: "16px", // Thickness of the line
           backgroundColor: definitionColor,
           margin: "20px 0",
           marginTop: "30px",
@@ -145,6 +154,8 @@ class NymPost extends Builder {
             lineHeight: "1.4",
             marginTop: "30px",
             marginBottom: "0",
+            width: "3014px",
+            height: "632px",
           },
         },
         definition

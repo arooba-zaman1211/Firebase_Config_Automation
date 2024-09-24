@@ -60,8 +60,9 @@ const createAndUploadImage = async (req, res) => {
     const productResponse = await axios.post(
       `https://api.printify.com/v1/shops/${shopId}/products.json`,
       {
-        title: "Custom Latte Mug",
-        description: "A high-quality custom Mug with your design.",
+        title: `${req.body.nym} Latte Mug`,
+        description:
+          "A true coffee lover knows that each variety of the aromatic drink deserves a special cup. These custom latte mugs come with high quality sublimation printing and make the perfect gift for any latte enthusiast. All our custom latte mugs feature stylish rounded corners, can accommodate 12 oz of delicious latte coffee and come with a comfy C-style handle for effortless sipping. <br/><div>.:Custom latte mugs, 12oz (0.35 l)</div><br /><div>.:Rounded corners</div><br /><div>.:C-Handle</div><br /><div>.:All custom latte mugs are made 100% white ceramic</div>",
         blueprint_id: 289,
         print_provider_id: 1,
         variants: [

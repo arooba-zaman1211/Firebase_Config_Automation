@@ -91,70 +91,178 @@ const createAndUploadImage = async (req, res) => {
     const productResponse = await axios.post(
       `https://api.printify.com/v1/shops/${shopId}/products.json`,
       {
-        title: "Custom Hoodie",
-        description: "A high-quality custom t-shirt with your design.",
+        title: `${req.body.nym} Unisex Heavy Blend™ Hooded Sweatshirt`,
+        description:
+          "This unisex heavy blend hooded sweatshirt is relaxation itself. Made with a thick blend of cotton and polyester, it feels plush, soft and warm, a perfect choice for any cold day. In the front, the spacious kangaroo pocket adds daily practicality while the hood's drawstring is the same color as the base sweater for extra style points.<div>.:Made with a medium-heavy fabric (8.0 oz/yd² (271 g/m²)) that consists of 50% cotton and 50% polyester for that cozy feel and warmth you need in a hoodie.</div><br /><div>.:The classic fit along with the pouch pocket and the tear-away label make for a highly comfortable, scratch-free wearing experience. </div><br /><div>.:The color-matched drawcord and the double-lined hood add a stylish flair and durability that tie everything together.</div><br /><div>.:Made using 100% ethically grown US cotton. Gildan is also a proud member of the US Cotton Trust Protocol ensuring ethical and sustainable means of production. The blank tee's dyes are OEKO-TEX-certified dyes with low environmental impact.</div><br /><div>.:Fabric blends: Heather Sport colors - 60% polyester, 40% cotton</div>",
         blueprint_id: 77,
-        print_provider_id: 72,
+        print_provider_id: 29,
         variants: [
           {
-            id: 64682, // Sapphire (White)
+            id: 32886, // Maroon
             price: 2000,
             is_enabled: true,
           },
           {
-            id: 64683, // Sapphire (White)
+            id: 32887, // Maroon
             price: 2000,
             is_enabled: true,
           },
           {
-            id: 32903, // Sports Grey (Black)
+            id: 32888, // Maroon
             price: 2000,
             is_enabled: true,
           },
           {
-            id: 32904, // Sports Grey (Black)
+            id: 32889, // Maroon
             price: 2000,
             is_enabled: true,
           },
           {
-            id: 32919, // Black (White)
+            id: 32890, // Maroon
             price: 2000,
             is_enabled: true,
           },
           {
-            id: 32920, // Black (White)
+            id: 32891, // Maroon
             price: 2000,
             is_enabled: true,
           },
           {
-            id: 33426, // Military Green (White)
+            id: 32892, // Maroon
             price: 2000,
             is_enabled: true,
           },
           {
-            id: 33427, // Military Green (White)
+            id: 32893, // Maroon
             price: 2000,
             is_enabled: true,
           },
           {
-            id: 32887, // Maroon (White)
+            id: 32902, // SSport Grey
             price: 2000,
             is_enabled: true,
           },
           {
-            id: 32886, // Maroon (White)
+            id: 32903, // SSport Grey
             price: 2000,
             is_enabled: true,
           },
           {
-            id: 32888, // Maroon (White)
+            id: 32904, // SSport Grey
+            price: 2000,
+            is_enabled: true,
+          },
+          {
+            id: 32905, // SSport Grey
+            price: 2000,
+            is_enabled: true,
+          },
+          {
+            id: 32906, // SSport Grey
+            price: 2000,
+            is_enabled: true,
+          },
+          {
+            id: 32907, // SSport Grey
+            price: 2000,
+            is_enabled: true,
+          },
+          {
+            id: 32908, // SSport Grey
+            price: 2000,
+            is_enabled: true,
+          },
+          {
+            id: 32909, // SSport Grey
+            price: 2000,
+            is_enabled: true,
+          },
+          {
+            id: 32918, // Black
+            price: 2000,
+            is_enabled: true,
+          },
+          {
+            id: 32919, // Black
+            price: 2000,
+            is_enabled: true,
+          },
+          {
+            id: 32920, // Black
+            price: 2000,
+            is_enabled: true,
+          },
+          {
+            id: 32921, // Black
+            price: 2000,
+            is_enabled: true,
+          },
+          {
+            id: 32922, // Black
+            price: 2000,
+            is_enabled: true,
+          },
+          {
+            id: 32923, // Black
+            price: 2000,
+            is_enabled: true,
+          },
+          {
+            id: 32924, // Black
+            price: 2000,
+            is_enabled: true,
+          },
+          {
+            id: 32925, // Black
+            price: 2000,
+            is_enabled: true,
+          },
+          {
+            id: 33425, // Military Green
+            price: 2000,
+            is_enabled: true,
+          },
+          {
+            id: 33426, // Military Green
+            price: 2000,
+            is_enabled: true,
+          },
+          {
+            id: 33427, // Military Green
+            price: 2000,
+            is_enabled: true,
+          },
+          {
+            id: 33428, // Military Green
+            price: 2000,
+            is_enabled: true,
+          },
+          {
+            id: 33429, // Military Green
+            price: 2000,
+            is_enabled: true,
+          },
+          {
+            id: 33430, // Military Green
+            price: 2000,
+            is_enabled: true,
+          },
+          {
+            id: 33431, // Military Green
+            price: 2000,
+            is_enabled: true,
+          },
+          {
+            id: 33432, // Military Green
             price: 2000,
             is_enabled: true,
           },
         ],
         print_areas: [
           {
-            variant_ids: [32903, 32904], // Assign black image to these variants
+            variant_ids: [
+              32902, 32903, 32904, 32905, 32906, 32907, 32908, 32909,
+            ], // Assign black image to these variants
             placeholders: [
               {
                 position: "front",
@@ -172,7 +280,9 @@ const createAndUploadImage = async (req, res) => {
           },
           {
             variant_ids: [
-              32887, 32886, 32888, 33426, 33427, 64682, 64683, 32919, 32920,
+              32886, 32887, 32888, 32889, 32890, 32891, 32892, 32893, 32918,
+              32919, 32920, 32921, 32922, 32923, 32924, 32925, 33425, 33426,
+              33427, 33428, 33429, 33430, 33431, 33432,
             ],
             placeholders: [
               {
