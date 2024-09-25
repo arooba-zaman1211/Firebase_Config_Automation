@@ -52,7 +52,7 @@ const postToInsta = async ({ caption, image_url }) => {
   }
 };
 
-const getImageUrlForColor = (productData, colorTitle) => {
+/*const getImageUrlForColor = (productData, colorTitle) => {
   console.log("1");
   const colorOption = productData.options.find(
     (option) => option.name === "Colors"
@@ -76,6 +76,39 @@ const getImageUrlForColor = (productData, colorTitle) => {
 
   const image = productData.images.find((image) =>
     image.variant_ids.includes(variant.id)
+  );
+
+  console.log(image);
+  return image ? image.src : null;
+};*/
+
+const getImageUrlForColor = (productData, colorTitle) => {
+  console.log("1");
+  const colorOption = productData.options.find(
+    (option) => option.name === "Colors"
+  );
+  console.log("2");
+  console.log(colorOption);
+
+  if (!colorOption) return null;
+
+  const color = colorOption.values.find((c) => c.title === colorTitle);
+  console.log("3");
+  console.log(color);
+  if (!color) return null;
+
+  const colorId = color.id;
+  const variant = productData.variants.find((v) => v.options.includes(colorId));
+  console.log("4");
+  console.log(variant);
+
+  if (!variant) return null;
+
+  // Filter images that belong to the variant and do not have the "hanging-2" camera label
+  const image = productData.images.find(
+    (image) =>
+      image.variant_ids.includes(variant.id) &&
+      image.src.includes("camera_label=hanging-2")
   );
 
   console.log(image);

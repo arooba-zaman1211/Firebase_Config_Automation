@@ -38,7 +38,7 @@ const filterBlueprintsByName = (blueprints, name) => {
 const printFilteredBlueprints = async () => {
   const blueprints = await fetchPrintifyBlueprints();
   if (blueprints) {
-    const hoodie = filterBlueprintsByName(blueprints, "Latte Mug");
+    const hoodie = filterBlueprintsByName(blueprints, "Unisex Heavy Cotton");
 
     console.log("Unisex Heavy Blend Hooded Sweatshirt:", hoodie);
   }

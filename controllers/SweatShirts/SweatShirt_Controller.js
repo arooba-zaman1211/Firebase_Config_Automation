@@ -101,7 +101,7 @@ const createAndUploadImage = async (req, res) => {
       {
         title: `${req.body.nym} Unisex Heavy Cotton Tee`,
         description:
-          "The unisex heavy cotton tee is the basic staple of any wardrobe. It is the foundation upon which casual fashion grows. All it needs is a personalized design to elevate things to profitability. The specially spun fibers provide a smooth surface for premium printing vividity and sharpness. No side seams mean there are no itchy interruptions under the arms. The shoulders have tape for improved durability.<div>.:Made with medium fabric (5.3 oz/yd² (180 g/m²)) consisting of 100% cotton for year-round comfort that is sustainable and highly durable. </div><br /><div>.:The classic fit of this shirt ensures a comfy, relaxed wear while the crew neckline adds that neat, timeless look that can blend into any occasion, casual or semi-formal.</div><br /><div>.:The tear-away label means a scratch-free experience with no irritation or discomfort whatsoever.</div><br /><div>.:Made using 100% US cotton that is ethically grown and harvested. Gildan is also a proud member of the US Cotton Trust Protocol ensuring ethical and sustainable means of production. This blank tee is certified by Oeko-Tex for safety and quality assurance.</div>",
+          "The unisex heavy cotton tee is the basic staple of any wardrobe. It is the foundation upon which casual fashion grows. All it needs is a personalized design to elevate things to profitability. The specially spun fibers provide a smooth surface for premium printing vividity and sharpness. No side seams mean there are no itchy interruptions under the arms. The shoulders have tape for improved durability.<div>.:Made with medium fabric (5.3 oz/yd² (180 g/m²)) consisting of 100% cotton for year-round comfort that is sustainable and highly durable. </div><div>.:The classic fit of this shirt ensures a comfy, relaxed wear while the crew neckline adds that neat, timeless look that can blend into any occasion, casual or semi-formal.</div><div>.:The tear-away label means a scratch-free experience with no irritation or discomfort whatsoever.</div><div>.:Made using 100% US cotton that is ethically grown and harvested. Gildan is also a proud member of the US Cotton Trust Protocol ensuring ethical and sustainable means of production. This blank tee is certified by Oeko-Tex for safety and quality assurance.</div>",
         blueprint_id: 6,
         print_provider_id: 29,
         variants: [
@@ -317,6 +317,48 @@ const createAndUploadImage = async (req, res) => {
             placeholders: [
               {
                 position: "front",
+                images: [
+                  {
+                    id: whiteImageId, // White image ID goes here
+                    x: 0.5,
+                    y: 0.5,
+                    scale: 1,
+                    angle: 0,
+                  },
+                ],
+              },
+            ],
+          },
+          {
+            variant_ids: [
+              11974,
+              11975,
+              11976,
+              11977,
+              11978,
+              11979, // Maroon
+              12124,
+              12125,
+              12126,
+              12127,
+              12128,
+              12129, // Black
+              12190,
+              12191,
+              12192,
+              12193,
+              12194,
+              12195, // Military Green
+              23989, // Maroon
+              24039, // Black
+              24060, // Military Green
+              24122, // Maroon
+              24171, // Black
+              24194, // Military Green
+            ],
+            placeholders: [
+              {
+                position: "other",
                 images: [
                   {
                     id: whiteImageId, // White image ID goes here

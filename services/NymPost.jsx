@@ -96,7 +96,7 @@ class NymPost extends Builder {
           backgroundPosition: "start",
           width: "3014px",
           height: "1946px",
-          padding: "200px 100px",
+          padding: "100px 50px", // Adjust padding for better alignment
           boxSizing: "border-box",
           marginTop: marginTop,
         },
@@ -105,13 +105,11 @@ class NymPost extends Builder {
         "h1",
         {
           style: {
-            fontSize: nymFontSize, // Use dynamic font size for Nym
-            fontFamily: "Cardo-Bold",
+            fontSize: nymFontSize, // Large font for Nym
+            fontFamily: "Cardo-Bold", // Bold font style
             color: NymColor,
             lineHeight: "1",
-            height: "870px",
-            width: "3014px",
-            marginBottom: "0px",
+            marginBottom: "10px", // Reduce bottom margin
           },
         },
         Nym
@@ -121,26 +119,22 @@ class NymPost extends Builder {
         "span",
         {
           style: {
-            fontSize: typeFontSize, // Use dynamic font size for type
-            fontFamily: "Inter-Italic",
+            fontSize: typeFontSize, // Smaller font size for type
+            fontFamily: "Inter-Italic", // Italic for type
             color: typeColor,
-            marginBottom: "50px",
-            marginTop: "0", // Adjusted to bring it closer to h1
-            width: "516px",
-            height: "165px",
+            marginBottom: "20px", // Increased spacing between type and line
           },
         },
         type
       ),
 
-      JSX.createElement("div", {
+      JSX.createElement("span", {
         style: {
-          display: "flex",
+          display: "block", // Horizontal line
           width: "70%",
-          height: "16px", // Thickness of the line
-          backgroundColor: definitionColor,
-          margin: "20px 0",
-          marginTop: "30px",
+          height: "16px", // Adjust thickness
+          backgroundColor: definitionColor, // Same color as the definition text
+          margin: "10px 0", // Adjust margin for spacing
         },
       }),
 
@@ -148,14 +142,13 @@ class NymPost extends Builder {
         "p",
         {
           style: {
-            fontSize: definitionFontSize, // Use dynamic font size for definition
-            fontFamily: "Inter-Regular",
+            fontSize: definitionFontSize, // Adjust font size for definition
+            fontFamily: "Inter-Regular", // Regular font style
             color: definitionColor,
             lineHeight: "1.4",
-            marginTop: "30px",
+            marginTop: "40px", // Space above definition text
             marginBottom: "0",
-            width: "3014px",
-            height: "632px",
+            width: "100%",
           },
         },
         definition
