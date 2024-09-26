@@ -14,6 +14,9 @@ class NymPost extends Builder {
       typeFontSize: "210px", // Default font size for type
       definitionFontSize: "313px", // Default font size for definition
       marginTop: "",
+      Width: "",
+      Height: "",
+      Padding: "",
     });
 
     this.backgroundImage = null;
@@ -70,6 +73,21 @@ class NymPost extends Builder {
     return this;
   }
 
+  setWidth(size) {
+    this.options.set("Width", size);
+    return this;
+  }
+
+  setHeight(size) {
+    this.options.set("Height", size);
+    return this;
+  }
+
+  setPadding(padding) {
+    this.options.set("Padding", padding);
+    return this;
+  }
+
   async render() {
     const {
       type,
@@ -82,6 +100,9 @@ class NymPost extends Builder {
       typeFontSize,
       definitionFontSize,
       marginTop,
+      Width,
+      Height,
+      Padding,
     } = this.options.getOptions();
 
     return JSX.createElement(
@@ -94,9 +115,9 @@ class NymPost extends Builder {
           justifyContent: "flex-start",
           backgroundSize: "cover",
           backgroundPosition: "start",
-          width: "3014px",
-          height: "1946px",
-          padding: "100px 50px", // Adjust padding for better alignment
+          width: Width,
+          height: Height,
+          padding: Padding, // Adjust padding for better alignment
           boxSizing: "border-box",
           marginTop: marginTop,
         },
@@ -135,6 +156,7 @@ class NymPost extends Builder {
           height: "16px", // Adjust thickness
           backgroundColor: definitionColor, // Same color as the definition text
           margin: "10px 0", // Adjust margin for spacing
+          marginTop: "10px",
         },
       }),
 

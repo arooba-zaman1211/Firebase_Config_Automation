@@ -104,15 +104,22 @@ const getImageUrlForColor = (productData, colorTitle) => {
 
   if (!variant) return null;
 
-  // Filter images that belong to the variant and do not have the "hanging-2" camera label
-  const image = productData.images.find(
-    (image) =>
-      image.variant_ids.includes(variant.id) &&
-      image.src.includes("camera_label=hanging-2")
+  // Get all images that belong to the variant
+  const variantImages = productData.images.filter((image) =>
+    image.variant_ids.includes(variant.id)
   );
 
-  console.log(image);
-  return image ? image.src : null;
+  console.log(variantImages);
+
+  // If there are no images, return null
+  if (variantImages.length === 0) return null;
+
+  // Randomly pick an image from the variant images
+  const randomImage =
+    variantImages[Math.floor(Math.random() * variantImages.length)];
+
+  console.log(randomImage);
+  return randomImage ? randomImage.src : null;
 };
 
 const uploadImageToPrintify = async (fileName, base64Image, token) => {

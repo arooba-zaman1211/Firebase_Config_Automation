@@ -32,7 +32,14 @@ const createAndUploadImage = async (req, res) => {
       .setDefinition(req.body.definition)
       .setNymColor("black")
       .setTypeColor("black")
-      .setDefinitionColor("black");
+      .setDefinitionColor("black")
+      .setNymFontSize("300px")
+      .setTypeFontSize("100px")
+      .setDefinitionFontSize("200px")
+      .setMarginTop("322px")
+      .setWidth("1000px")
+      .setHeight("800px")
+      .setPadding("100px 50px");
 
     const blackImage = await blackCard.build({ format: "png" });
     const blackFileName = generateUniqueFileName();
@@ -65,6 +72,7 @@ const createAndUploadImage = async (req, res) => {
           "A true coffee lover knows that each variety of the aromatic drink deserves a special cup. These custom latte mugs come with high quality sublimation printing and make the perfect gift for any latte enthusiast. All our custom latte mugs feature stylish rounded corners, can accommodate 12 oz of delicious latte coffee and come with a comfy C-style handle for effortless sipping. <br/><div>.:Custom latte mugs, 12oz (0.35 l)</div><div>.:Rounded corners</div><br /><div>.:C-Handle</div><div>.:All custom latte mugs are made 100% white ceramic</div>",
         blueprint_id: 289,
         print_provider_id: 1,
+        tags: ["whimnym"],
         variants: [
           {
             id: 43321, // 12oz variant ID

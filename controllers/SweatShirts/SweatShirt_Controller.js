@@ -36,7 +36,10 @@ const createAndUploadImage = async (req, res) => {
       .setNymFontSize("500px")
       .setTypeFontSize("200px")
       .setDefinitionFontSize("250px")
-      .setMarginTop("322px");
+      .setMarginTop("322px")
+      .setWidth("3014px")
+      .setHeight("1946px")
+      .setPadding("100px 50px");
 
     const whiteImage = await whiteCard.build({ format: "png" });
     const whiteFileName = generateUniqueFileName();
@@ -71,7 +74,10 @@ const createAndUploadImage = async (req, res) => {
       .setNymFontSize("500px")
       .setTypeFontSize("200px")
       .setDefinitionFontSize("250px")
-      .setMarginTop("322px");
+      .setMarginTop("322px")
+      .setWidth("3014px")
+      .setHeight("1946px")
+      .setPadding("100px 50px");
 
     const blackImage = await blackCard.build({ format: "png" });
     const blackFileName = generateUniqueFileName();
@@ -100,10 +106,80 @@ const createAndUploadImage = async (req, res) => {
       `https://api.printify.com/v1/shops/${shopId}/products.json`,
       {
         title: `${req.body.nym} Unisex Heavy Cotton Tee`,
-        description:
-          "The unisex heavy cotton tee is the basic staple of any wardrobe. It is the foundation upon which casual fashion grows. All it needs is a personalized design to elevate things to profitability. The specially spun fibers provide a smooth surface for premium printing vividity and sharpness. No side seams mean there are no itchy interruptions under the arms. The shoulders have tape for improved durability.<div>.:Made with medium fabric (5.3 oz/yd² (180 g/m²)) consisting of 100% cotton for year-round comfort that is sustainable and highly durable. </div><div>.:The classic fit of this shirt ensures a comfy, relaxed wear while the crew neckline adds that neat, timeless look that can blend into any occasion, casual or semi-formal.</div><div>.:The tear-away label means a scratch-free experience with no irritation or discomfort whatsoever.</div><div>.:Made using 100% US cotton that is ethically grown and harvested. Gildan is also a proud member of the US Cotton Trust Protocol ensuring ethical and sustainable means of production. This blank tee is certified by Oeko-Tex for safety and quality assurance.</div>",
+        description: `The unisex heavy cotton tee is the basic staple of any wardrobe. It is the foundation upon which casual fashion grows. All it needs is a personalized design to elevate things to profitability. The specially spun fibers provide a smooth surface for premium printing vividity and sharpness. No side seams mean there are no itchy interruptions under the arms. The shoulders have tape for improved durability.
+  
+  <div>.: Made with medium fabric (5.3 oz/yd² (180 g/m²)) consisting of 100% cotton for year-round comfort that is sustainable and highly durable.</div>
+  <div>.: The classic fit of this shirt ensures a comfy, relaxed wear while the crew neckline adds that neat, timeless look that can blend into any occasion, casual or semi-formal.</div>
+  <div>.: The tear-away label means a scratch-free experience with no irritation or discomfort whatsoever.</div>
+  <div>.: Made using 100% US cotton that is ethically grown and harvested. Gildan is also a proud member of the US Cotton Trust Protocol ensuring ethical and sustainable means of production. This blank tee is certified by Oeko-Tex for safety and quality assurance.</div>
+  
+  <div><strong>Size Chart:</strong></div>
+  <div style="overflow-x:auto;">
+    <table style="border-collapse: collapse; width: 100%; text-align: left; min-width: 600px;">
+      <thead>
+        <tr>
+          <th style="border: 1px solid #ddd; padding: 8px;">Size</th>
+          <th style="border: 1px solid #ddd; padding: 8px;">S</th>
+          <th style="border: 1px solid #ddd; padding: 8px;">M</th>
+          <th style="border: 1px solid #ddd; padding: 8px;">L</th>
+          <th style="border: 1px solid #ddd; padding: 8px;">XL</th>
+          <th style="border: 1px solid #ddd; padding: 8px;">2XL</th>
+          <th style="border: 1px solid #ddd; padding: 8px;">3XL</th>
+          <th style="border: 1px solid #ddd; padding: 8px;">4XL</th>
+          <th style="border: 1px solid #ddd; padding: 8px;">5XL</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td style="border: 1px solid #ddd; padding: 8px;">Width, in</td>
+          <td style="border: 1px solid #ddd; padding: 8px;">18.00</td>
+          <td style="border: 1px solid #ddd; padding: 8px;">20.00</td>
+          <td style="border: 1px solid #ddd; padding: 8px;">22.00</td>
+          <td style="border: 1px solid #ddd; padding: 8px;">24.00</td>
+          <td style="border: 1px solid #ddd; padding: 8px;">26.00</td>
+          <td style="border: 1px solid #ddd; padding: 8px;">28.00</td>
+          <td style="border: 1px solid #ddd; padding: 8px;">30.00</td>
+          <td style="border: 1px solid #ddd; padding: 8px;">32.00</td>
+        </tr>
+        <tr>
+          <td style="border: 1px solid #ddd; padding: 8px;">Length, in</td>
+          <td style="border: 1px solid #ddd; padding: 8px;">28.00</td>
+          <td style="border: 1px solid #ddd; padding: 8px;">29.00</td>
+          <td style="border: 1px solid #ddd; padding: 8px;">30.00</td>
+          <td style="border: 1px solid #ddd; padding: 8px;">31.00</td>
+          <td style="border: 1px solid #ddd; padding: 8px;">32.00</td>
+          <td style="border: 1px solid #ddd; padding: 8px;">33.00</td>
+          <td style="border: 1px solid #ddd; padding: 8px;">34.00</td>
+          <td style="border: 1px solid #ddd; padding: 8px;">35.00</td>
+        </tr>
+        <tr>
+          <td style="border: 1px solid #ddd; padding: 8px;">Sleeve length (from center back), in</td>
+          <td style="border: 1px solid #ddd; padding: 8px;">15.10</td>
+          <td style="border: 1px solid #ddd; padding: 8px;">16.50</td>
+          <td style="border: 1px solid #ddd; padding: 8px;">18.00</td>
+          <td style="border: 1px solid #ddd; padding: 8px;">19.50</td>
+          <td style="border: 1px solid #ddd; padding: 8px;">21.00</td>
+          <td style="border: 1px solid #ddd; padding: 8px;">22.40</td>
+          <td style="border: 1px solid #ddd; padding: 8px;">23.70</td>
+          <td style="border: 1px solid #ddd; padding: 8px;">25.00</td>
+        </tr>
+        <tr>
+          <td style="border: 1px solid #ddd; padding: 8px;">Size tolerance, in</td>
+          <td style="border: 1px solid #ddd; padding: 8px;" colspan="8">1.50</td>
+          <td style="border: 1px solid #ddd; padding: 8px;" colspan="8">1.50</td>
+          <td style="border: 1px solid #ddd; padding: 8px;" colspan="8">1.50</td>
+          <td style="border: 1px solid #ddd; padding: 8px;" colspan="8">1.50</td>
+          <td style="border: 1px solid #ddd; padding: 8px;" colspan="8">1.50</td>
+          <td style="border: 1px solid #ddd; padding: 8px;" colspan="8">1.50</td>
+          <td style="border: 1px solid #ddd; padding: 8px;" colspan="8">1.50</td>
+          <td style="border: 1px solid #ddd; padding: 8px;" colspan="8">1.50</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>`,
         blueprint_id: 6,
         print_provider_id: 29,
+        tags: ["whimnym"],
         variants: [
           {
             id: 11974, // Maroon
