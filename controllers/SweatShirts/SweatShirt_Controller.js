@@ -10,7 +10,7 @@ const {
   postToInsta,
   getImageUrlForColor,
   uploadImageToPrintify,
-} = require("../../helper/Helpers.js");
+} = require("../../helper/Helper.js");
 
 const token = process.env.PRINTIFY_ACCESS_TOKEN;
 const shopId = process.env.PRINTIFY_SHOP_ID;
@@ -487,12 +487,12 @@ const createAndUploadImage = async (req, res) => {
       productResponse.data,
       "Sport Grey"
     );
-
+    console.log("Image url:", whiteImageUrl);
     // 6. Post the product image to Instagram
     if (whiteImageUrl) {
       await postToInsta({
         caption: `Check out our new Asphalt T-Shirt! #CustomTshirt #Printify`,
-        image_url: whiteImageUrl,
+        image_urls: whiteImageUrl,
       });
 
       res.status(200).json(productResponse.data);

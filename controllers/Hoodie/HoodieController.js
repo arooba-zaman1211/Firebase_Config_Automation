@@ -10,7 +10,7 @@ const {
   postToInsta,
   getImageUrlForColor,
   uploadImageToPrintify,
-} = require("../../helper/Helpers.js");
+} = require("../../helper/Helper.js");
 
 const token = process.env.PRINTIFY_ACCESS_TOKEN;
 const shopId = process.env.PRINTIFY_SHOP_ID;
@@ -32,7 +32,14 @@ const createAndUploadImage = async (req, res) => {
       .setDefinition(req.body.definition)
       .setNymColor("white")
       .setTypeColor("white")
-      .setDefinitionColor("white");
+      .setDefinitionColor("white")
+      .setNymFontSize("500px")
+      .setTypeFontSize("200px")
+      .setDefinitionFontSize("250px")
+      .setMarginTop("322px")
+      .setWidth("3014px")
+      .setHeight("1946px")
+      .setPadding("100px 50px");
 
     const whiteImage = await whiteCard.build({ format: "png" });
     const whiteFileName = generateUniqueFileName();
@@ -63,7 +70,14 @@ const createAndUploadImage = async (req, res) => {
       .setDefinition(req.body.definition)
       .setNymColor("black")
       .setTypeColor("black")
-      .setDefinitionColor("black");
+      .setDefinitionColor("black")
+      .setNymFontSize("500px")
+      .setTypeFontSize("200px")
+      .setDefinitionFontSize("250px")
+      .setMarginTop("322px")
+      .setWidth("3014px")
+      .setHeight("1946px")
+      .setPadding("100px 50px");
 
     const blackImage = await blackCard.build({ format: "png" });
     const blackFileName = generateUniqueFileName();
@@ -92,8 +106,71 @@ const createAndUploadImage = async (req, res) => {
       `https://api.printify.com/v1/shops/${shopId}/products.json`,
       {
         title: `${req.body.nym} Unisex Heavy Blend™ Hooded Sweatshirt`,
-        description:
-          "This unisex heavy blend hooded sweatshirt is relaxation itself. Made with a thick blend of cotton and polyester, it feels plush, soft and warm, a perfect choice for any cold day. In the front, the spacious kangaroo pocket adds daily practicality while the hood's drawstring is the same color as the base sweater for extra style points.<div>.:Made with a medium-heavy fabric (8.0 oz/yd² (271 g/m²)) that consists of 50% cotton and 50% polyester for that cozy feel and warmth you need in a hoodie.</div><div>.:The classic fit along with the pouch pocket and the tear-away label make for a highly comfortable, scratch-free wearing experience. </div><div>.:The color-matched drawcord and the double-lined hood add a stylish flair and durability that tie everything together.</div><div>.:Made using 100% ethically grown US cotton. Gildan is also a proud member of the US Cotton Trust Protocol ensuring ethical and sustainable means of production. The blank tee's dyes are OEKO-TEX-certified dyes with low environmental impact.</div><div>.:Fabric blends: Heather Sport colors - 60% polyester, 40% cotton</div>",
+        description: `This unisex heavy blend hooded sweatshirt is relaxation itself. Made with a thick blend of cotton and polyester, it feels plush, soft and warm, a perfect choice for any cold day. In the front, the spacious kangaroo pocket adds daily practicality while the hood's drawstring is the same color as the base sweater for extra style points.<div>.:Made with a medium-heavy fabric (8.0 oz/yd² (271 g/m²)) that consists of 50% cotton and 50% polyester for that cozy feel and warmth you need in a hoodie.</div><div>.:The classic fit along with the pouch pocket and the tear-away label make for a highly comfortable, scratch-free wearing experience. </div><div>.:The color-matched drawcord and the double-lined hood add a stylish flair and durability that tie everything together.</div><div>.:Made using 100% ethically grown US cotton. Gildan is also a proud member of the US Cotton Trust Protocol ensuring ethical and sustainable means of production. The blank tee's dyes are OEKO-TEX-certified dyes with low environmental impact.</div><div>.:Fabric blends: Heather Sport colors - 60% polyester, 40% cotton</div>
+          <div><strong>Size Chart:</strong></div>
+  <div style="overflow-x:auto;">
+    <table style="border-collapse: collapse; width: 100%; text-align: left; min-width: 600px;">
+      <thead>
+        <tr>
+          <th style="border: 1px solid #ddd; padding: 8px;">Size</th>
+          <th style="border: 1px solid #ddd; padding: 8px;">S</th>
+          <th style="border: 1px solid #ddd; padding: 8px;">M</th>
+          <th style="border: 1px solid #ddd; padding: 8px;">L</th>
+          <th style="border: 1px solid #ddd; padding: 8px;">XL</th>
+          <th style="border: 1px solid #ddd; padding: 8px;">2XL</th>
+          <th style="border: 1px solid #ddd; padding: 8px;">3XL</th>
+          <th style="border: 1px solid #ddd; padding: 8px;">4XL</th>
+          <th style="border: 1px solid #ddd; padding: 8px;">5XL</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td style="border: 1px solid #ddd; padding: 8px;">Width, in</td>
+          <td style="border: 1px solid #ddd; padding: 8px;">18.00</td>
+          <td style="border: 1px solid #ddd; padding: 8px;">20.00</td>
+          <td style="border: 1px solid #ddd; padding: 8px;">22.00</td>
+          <td style="border: 1px solid #ddd; padding: 8px;">24.00</td>
+          <td style="border: 1px solid #ddd; padding: 8px;">26.00</td>
+          <td style="border: 1px solid #ddd; padding: 8px;">28.00</td>
+          <td style="border: 1px solid #ddd; padding: 8px;">30.00</td>
+          <td style="border: 1px solid #ddd; padding: 8px;">32.00</td>
+        </tr>
+        <tr>
+          <td style="border: 1px solid #ddd; padding: 8px;">Length, in</td>
+          <td style="border: 1px solid #ddd; padding: 8px;">28.00</td>
+          <td style="border: 1px solid #ddd; padding: 8px;">29.00</td>
+          <td style="border: 1px solid #ddd; padding: 8px;">30.00</td>
+          <td style="border: 1px solid #ddd; padding: 8px;">31.00</td>
+          <td style="border: 1px solid #ddd; padding: 8px;">32.00</td>
+          <td style="border: 1px solid #ddd; padding: 8px;">33.00</td>
+          <td style="border: 1px solid #ddd; padding: 8px;">34.00</td>
+          <td style="border: 1px solid #ddd; padding: 8px;">35.00</td>
+        </tr>
+        <tr>
+          <td style="border: 1px solid #ddd; padding: 8px;">Sleeve length (from center back), in</td>
+          <td style="border: 1px solid #ddd; padding: 8px;">15.10</td>
+          <td style="border: 1px solid #ddd; padding: 8px;">16.50</td>
+          <td style="border: 1px solid #ddd; padding: 8px;">18.00</td>
+          <td style="border: 1px solid #ddd; padding: 8px;">19.50</td>
+          <td style="border: 1px solid #ddd; padding: 8px;">21.00</td>
+          <td style="border: 1px solid #ddd; padding: 8px;">22.40</td>
+          <td style="border: 1px solid #ddd; padding: 8px;">23.70</td>
+          <td style="border: 1px solid #ddd; padding: 8px;">25.00</td>
+        </tr>
+        <tr>
+          <td style="border: 1px solid #ddd; padding: 8px;">Size tolerance, in</td>
+          <td style="border: 1px solid #ddd; padding: 8px;" colspan="8">1.50</td>
+          <td style="border: 1px solid #ddd; padding: 8px;" colspan="8">1.50</td>
+          <td style="border: 1px solid #ddd; padding: 8px;" colspan="8">1.50</td>
+          <td style="border: 1px solid #ddd; padding: 8px;" colspan="8">1.50</td>
+          <td style="border: 1px solid #ddd; padding: 8px;" colspan="8">1.50</td>
+          <td style="border: 1px solid #ddd; padding: 8px;" colspan="8">1.50</td>
+          <td style="border: 1px solid #ddd; padding: 8px;" colspan="8">1.50</td>
+          <td style="border: 1px solid #ddd; padding: 8px;" colspan="8">1.50</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>`,
         blueprint_id: 77,
         print_provider_id: 29,
         tags: ["whimnym"],
@@ -343,7 +420,7 @@ const createAndUploadImage = async (req, res) => {
     if (whiteImageUrl) {
       await postToInsta({
         caption: `Check out our new Maroon Hoodie! #CustomTshirt #Printify`,
-        image_url: whiteImageUrl,
+        image_urls: whiteImageUrl,
       });
 
       res.status(200).json(productResponse.data);

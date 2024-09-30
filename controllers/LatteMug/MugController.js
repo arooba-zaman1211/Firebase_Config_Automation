@@ -10,7 +10,7 @@ const {
   postToInsta,
   getImageUrlForColor,
   uploadImageToPrintify,
-} = require("../../helper/Helpers.js");
+} = require("../../helper/Helper.js");
 
 const token = process.env.PRINTIFY_ACCESS_TOKEN;
 const shopId = process.env.PRINTIFY_SHOP_ID;
@@ -33,12 +33,12 @@ const createAndUploadImage = async (req, res) => {
       .setNymColor("black")
       .setTypeColor("black")
       .setDefinitionColor("black")
-      .setNymFontSize("300px")
-      .setTypeFontSize("100px")
-      .setDefinitionFontSize("200px")
-      .setMarginTop("322px")
-      .setWidth("1000px")
-      .setHeight("800px")
+      .setNymFontSize("100px")
+      .setTypeFontSize("20px")
+      .setDefinitionFontSize("50px")
+      .setMarginTop("200px")
+      .setWidth("500px")
+      .setHeight("500px")
       .setPadding("100px 50px");
 
     const blackImage = await blackCard.build({ format: "png" });
@@ -139,10 +139,11 @@ const createAndUploadImage = async (req, res) => {
       }
     );
     // 6. Post the product image to Instagram
+    image_urls = [productImage1.src, productImage2.src, productImage3.src];
     try {
       await postToInsta({
         caption: `Check out our new Mug! #Printify`,
-        image_url: productImage2.src,
+        image_urls,
       });
 
       res.status(200).json(productResponse.data);
