@@ -2,6 +2,8 @@ const fs = require("fs");
 const axios = require("axios");
 const IG_Token = process.env.INSTAGRAM_ACCESS_TOKEN;
 const IG_ID = process.env.INSTAGRAM_BUSINESS_ACCOUNT_ID;
+const token = process.env.PRINTIFY_ACCESS_TOKEN;
+const shopId = process.env.PRINTIFY_SHOP_ID;
 
 require("dotenv").config();
 
@@ -26,7 +28,7 @@ const postToInsta = async ({ caption, image_urls }) => {
   try {
     // Step 1: Upload each image to Instagram and get the media IDs
     const mediaIds = [];
-    console.log(image_urls);
+    console.log("image urls:", image_urls);
     for (const image_url of image_urls) {
       const mediaUploadResponse = await axios.post(
         `https://graph.facebook.com/v20.0/${IG_ID}/media`,
@@ -72,7 +74,17 @@ const postToInsta = async ({ caption, image_urls }) => {
   }
 };
 
-const getImageUrlForColor = (productData, colorTitle) => {
+const getImageUrlForColor = (productData) => {
+  const colorList = ["Military Green", "Maroon", "Black", "Sport Grey"];
+
+  const randomColor = colorList[Math.floor(Math.random() * colorList.length)];
+
+  console.log(`Selected color: ${randomColor}`);
+
+  return getImage(productData, randomColor);
+};
+
+const getImage = (productData, colorTitle) => {
   console.log("1");
   const colorOption = productData.options.find(
     (option) => option.name === "Colors"
@@ -104,7 +116,7 @@ const getImageUrlForColor = (productData, colorTitle) => {
 
     // Exclude images if camera_label contains any unwanted terms
     const hasValidCameraLabel =
-      !/back|back-2|front-collar-closeup|back-collar-closeup|person-(5|6|7|8)-back|person-(5|6|7|8)-left-sleeve|size-chart/i.test(
+      !/back|back-2|front-collar-closeup|back-collar-closeup|person-(5|6|7|8)-back|person-(5|6|7|8)-left-sleeve|size-chart|folded|duo|duo-(2|3)/i.test(
         cameraLabel || ""
       );
 
@@ -113,18 +125,17 @@ const getImageUrlForColor = (productData, colorTitle) => {
 
   console.log(variantImages);
 
-  // If there are fewer than two images, return null
-  if (variantImages.length < 2) return null;
+  // If there are no valid images, return null
+  if (variantImages.length === 0) return null;
 
-  // Randomly pick two images from the variant images
-  const randomImages = variantImages
-    .sort(() => 0.5 - Math.random()) // Shuffle the array
-    .slice(0, 2); // Pick the first two images
+  // Randomly pick one image from the variant images
+  const randomImage =
+    variantImages[Math.floor(Math.random() * variantImages.length)];
 
-  console.log(randomImages);
+  console.log(randomImage);
 
-  // Return an array of the two image URLs
-  return randomImages.map((image) => image.src);
+  // Return the URL of the randomly selected image
+  return randomImage.src;
 };
 
 const uploadImageToPrintify = async (fileName, base64Image, token) => {
@@ -146,6 +157,33 @@ const uploadImageToPrintify = async (fileName, base64Image, token) => {
   }
 };
 
+const publishData = async (productId) => {
+  try {
+    const requestData = {
+      title: true,
+      description: true,
+      images: true,
+      variants: true,
+      tags: true,
+      keyFeatures: true,
+      shipping_template: true,
+    };
+    const publishResponse = await axios.post(
+      `https://api.printify.com/v1/shops/${shopId}/products/${productId}/publish.json`,
+      requestData,
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
+        },
+      }
+    );
+    return publishResponse;
+  } catch (error) {
+    return error;
+  }
+};
+
 // Export the helper functions
 module.exports = {
   getBase64FromFile,
@@ -153,4 +191,5 @@ module.exports = {
   postToInsta,
   getImageUrlForColor,
   uploadImageToPrintify,
+  publishData,
 };

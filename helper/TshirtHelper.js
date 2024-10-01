@@ -2,18 +2,20 @@ const fs = require("fs");
 const path = require("path");
 const axios = require("axios");
 const { Font } = require("canvacord");
-const { NymPost } = require("../../services/NymPost.jsx"); // Import your NymPost class
+const { NymPost } = require("../services/NymPost.jsx"); // Import your NymPost class
 require("dotenv").config();
 const {
   getBase64FromFile,
   generateUniqueFileName,
-  postToInsta,
   getImageUrlForColor,
   uploadImageToPrintify,
-} = require("../../helper/Helper.js");
+  publishData,
+} = require("../helper/Helper.js");
 
 const token = process.env.PRINTIFY_ACCESS_TOKEN;
 const shopId = process.env.PRINTIFY_SHOP_ID;
+
+console.log("token: ", token);
 
 Font.fromFileSync("public/assets/fonts/Cardo/Cardo-Bold.ttf", "Cardo-Bold");
 Font.fromFileSync("public/assets/fonts/Inter/Inter-Italic.ttf", "Inter-Italic");
@@ -23,13 +25,13 @@ Font.fromFileSync(
 );
 
 // Controller function to generate and upload image
-const createAndUploadImage = async (req, res) => {
+const createTShirt = async (name, type, definition) => {
   try {
     // 1. Generate the image using Canvacord and save it locally
-    const whiteCard = new NymPost(3531, 2352)
-      .setNym(req.body.nym)
-      .setType(req.body.type)
-      .setDefinition(req.body.definition)
+    const whiteCard = new NymPost(3951, 4919)
+      .setNym(name)
+      .setType(type)
+      .setDefinition(definition)
       .setNymColor("white")
       .setTypeColor("white")
       .setDefinitionColor("white")
@@ -45,7 +47,7 @@ const createAndUploadImage = async (req, res) => {
     const whiteFileName = generateUniqueFileName();
     const whiteFilePath = path.join(
       __dirname,
-      "../../public/images",
+      "../public/images",
       whiteFileName
     );
 
@@ -64,10 +66,10 @@ const createAndUploadImage = async (req, res) => {
     console.log(`White card uploaded with ID: ${whiteImageId}`);
 
     // 2. Create the second card (Black Text)
-    const blackCard = new NymPost(3531, 2352)
-      .setNym(req.body.nym)
-      .setType(req.body.type)
-      .setDefinition(req.body.definition)
+    const blackCard = new NymPost(3951, 4919)
+      .setNym(name)
+      .setType(type)
+      .setDefinition(definition)
       .setNymColor("black")
       .setTypeColor("black")
       .setDefinitionColor("black")
@@ -83,7 +85,7 @@ const createAndUploadImage = async (req, res) => {
     const blackFileName = generateUniqueFileName();
     const blackFilePath = path.join(
       __dirname,
-      "../../public/images",
+      "../public/images",
       blackFileName
     );
 
@@ -105,9 +107,15 @@ const createAndUploadImage = async (req, res) => {
     const productResponse = await axios.post(
       `https://api.printify.com/v1/shops/${shopId}/products.json`,
       {
-        title: `${req.body.nym} Unisex Heavy Blend™ Hooded Sweatshirt`,
-        description: `This unisex heavy blend hooded sweatshirt is relaxation itself. Made with a thick blend of cotton and polyester, it feels plush, soft and warm, a perfect choice for any cold day. In the front, the spacious kangaroo pocket adds daily practicality while the hood's drawstring is the same color as the base sweater for extra style points.<div>.:Made with a medium-heavy fabric (8.0 oz/yd² (271 g/m²)) that consists of 50% cotton and 50% polyester for that cozy feel and warmth you need in a hoodie.</div><div>.:The classic fit along with the pouch pocket and the tear-away label make for a highly comfortable, scratch-free wearing experience. </div><div>.:The color-matched drawcord and the double-lined hood add a stylish flair and durability that tie everything together.</div><div>.:Made using 100% ethically grown US cotton. Gildan is also a proud member of the US Cotton Trust Protocol ensuring ethical and sustainable means of production. The blank tee's dyes are OEKO-TEX-certified dyes with low environmental impact.</div><div>.:Fabric blends: Heather Sport colors - 60% polyester, 40% cotton</div>
-          <div><strong>Size Chart:</strong></div>
+        title: `Unisex Heavy Cotton Tee`,
+        description: `The unisex heavy cotton tee is the basic staple of any wardrobe. It is the foundation upon which casual fashion grows. All it needs is a personalized design to elevate things to profitability. The specially spun fibers provide a smooth surface for premium printing vividity and sharpness. No side seams mean there are no itchy interruptions under the arms. The shoulders have tape for improved durability.
+  
+  <div>.: Made with medium fabric (5.3 oz/yd² (180 g/m²)) consisting of 100% cotton for year-round comfort that is sustainable and highly durable.</div>
+  <div>.: The classic fit of this shirt ensures a comfy, relaxed wear while the crew neckline adds that neat, timeless look that can blend into any occasion, casual or semi-formal.</div>
+  <div>.: The tear-away label means a scratch-free experience with no irritation or discomfort whatsoever.</div>
+  <div>.: Made using 100% US cotton that is ethically grown and harvested. Gildan is also a proud member of the US Cotton Trust Protocol ensuring ethical and sustainable means of production. This blank tee is certified by Oeko-Tex for safety and quality assurance.</div>
+  
+  <div><strong>Size Chart:</strong></div>
   <div style="overflow-x:auto;">
     <table style="border-collapse: collapse; width: 100%; text-align: left; min-width: 600px;">
       <thead>
@@ -171,167 +179,168 @@ const createAndUploadImage = async (req, res) => {
       </tbody>
     </table>
   </div>`,
-        blueprint_id: 77,
+        blueprint_id: 6,
         print_provider_id: 29,
         tags: ["whimnym"],
         variants: [
           {
-            id: 32886, // Maroon
+            id: 11974, // Maroon
             price: 2000,
             is_enabled: true,
           },
           {
-            id: 32887, // Maroon
+            id: 11975, // Maroon
             price: 2000,
             is_enabled: true,
           },
           {
-            id: 32888, // Maroon
+            id: 11976, // Maroon
             price: 2000,
             is_enabled: true,
           },
           {
-            id: 32889, // Maroon
+            id: 11977, // Maroon
             price: 2000,
             is_enabled: true,
           },
           {
-            id: 32890, // Maroon
+            id: 11978, // Maroon
             price: 2000,
             is_enabled: true,
           },
           {
-            id: 32891, // Maroon
+            id: 11979, // Maroon
             price: 2000,
             is_enabled: true,
           },
           {
-            id: 32892, // Maroon
+            id: 12070, // Sport Grey
             price: 2000,
             is_enabled: true,
           },
           {
-            id: 32893, // Maroon
+            id: 12071, // Sport Grey
             price: 2000,
             is_enabled: true,
           },
           {
-            id: 32902, // SSport Grey
+            id: 12072, // Sport Grey
             price: 2000,
             is_enabled: true,
           },
           {
-            id: 32903, // SSport Grey
+            id: 12073, // Sport Grey
             price: 2000,
             is_enabled: true,
           },
           {
-            id: 32904, // SSport Grey
+            id: 12074, // Sport Grey
             price: 2000,
             is_enabled: true,
           },
           {
-            id: 32905, // SSport Grey
+            id: 12075, // Sport Grey
+            price: 2000,
+            is_enabled: true,
+          },
+
+          {
+            id: 12124, // Black
             price: 2000,
             is_enabled: true,
           },
           {
-            id: 32906, // SSport Grey
+            id: 12125, // Black
             price: 2000,
             is_enabled: true,
           },
           {
-            id: 32907, // SSport Grey
+            id: 12126, // Black
             price: 2000,
             is_enabled: true,
           },
           {
-            id: 32908, // SSport Grey
+            id: 12127, // Black
             price: 2000,
             is_enabled: true,
           },
           {
-            id: 32909, // SSport Grey
+            id: 12128, // Black
             price: 2000,
             is_enabled: true,
           },
           {
-            id: 32918, // Black
+            id: 12129, // Black
             price: 2000,
             is_enabled: true,
           },
           {
-            id: 32919, // Black
+            id: 12190, // Military Green
             price: 2000,
             is_enabled: true,
           },
           {
-            id: 32920, // Black
+            id: 12191, // Military Green
             price: 2000,
             is_enabled: true,
           },
           {
-            id: 32921, // Black
+            id: 12192, // Military Green
             price: 2000,
             is_enabled: true,
           },
           {
-            id: 32922, // Black
+            id: 12193, // Military Green
             price: 2000,
             is_enabled: true,
           },
           {
-            id: 32923, // Black
+            id: 12194, // Military Green
             price: 2000,
             is_enabled: true,
           },
           {
-            id: 32924, // Black
+            id: 12195, // Military Green
             price: 2000,
             is_enabled: true,
           },
           {
-            id: 32925, // Black
+            id: 23989, // Maroon
             price: 2000,
             is_enabled: true,
           },
           {
-            id: 33425, // Military Green
+            id: 24021, // Sport Grey
             price: 2000,
             is_enabled: true,
           },
           {
-            id: 33426, // Military Green
+            id: 24039, // Black
             price: 2000,
             is_enabled: true,
           },
           {
-            id: 33427, // Military Green
+            id: 24060, // Military Green
             price: 2000,
             is_enabled: true,
           },
           {
-            id: 33428, // Military Green
+            id: 24122, // Maroon
             price: 2000,
             is_enabled: true,
           },
           {
-            id: 33429, // Military Green
+            id: 24153, // Sport Grey
             price: 2000,
             is_enabled: true,
           },
           {
-            id: 33430, // Military Green
+            id: 24171, // Black
             price: 2000,
             is_enabled: true,
           },
           {
-            id: 33431, // Military Green
-            price: 2000,
-            is_enabled: true,
-          },
-          {
-            id: 33432, // Military Green
+            id: 24194, // Military Green
             price: 2000,
             is_enabled: true,
           },
@@ -339,7 +348,7 @@ const createAndUploadImage = async (req, res) => {
         print_areas: [
           {
             variant_ids: [
-              32902, 32903, 32904, 32905, 32906, 32907, 32908, 32909,
+              12070, 12071, 12072, 12073, 12074, 12075, 24021, 24153,
             ], // Assign black image to these variants
             placeholders: [
               {
@@ -358,13 +367,76 @@ const createAndUploadImage = async (req, res) => {
           },
           {
             variant_ids: [
-              32886, 32887, 32888, 32889, 32890, 32891, 32892, 32893, 32918,
-              32919, 32920, 32921, 32922, 32923, 32924, 32925, 33425, 33426,
-              33427, 33428, 33429, 33430, 33431, 33432,
+              11974,
+              11975,
+              11976,
+              11977,
+              11978,
+              11979, // Maroon
+              12124,
+              12125,
+              12126,
+              12127,
+              12128,
+              12129, // Black
+              12190,
+              12191,
+              12192,
+              12193,
+              12194,
+              12195, // Military Green
+              23989, // Maroon
+              24039, // Black
+              24060, // Military Green
+              24122, // Maroon
+              24171, // Black
+              24194, // Military Green
             ],
             placeholders: [
               {
                 position: "front",
+                images: [
+                  {
+                    id: whiteImageId, // White image ID goes here
+                    x: 0.5,
+                    y: 0.5,
+                    scale: 1,
+                    angle: 0,
+                  },
+                ],
+              },
+            ],
+          },
+          {
+            variant_ids: [
+              11974,
+              11975,
+              11976,
+              11977,
+              11978,
+              11979, // Maroon
+              12124,
+              12125,
+              12126,
+              12127,
+              12128,
+              12129, // Black
+              12190,
+              12191,
+              12192,
+              12193,
+              12194,
+              12195, // Military Green
+              23989, // Maroon
+              24039, // Black
+              24060, // Military Green
+              24122, // Maroon
+              24171, // Black
+              24194, // Military Green
+            ],
+            placeholders: [
+              {
+                position: "other",
                 images: [
                   {
                     id: whiteImageId, // White image ID goes here
@@ -388,55 +460,20 @@ const createAndUploadImage = async (req, res) => {
     );
 
     const productId = productResponse.data.id;
-    console.log("images: ", productResponse.data.images);
-    // 4. Publish the product to Shopify
-    const requestData = {
-      title: true,
-      description: true,
-      images: true,
-      variants: true,
-      tags: true,
-      keyFeatures: true,
-      shipping_template: true,
-    };
 
-    const publishResponse = await axios.post(
-      `https://api.printify.com/v1/shops/${shopId}/products/${productId}/publish.json`,
-      requestData,
-      {
-        headers: {
-          Authorization: `Bearer ${token}`,
-          "Content-Type": "application/json",
-        },
-      }
-    );
+    const data = await publishData(productId);
 
-    console.log("Product published to Shopify:", publishResponse.data);
-    // 5. Fetch the image URL for the white variant
-    const whiteImageUrl = getImageUrlForColor(productResponse.data, "Maroon");
-    console.log("Image url:", whiteImageUrl);
-
-    // 6. Post the product image to Instagram
-    if (whiteImageUrl) {
-      await postToInsta({
-        caption: `Check out our new Maroon Hoodie! #CustomTshirt #Printify`,
-        image_urls: whiteImageUrl,
-      });
-
-      res.status(200).json(productResponse.data);
+    if (data) {
+      console.log("Product published to Shopify");
+      const whiteImageUrl = getImageUrlForColor(productResponse.data);
+      console.log("Image url:", whiteImageUrl);
+      return whiteImageUrl;
     } else {
-      res.status(404).send("Asphalt variant image URL not found");
+      return;
     }
   } catch (error) {
-    console.error(
-      "Error creating and uploading image or product:",
-      error.response ? error.response.data : error.message
-    );
-    res.status(500).send("Error creating and uploading image or product");
+    return error;
   }
 };
 
-// Export the controller function
-module.exports = {
-  createAndUploadImage,
-};
+module.exports = { createTShirt };

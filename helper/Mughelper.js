@@ -2,15 +2,14 @@ const fs = require("fs");
 const path = require("path");
 const axios = require("axios");
 const { Font } = require("canvacord");
-const { NymPost } = require("../../services/NymPost.jsx"); // Import your NymPost class
+const { NymPost } = require("../services/NymPost.jsx"); // Import your NymPost class
 require("dotenv").config();
 const {
   getBase64FromFile,
   generateUniqueFileName,
-  postToInsta,
-  getImageUrlForColor,
   uploadImageToPrintify,
-} = require("../../helper/Helper.js");
+  publishData,
+} = require("../helper/Helper.js");
 
 const token = process.env.PRINTIFY_ACCESS_TOKEN;
 const shopId = process.env.PRINTIFY_SHOP_ID;
@@ -23,13 +22,13 @@ Font.fromFileSync(
 );
 
 // Controller function to generate and upload image
-const createAndUploadImage = async (req, res) => {
+const createMug = async (name, type, definition) => {
   try {
     // 1. Create the second card (Black Text)
     const blackCard = new NymPost(1988, 1196)
-      .setNym(req.body.nym)
-      .setType(req.body.type)
-      .setDefinition(req.body.definition)
+      .setNym(name)
+      .setType(type)
+      .setDefinition(definition)
       .setNymColor("black")
       .setTypeColor("black")
       .setDefinitionColor("black")
@@ -45,7 +44,7 @@ const createAndUploadImage = async (req, res) => {
     const blackFileName = generateUniqueFileName();
     const blackFilePath = path.join(
       __dirname,
-      "../../public/images",
+      "../public/images",
       blackFileName
     );
 
@@ -67,7 +66,7 @@ const createAndUploadImage = async (req, res) => {
     const productResponse = await axios.post(
       `https://api.printify.com/v1/shops/${shopId}/products.json`,
       {
-        title: `${req.body.nym} Latte Mug`,
+        title: `Latte Mug`,
         description:
           "A true coffee lover knows that each variety of the aromatic drink deserves a special cup. These custom latte mugs come with high quality sublimation printing and make the perfect gift for any latte enthusiast. All our custom latte mugs feature stylish rounded corners, can accommodate 12 oz of delicious latte coffee and come with a comfy C-style handle for effortless sipping. <br/><div>.:Custom latte mugs, 12oz (0.35 l)</div><div>.:Rounded corners</div><br /><div>.:C-Handle</div><div>.:All custom latte mugs are made 100% white ceramic</div>",
         blueprint_id: 289,
@@ -118,48 +117,17 @@ const createAndUploadImage = async (req, res) => {
     console.log("product response 2: ", productImage2);
     console.log("product response 3: ", productImage3);
     // 4. Publish the product to Shopify
-    const requestData = {
-      title: true,
-      description: true,
-      images: true,
-      variants: true,
-      tags: true,
-      keyFeatures: true,
-      shipping_template: true,
-    };
 
-    const publishResponse = await axios.post(
-      `https://api.printify.com/v1/shops/${shopId}/products/${productId}/publish.json`,
-      requestData,
-      {
-        headers: {
-          Authorization: `Bearer ${token}`,
-          "Content-Type": "application/json",
-        },
-      }
-    );
-    // 6. Post the product image to Instagram
-    image_urls = [productImage1.src, productImage2.src, productImage3.src];
-    try {
-      await postToInsta({
-        caption: `Check out our new Mug! #Printify`,
-        image_urls,
-      });
-
-      res.status(200).json(productResponse.data);
-    } catch (error) {
-      res.status(404).send("Mug variant image URL not found");
+    const data = await publishData(productId);
+    if (data) {
+      return productImage2.src;
+    } else {
+      return;
     }
+    // 6. Post the product image to Instagram
   } catch (error) {
-    console.error(
-      "Error creating and uploading image or product:",
-      error.response ? error.response.data : error.message
-    );
-    res.status(500).send("Error creating and uploading image or product");
+    return error;
   }
 };
 
-// Export the controller function
-module.exports = {
-  createAndUploadImage,
-};
+module.exports = { createMug };
