@@ -4,7 +4,6 @@ let IG_Token = process.env.INSTAGRAM_ACCESS_TOKEN;
 const IG_ID = process.env.INSTAGRAM_BUSINESS_ACCOUNT_ID;
 const token = process.env.PRINTIFY_ACCESS_TOKEN;
 const shopId = process.env.PRINTIFY_SHOP_ID;
-
 const FB_APP_ID = process.env.FB_APP_ID;
 const FB_APP_SECRET = process.env.FB_APP_SECRET;
 
