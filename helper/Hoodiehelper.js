@@ -100,14 +100,14 @@ const createHoodie = async (name, type, definition) => {
       token
     );
     console.log(`Black card uploaded with ID: ${blackImageId}`);
-
+    console.log("1");
     // 4. Create a product in Printify
     const productResponse = await axios.post(
       `https://api.printify.com/v1/shops/${shopId}/products.json`,
       {
         title: `Unisex Heavy Blend™ Hooded Sweatshirt`,
         description: `This unisex heavy blend hooded sweatshirt is relaxation itself. Made with a thick blend of cotton and polyester, it feels plush, soft and warm, a perfect choice for any cold day. In the front, the spacious kangaroo pocket adds daily practicality while the hood's drawstring is the same color as the base sweater for extra style points.<div>.:Made with a medium-heavy fabric (8.0 oz/yd² (271 g/m²)) that consists of 50% cotton and 50% polyester for that cozy feel and warmth you need in a hoodie.</div><div>.:The classic fit along with the pouch pocket and the tear-away label make for a highly comfortable, scratch-free wearing experience. </div><div>.:The color-matched drawcord and the double-lined hood add a stylish flair and durability that tie everything together.</div><div>.:Made using 100% ethically grown US cotton. Gildan is also a proud member of the US Cotton Trust Protocol ensuring ethical and sustainable means of production. The blank tee's dyes are OEKO-TEX-certified dyes with low environmental impact.</div><div>.:Fabric blends: Heather Sport colors - 60% polyester, 40% cotton</div>
-          <div><strong>Size Chart:</strong></div>
+        <div><strong>Size Chart:</strong></div>
   <div style="overflow-x:auto;">
     <table style="border-collapse: collapse; width: 100%; text-align: left; min-width: 600px;">
       <thead>
@@ -159,187 +159,299 @@ const createHoodie = async (name, type, definition) => {
         </tr>
         <tr>
           <td style="border: 1px solid #ddd; padding: 8px;">Size tolerance, in</td>
-          <td style="border: 1px solid #ddd; padding: 8px;" colspan="8">1.50</td>
-          <td style="border: 1px solid #ddd; padding: 8px;" colspan="8">1.50</td>
-          <td style="border: 1px solid #ddd; padding: 8px;" colspan="8">1.50</td>
-          <td style="border: 1px solid #ddd; padding: 8px;" colspan="8">1.50</td>
-          <td style="border: 1px solid #ddd; padding: 8px;" colspan="8">1.50</td>
-          <td style="border: 1px solid #ddd; padding: 8px;" colspan="8">1.50</td>
-          <td style="border: 1px solid #ddd; padding: 8px;" colspan="8">1.50</td>
-          <td style="border: 1px solid #ddd; padding: 8px;" colspan="8">1.50</td>
+          <td style="border: 1px solid #ddd; padding: 8px;" >1.50</td>
+          <td style="border: 1px solid #ddd; padding: 8px;" >1.50</td>
+          <td style="border: 1px solid #ddd; padding: 8px;" >1.50</td>
+          <td style="border: 1px solid #ddd; padding: 8px;" >1.50</td>
+          <td style="border: 1px solid #ddd; padding: 8px;" >1.50</td>
+          <td style="border: 1px solid #ddd; padding: 8px;" >1.50</td>
+          <td style="border: 1px solid #ddd; padding: 8px;" >1.50</td>
+          <td style="border: 1px solid #ddd; padding: 8px;" >1.50</td>
         </tr>
       </tbody>
     </table>
   </div>`,
         blueprint_id: 77,
-        print_provider_id: 29,
+        print_provider_id: 99,
         tags: ["whimnym"],
+        is_printify_express_enabled: true,
         variants: [
           {
-            id: 32886, // Maroon
-            price: 2000,
+            id: 42219, // Dark Chocolate S
+            price: 2660,
             is_enabled: true,
           },
           {
-            id: 32887, // Maroon
-            price: 2000,
+            id: 42220, // Dark Chocolate M
+            price: 2660,
             is_enabled: true,
           },
           {
-            id: 32888, // Maroon
-            price: 2000,
+            id: 42221, // Dark Chocolate L
+            price: 2660,
             is_enabled: true,
           },
           {
-            id: 32889, // Maroon
-            price: 2000,
+            id: 42222, // Dark Chocolate XL
+            price: 2660,
             is_enabled: true,
           },
           {
-            id: 32890, // Maroon
-            price: 2000,
+            id: 42223, // Dark Chocolate 2XL
+            price: 2950,
             is_enabled: true,
           },
           {
-            id: 32891, // Maroon
-            price: 2000,
+            id: 42224, // Dark Chocolate 3XL
+            price: 3100,
             is_enabled: true,
           },
           {
-            id: 32892, // Maroon
-            price: 2000,
+            id: 42225, // Dark Chocolate 4XL
+            price: 3100,
             is_enabled: true,
           },
           {
-            id: 32893, // Maroon
-            price: 2000,
+            id: 42226, // Dark Chocolate 5XL
+            price: 3100,
             is_enabled: true,
           },
           {
-            id: 32902, // SSport Grey
-            price: 2000,
+            id: 32910, // White S
+            price: 2660,
             is_enabled: true,
           },
           {
-            id: 32903, // SSport Grey
-            price: 2000,
+            id: 32911, // White M
+            price: 2660,
             is_enabled: true,
           },
           {
-            id: 32904, // SSport Grey
-            price: 2000,
+            id: 32912, // White L
+            price: 2660,
             is_enabled: true,
           },
           {
-            id: 32905, // SSport Grey
-            price: 2000,
+            id: 32913, // White XL
+            price: 2660,
             is_enabled: true,
           },
           {
-            id: 32906, // SSport Grey
-            price: 2000,
+            id: 32914, // White 2XL
+            price: 2950,
             is_enabled: true,
           },
           {
-            id: 32907, // SSport Grey
-            price: 2000,
+            id: 32915, // White 3XL
+            price: 3100,
             is_enabled: true,
           },
           {
-            id: 32908, // SSport Grey
-            price: 2000,
+            id: 32916, // White 4XL
+            price: 3100,
             is_enabled: true,
           },
           {
-            id: 32909, // SSport Grey
-            price: 2000,
+            id: 32917, // White 5XL
+            price: 3100,
             is_enabled: true,
           },
           {
-            id: 32918, // Black
-            price: 2000,
+            id: 32902, // Sport Grey S
+            price: 2660,
             is_enabled: true,
           },
           {
-            id: 32919, // Black
-            price: 2000,
+            id: 32903, // Sport Grey M
+            price: 2660,
             is_enabled: true,
           },
           {
-            id: 32920, // Black
-            price: 2000,
+            id: 32904, // Sport Grey L
+            price: 2660,
             is_enabled: true,
           },
           {
-            id: 32921, // Black
-            price: 2000,
+            id: 32905, // Sport Grey XL
+            price: 2660,
             is_enabled: true,
           },
           {
-            id: 32922, // Black
-            price: 2000,
+            id: 32906, // Sport Grey 2XL
+            price: 2950,
             is_enabled: true,
           },
           {
-            id: 32923, // Black
-            price: 2000,
+            id: 32907, // Sport Grey 3XL
+            price: 3100,
             is_enabled: true,
           },
           {
-            id: 32924, // Black
-            price: 2000,
+            id: 32908, // Sport Grey 4XL
+            price: 3100,
             is_enabled: true,
           },
           {
-            id: 32925, // Black
-            price: 2000,
+            id: 32909, // Sport Grey 5XL
+            price: 3100,
             is_enabled: true,
           },
           {
-            id: 33425, // Military Green
-            price: 2000,
+            id: 33409, // Cardinal Red S
+            price: 2660,
             is_enabled: true,
           },
           {
-            id: 33426, // Military Green
-            price: 2000,
+            id: 33410, // Cardinal Red M
+            price: 2660,
             is_enabled: true,
           },
           {
-            id: 33427, // Military Green
-            price: 2000,
+            id: 33411, // Cardinal Red L
+            price: 2660,
             is_enabled: true,
           },
           {
-            id: 33428, // Military Green
-            price: 2000,
+            id: 33412, // Cardinal Red XL
+            price: 2660,
             is_enabled: true,
           },
           {
-            id: 33429, // Military Green
-            price: 2000,
+            id: 33413, // Cardinal Red 2XL
+            price: 2950,
             is_enabled: true,
           },
           {
-            id: 33430, // Military Green
-            price: 2000,
+            id: 33414, // Cardinal Red 3XL
+            price: 3100,
             is_enabled: true,
           },
           {
-            id: 33431, // Military Green
-            price: 2000,
+            id: 33415, // Cardinal Red 4XL
+            price: 3100,
             is_enabled: true,
           },
           {
-            id: 33432, // Military Green
-            price: 2000,
+            id: 33416, // Cardinal Red 5XL
+            price: 3100,
+            is_enabled: true,
+          },
+          {
+            id: 32918, // Black S
+            price: 2660,
+            is_enabled: true,
+          },
+          {
+            id: 32919, // Black M
+            price: 2660,
+            is_enabled: true,
+          },
+          {
+            id: 32920, // Black L
+            price: 2660,
+            is_enabled: true,
+          },
+          {
+            id: 32921, // Black XL
+            price: 2660,
+            is_enabled: true,
+          },
+          {
+            id: 32922, // Black 2XL
+            price: 2950,
+            is_enabled: true,
+          },
+          {
+            id: 32923, // Black 3XL
+            price: 3100,
+            is_enabled: true,
+          },
+          {
+            id: 32924, // Black 4XL
+            price: 3100,
+            is_enabled: true,
+          },
+          {
+            id: 32925, // Black 5XL
+            price: 3100,
+            is_enabled: true,
+          },
+          {
+            id: 32886, // Maroon S
+            price: 2660,
+            is_enabled: true,
+          },
+          {
+            id: 32887, // Maroon M
+            price: 2660,
+            is_enabled: true,
+          },
+          {
+            id: 32888, // Maroon L
+            price: 2660,
+            is_enabled: true,
+          },
+          {
+            id: 32889, // Maroon XL
+            price: 2660,
+            is_enabled: true,
+          },
+          {
+            id: 32890, // Maroon 2XL
+            price: 2950,
+            is_enabled: true,
+          },
+          {
+            id: 32891, // Maroon 3XL
+            price: 3100,
+            is_enabled: true,
+          },
+          {
+            id: 32892, // Maroon 4XL
+            price: 3100,
+            is_enabled: true,
+          },
+          {
+            id: 32893, // Maroon 5XL
+            price: 3100,
+            is_enabled: true,
+          },
+          {
+            id: 66363, // Heather Navy S
+            price: 2660,
+            is_enabled: true,
+          },
+          {
+            id: 66364, // Heather Navy M
+            price: 2660,
+            is_enabled: true,
+          },
+          {
+            id: 66365, // Heather Navy L
+            price: 2660,
+            is_enabled: true,
+          },
+          {
+            id: 66366, // Heather Navy XL
+            price: 26600,
+            is_enabled: true,
+          },
+          {
+            id: 66367, // Heather Navy 2XL
+            price: 2950,
+            is_enabled: true,
+          },
+          {
+            id: 66368, // Heather Navy 3XL
+            price: 3100,
             is_enabled: true,
           },
         ],
         print_areas: [
           {
             variant_ids: [
-              32902, 32903, 32904, 32905, 32906, 32907, 32908, 32909,
+              32902, 32903, 32904, 32905, 32906, 32907, 32908, 32909, 32910,
+              32911, 32912, 32913, 32914, 32915, 32916, 32917,
             ], // Assign black image to these variants
             placeholders: [
               {
@@ -358,9 +470,44 @@ const createHoodie = async (name, type, definition) => {
           },
           {
             variant_ids: [
-              32886, 32887, 32888, 32889, 32890, 32891, 32892, 32893, 32918,
-              32919, 32920, 32921, 32922, 32923, 32924, 32925, 33425, 33426,
-              33427, 33428, 33429, 33430, 33431, 33432,
+              66363,
+              66364,
+              66365,
+              66366,
+              66367,
+              66368,
+              32886,
+              32887,
+              32888,
+              32889,
+              32890,
+              32891,
+              32892,
+              32893,
+              32918,
+              32919,
+              32920,
+              32921,
+              32922,
+              32923,
+              32924,
+              32925,
+              33409,
+              33410,
+              33411,
+              33412,
+              33413,
+              33414,
+              33415,
+              33416,
+              42219,
+              42220,
+              42221,
+              42222,
+              42223,
+              42224,
+              42225,
+              42226, // 5XL
             ],
             placeholders: [
               {
@@ -386,9 +533,8 @@ const createHoodie = async (name, type, definition) => {
         },
       }
     );
-
     const productId = productResponse.data.id;
-    console.log("images: ", productResponse.data.images);
+    console.log("Hoodie id:", productId);
     // 4. Publish the product to Shopify
     const data = await publishData(productId);
     if (data) {

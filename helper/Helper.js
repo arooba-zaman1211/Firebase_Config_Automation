@@ -15,9 +15,7 @@ const refreshThreshold = 2 * 24 * 60 * 60 * 1000; // Refresh threshold (2 days b
 // Function to refresh the long-lived access token
 async function refreshAccessToken() {
   try {
-    console.log("1");
     const shortLivedToken = IG_Token;
-    console.log("2");
     const response = await axios.get(
       `https://graph.facebook.com/oauth/access_token`,
       {
@@ -175,30 +173,22 @@ const getImageUrlForColor = (productData) => {
 
   const randomColor = colorList[Math.floor(Math.random() * colorList.length)];
 
-  console.log(`Selected color: ${randomColor}`);
-
   return getImage(productData, randomColor);
 };
 
 const getImage = (productData, colorTitle) => {
-  console.log("1");
   const colorOption = productData.options.find(
     (option) => option.name === "Colors"
   );
-  console.log("2");
-  console.log(colorOption);
 
   if (!colorOption) return null;
 
   const color = colorOption.values.find((c) => c.title === colorTitle);
-  console.log("3");
-  console.log(color);
+
   if (!color) return null;
 
   const colorId = color.id;
   const variant = productData.variants.find((v) => v.options.includes(colorId));
-  console.log("4");
-  console.log(variant);
 
   if (!variant) return null;
 
@@ -219,16 +209,12 @@ const getImage = (productData, colorTitle) => {
     return belongsToVariant && hasValidCameraLabel;
   });
 
-  console.log(variantImages);
-
   // If there are no valid images, return null
   if (variantImages.length === 0) return null;
 
   // Randomly pick one image from the variant images
   const randomImage =
     variantImages[Math.floor(Math.random() * variantImages.length)];
-
-  console.log(randomImage);
 
   // Return the URL of the randomly selected image
   return randomImage.src;

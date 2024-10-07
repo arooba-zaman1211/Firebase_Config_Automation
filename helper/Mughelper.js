@@ -67,15 +67,36 @@ const createMug = async (name, type, definition) => {
       `https://api.printify.com/v1/shops/${shopId}/products.json`,
       {
         title: `Latte Mug`,
-        description:
-          "A true coffee lover knows that each variety of the aromatic drink deserves a special cup. These custom latte mugs come with high quality sublimation printing and make the perfect gift for any latte enthusiast. All our custom latte mugs feature stylish rounded corners, can accommodate 12 oz of delicious latte coffee and come with a comfy C-style handle for effortless sipping. <br/><div>.:Custom latte mugs, 12oz (0.35 l)</div><div>.:Rounded corners</div><br /><div>.:C-Handle</div><div>.:All custom latte mugs are made 100% white ceramic</div>",
+        description: `A true coffee lover knows that each variety of the aromatic drink deserves a special cup. These custom latte mugs come with high quality sublimation printing and make the perfect gift for any latte enthusiast. All our custom latte mugs feature stylish rounded corners, can accommodate 12 oz of delicious latte coffee and come with a comfy C-style handle for effortless sipping. <br/><div>.:Custom latte mugs, 12oz (0.35 l)</div><div>.:Rounded corners</div><br /><div>.:C-Handle</div><div>.:All custom latte mugs are made 100% white ceramic</div>
+        <div><strong>Size Chart:</strong></div>
+  <div style="overflow-x:auto;">
+    <table style="border-collapse: collapse; width: 100%; text-align: left; min-width: 600px;">
+      <thead>
+        <tr>
+          <th style="border: 1px solid #ddd; padding: 8px;"></th>
+          <th style="border: 1px solid #ddd; padding: 8px;">12oz</th>
+          
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td style="border: 1px solid #ddd; padding: 8px;">Height, in</td>
+          <td style="border: 1px solid #ddd; padding: 8px;">4.02</td>
+        </tr>
+        <tr>
+          <td style="border: 1px solid #ddd; padding: 8px;">Diameter , in</td>
+          <td style="border: 1px solid #ddd; padding: 8px;">3.70</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>`,
         blueprint_id: 289,
         print_provider_id: 1,
         tags: ["whimnym"],
         variants: [
           {
             id: 43321, // 12oz variant ID
-            price: 2000,
+            price: 1050,
             is_enabled: true,
           },
         ],
@@ -110,6 +131,7 @@ const createMug = async (name, type, definition) => {
     );
 
     const productId = productResponse.data.id;
+    console.log(productId);
     const productImage1 = productResponse.data.images[0];
     const productImage2 = productResponse.data.images[1];
     const productImage3 = productResponse.data.images[2];
