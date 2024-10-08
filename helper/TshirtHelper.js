@@ -3,6 +3,7 @@ const path = require("path");
 const axios = require("axios");
 const { Font } = require("canvacord");
 const { NymPost } = require("../services/NymPost.jsx"); // Import your NymPost class
+const { NymPosttwo } = require("../services/NymPost_2.jsx");
 require("dotenv").config();
 const {
   getBase64FromFile,
@@ -27,21 +28,69 @@ Font.fromFileSync(
 // Controller function to generate and upload image
 const createTShirt = async (name, type, definition) => {
   try {
+    let whiteCard;
+    let blackCard;
+    if (type == 1) {
+      console.log(type);
+      whiteCard = new NymPost(3951, 4919)
+        .setNym(name)
+        .setDefinition(definition)
+        .setNymColor("white")
+        .setDefinitionColor("white")
+        .setNymFontSize("550px")
+        .setDefinitionFontSize("260px")
+        .setMarginTop("386px")
+        .setHeight("1946px");
+
+      blackCard = new NymPost(3951, 4919)
+        .setNym(name)
+        .setDefinition(definition)
+        .setNymColor("black")
+        .setDefinitionColor("black")
+        .setNymFontSize("550px")
+        .setDefinitionFontSize("260px")
+        .setMarginTop("386px")
+        .setHeight("1946px");
+    }
+
+    if (type == 2) {
+      console.log(type);
+      whiteCard = new NymPosttwo(3951, 4919)
+        .setNym(name)
+        .setNymColor("white")
+        .setNymFontSize("460px")
+        .setMarginTop("403px")
+        .setHeight("2244px")
+        .setWidth("2915px")
+        .setPadding("518px");
+
+      blackCard = new NymPosttwo(3951, 4919)
+        .setNym(name)
+        .setNymColor("black")
+        .setNymFontSize("460px")
+        .setMarginTop("403px")
+        .setHeight("2244px")
+        .setWidth("2915px")
+        .setPadding("518px");
+    }
+
+    if (type == 3) {
+      console.log(type);
+      whiteCard = new NymPosttwo(3951, 4919)
+        .setNym(name)
+        .setNymColor("white")
+        .setNymFontSize("570px")
+        .setHeight("3989px")
+        .setPadding("540px");
+
+      blackCard = new NymPosttwo(3951, 4919)
+        .setNym(name)
+        .setNymColor("black")
+        .setNymFontSize("570px")
+        .setHeight("3989px")
+        .setPadding("540px");
+    }
     // 1. Generate the image using Canvacord and save it locally
-    const whiteCard = new NymPost(3951, 4919)
-      .setNym(name)
-      .setType(type)
-      .setDefinition(definition)
-      .setNymColor("white")
-      .setTypeColor("white")
-      .setDefinitionColor("white")
-      .setNymFontSize("500px")
-      .setTypeFontSize("200px")
-      .setDefinitionFontSize("250px")
-      .setMarginTop("322px")
-      .setWidth("3014px")
-      .setHeight("1946px")
-      .setPadding("100px 50px");
 
     const whiteImage = await whiteCard.build({ format: "png" });
     const whiteFileName = generateUniqueFileName();
@@ -64,22 +113,6 @@ const createTShirt = async (name, type, definition) => {
       token
     );
     console.log(`White card uploaded with ID: ${whiteImageId}`);
-
-    // 2. Create the second card (Black Text)
-    const blackCard = new NymPost(3951, 4919)
-      .setNym(name)
-      .setType(type)
-      .setDefinition(definition)
-      .setNymColor("black")
-      .setTypeColor("black")
-      .setDefinitionColor("black")
-      .setNymFontSize("500px")
-      .setTypeFontSize("200px")
-      .setDefinitionFontSize("250px")
-      .setMarginTop("322px")
-      .setWidth("3014px")
-      .setHeight("1946px")
-      .setPadding("100px 50px");
 
     const blackImage = await blackCard.build({ format: "png" });
     const blackFileName = generateUniqueFileName();

@@ -24,21 +24,42 @@ Font.fromFileSync(
 // Controller function to generate and upload image
 const createMug = async (name, type, definition) => {
   try {
-    // 1. Create the second card (Black Text)
-    const blackCard = new NymPost(1988, 1196)
-      .setNym(name)
-      .setType(type)
-      .setDefinition(definition)
-      .setNymColor("black")
-      .setTypeColor("black")
-      .setDefinitionColor("black")
-      .setNymFontSize("100px")
-      .setTypeFontSize("20px")
-      .setDefinitionFontSize("50px")
-      .setMarginTop("200px")
-      .setWidth("500px")
-      .setHeight("500px")
-      .setPadding("100px 50px");
+    let blackCard;
+    if (type == 1) {
+      console.log(type);
+
+      blackCard = new NymPost(3951, 4919)
+        .setNym(name)
+        .setDefinition(definition)
+        .setNymColor("black")
+        .setDefinitionColor("black")
+        .setNymFontSize("100px")
+        .setDefinitionFontSize("50px")
+        .setMarginTop("100px")
+        .setHeight("50px");
+    }
+
+    if (type == 2) {
+      console.log(type);
+
+      blackCard = new NymPosttwo(3951, 4919)
+        .setNym(name)
+        .setNymColor("black")
+        .setNymFontSize("100px")
+        .setMarginTop("20px")
+        .setHeight("1000px")
+        .setWidth("1000px");
+    }
+
+    if (type == 3) {
+      console.log(type);
+
+      blackCard = new NymPosttwo(1988, 1196)
+        .setNym(name)
+        .setNymColor("black")
+        .setNymFontSize("100px")
+        .setHeight("500px");
+    }
 
     const blackImage = await blackCard.build({ format: "png" });
     const blackFileName = generateUniqueFileName();

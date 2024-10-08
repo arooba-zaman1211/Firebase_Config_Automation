@@ -7,7 +7,7 @@ Font.fromFileSync(
 );
 Font.fromFileSync("public/assets/fonts/Raleway/Raleway-Regular.ttf", "Raleway");
 
-class NymPost extends Builder {
+class NymPosttwo extends Builder {
   constructor(width = 3590, height = 2203) {
     super(width, height);
     this.bootstrap({
@@ -72,20 +72,9 @@ class NymPost extends Builder {
     return this;
   }
 
-  setPadding(padding) {
-    this.options.set("Padding", padding);
+  setPadding(left) {
+    this.options.set("Padding", `0 0 0 ${left}`);
     return this;
-  }
-
-  adjustFontSize(Nym) {
-    const maxLength = 20;
-    let fontSize = parseInt(this.options.get("nymFontSize"));
-
-    if (Nym.length > maxLength) {
-      fontSize = Math.max(fontSize - (Nym.length - maxLength) * 10, 100);
-    }
-
-    return fontSize + "px";
   }
 
   async render() {
@@ -101,9 +90,6 @@ class NymPost extends Builder {
       Height,
       Padding,
     } = this.options.getOptions();
-
-    // Dynamically adjust the font size based on Nym length
-    const adjustedFontSize = this.adjustFontSize(Nym);
 
     return JSX.createElement(
       "div",
@@ -126,12 +112,16 @@ class NymPost extends Builder {
         "h1",
         {
           style: {
-            fontSize: adjustedFontSize, // Dynamically adjusted font size
+            fontSize: nymFontSize, // Use the fixed font size for Nym
             fontFamily: "BubbleGum",
             color: NymColor,
             lineHeight: "1", // Ensures no extra space between lines
             margin: "0", // Remove default margin
             paddingBottom: "20px", // Optional: spacing between Nym and definition
+            textAlign: "center", // Center align Nym text
+            whiteSpace: "normal", // Allow text to wrap to the next line
+            overflowWrap: "break-word", // Break long words onto the next line if necessary
+            maxWidth: "90%", // Limit maximum width to allow for better wrapping
           },
         },
         Nym // Render Nym text
@@ -148,6 +138,9 @@ class NymPost extends Builder {
             margin: "0", // Remove default margin
             textAlign: "center", // Center align definition
             paddingTop: "20px", // Optional: spacing above definition
+            whiteSpace: "normal", // Allow text to wrap to the next line
+            overflowWrap: "break-word", // Break long words onto the next line if necessary
+            maxWidth: "90%", // Limit maximum width to allow for better wrapping
           },
         },
         definition // Render the definition
@@ -156,4 +149,4 @@ class NymPost extends Builder {
   }
 }
 
-module.exports = { NymPost };
+module.exports = { NymPosttwo };
