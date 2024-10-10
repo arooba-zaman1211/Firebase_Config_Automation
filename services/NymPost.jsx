@@ -77,12 +77,18 @@ class NymPost extends Builder {
     return this;
   }
 
+  // Dynamically adjust the font size based on Nym length
   adjustFontSize(Nym) {
-    const maxLength = 20;
+    const thresholdLength = 10; // Start reducing font size after 10 letters
     let fontSize = parseInt(this.options.get("nymFontSize"));
 
-    if (Nym.length > maxLength) {
-      fontSize = Math.max(fontSize - (Nym.length - maxLength) * 10, 100);
+    // If the Nym length exceeds the threshold, reduce the font size
+    if (Nym.length > thresholdLength) {
+      const decreaseFactor = 5; // Amount to reduce per extra letter
+      fontSize = Math.max(
+        fontSize - (Nym.length - thresholdLength) * decreaseFactor,
+        100
+      );
     }
 
     return fontSize + "px";

@@ -140,416 +140,435 @@ const createTShirt = async (name, type, definition) => {
     const productResponse = await axios.post(
       `https://api.printify.com/v1/shops/${shopId}/products.json`,
       {
-        title: `Unisex Heavy Cotton Tee`,
-        description: `The unisex heavy cotton tee is the basic staple of any wardrobe. It is the foundation upon which casual fashion grows. All it needs is a personalized design to elevate things to profitability. The specially spun fibers provide a smooth surface for premium printing vividity and sharpness. No side seams mean there are no itchy interruptions under the arms. The shoulders have tape for improved durability.
-  
-  <div>.: Made with medium fabric (5.3 oz/yd² (180 g/m²)) consisting of 100% cotton for year-round comfort that is sustainable and highly durable.</div>
-  <div>.: The classic fit of this shirt ensures a comfy, relaxed wear while the crew neckline adds that neat, timeless look that can blend into any occasion, casual or semi-formal.</div>
-  <div>.: The tear-away label means a scratch-free experience with no irritation or discomfort whatsoever.</div>
-  <div>.: Made using 100% US cotton that is ethically grown and harvested. Gildan is also a proud member of the US Cotton Trust Protocol ensuring ethical and sustainable means of production. This blank tee is certified by Oeko-Tex for safety and quality assurance.</div>
-  
-  <div><strong>Size Chart:</strong></div>
-  <div style="overflow-x:auto;">
-    <table style="border-collapse: collapse; width: 100%; text-align: left; min-width: 600px;">
-      <thead>
-        <tr>
-          <th style="border: 1px solid #ddd; padding: 8px;">Size</th>
-          <th style="border: 1px solid #ddd; padding: 8px;">S</th>
-          <th style="border: 1px solid #ddd; padding: 8px;">M</th>
-          <th style="border: 1px solid #ddd; padding: 8px;">L</th>
-          <th style="border: 1px solid #ddd; padding: 8px;">XL</th>
-          <th style="border: 1px solid #ddd; padding: 8px;">2XL</th>
-          <th style="border: 1px solid #ddd; padding: 8px;">3XL</th>
-          <th style="border: 1px solid #ddd; padding: 8px;">4XL</th>
-          <th style="border: 1px solid #ddd; padding: 8px;">5XL</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td style="border: 1px solid #ddd; padding: 8px;">Width, in</td>
-          <td style="border: 1px solid #ddd; padding: 8px;">18.00</td>
-          <td style="border: 1px solid #ddd; padding: 8px;">20.00</td>
-          <td style="border: 1px solid #ddd; padding: 8px;">22.00</td>
-          <td style="border: 1px solid #ddd; padding: 8px;">24.00</td>
-          <td style="border: 1px solid #ddd; padding: 8px;">26.00</td>
-          <td style="border: 1px solid #ddd; padding: 8px;">28.00</td>
-          <td style="border: 1px solid #ddd; padding: 8px;">30.00</td>
-          <td style="border: 1px solid #ddd; padding: 8px;">32.00</td>
-        </tr>
-        <tr>
-          <td style="border: 1px solid #ddd; padding: 8px;">Length, in</td>
-          <td style="border: 1px solid #ddd; padding: 8px;">28.00</td>
-          <td style="border: 1px solid #ddd; padding: 8px;">29.00</td>
-          <td style="border: 1px solid #ddd; padding: 8px;">30.00</td>
-          <td style="border: 1px solid #ddd; padding: 8px;">31.00</td>
-          <td style="border: 1px solid #ddd; padding: 8px;">32.00</td>
-          <td style="border: 1px solid #ddd; padding: 8px;">33.00</td>
-          <td style="border: 1px solid #ddd; padding: 8px;">34.00</td>
-          <td style="border: 1px solid #ddd; padding: 8px;">35.00</td>
-        </tr>
-        <tr>
-          <td style="border: 1px solid #ddd; padding: 8px;">Sleeve length (from center back), in</td>
-          <td style="border: 1px solid #ddd; padding: 8px;">15.10</td>
-          <td style="border: 1px solid #ddd; padding: 8px;">16.50</td>
-          <td style="border: 1px solid #ddd; padding: 8px;">18.00</td>
-          <td style="border: 1px solid #ddd; padding: 8px;">19.50</td>
-          <td style="border: 1px solid #ddd; padding: 8px;">21.00</td>
-          <td style="border: 1px solid #ddd; padding: 8px;">22.40</td>
-          <td style="border: 1px solid #ddd; padding: 8px;">23.70</td>
-          <td style="border: 1px solid #ddd; padding: 8px;">25.00</td>
-        </tr>
-        <tr>
-          <td style="border: 1px solid #ddd; padding: 8px;">Size tolerance, in</td>
-          <td style="border: 1px solid #ddd; padding: 8px;">1.50</td>
-          <td style="border: 1px solid #ddd; padding: 8px;" >1.50</td>
-          <td style="border: 1px solid #ddd; padding: 8px;" >1.50</td>
-          <td style="border: 1px solid #ddd; padding: 8px;" >1.50</td>
-          <td style="border: 1px solid #ddd; padding: 8px;" >1.50</td>
-          <td style="border: 1px solid #ddd; padding: 8px;" >1.50</td>
-          <td style="border: 1px solid #ddd; padding: 8px;" >1.50</td>
-          <td style="border: 1px solid #ddd; padding: 8px;" >1.50</td>
-        </tr>
-      </tbody>
-    </table>
-  </div>`,
-        blueprint_id: 6,
+        title: `Unisex Softstyle T-Shirt`,
+        description: `<div>
+          <h2>Unisex Soft-Style T-Shirt</h2>
+          <p>The unisex soft-style t-shirt puts a new spin on casual comfort. Made from very soft materials, this tee is 100% cotton for solid colors. Heather colors and sports grey include polyester. The shoulders have twill tape for improved durability. There are no side seams. The collar is made with ribbed knitting to prevent curling damage.</p>
+          
+          <ul>
+            <li><strong>Material:</strong> 100% ring-spun cotton (solid colors); Heather colors and Sports Grey include polyester</li>
+            <li><strong>Weight:</strong> Lightweight fabric (4.5 oz/yd² or 153 g/m²)</li>
+            <li><strong>Fit:</strong> Classic fit with crew neckline</li>
+            <li><strong>Label:</strong> Pearlized, tear-away label for total wearing comfort</li>
+            <li><strong>Ethical sourcing:</strong> Made using ethically grown and harvested US cotton</li>
+            <li><strong>Certifications:</strong> Certified by Oeko-Tex for safety and quality assurance</li>
+            <li><strong>Fabric blends:</strong> Heather colors - 35% ring-spun cotton, 65% polyester; Sport Grey and Antique colors - 90% cotton, 10% polyester; Graphite Heather - 50% ring-spun cotton, 50% polyester</li>
+          </ul>
+
+          <h3>Size Chart:</h3>
+          <div style="overflow-x:auto;">
+            <table style="border-collapse: collapse; width: 100%; text-align: left; min-width: 600px;">
+              <thead>
+                <tr>
+                  <th style="border: 1px solid #ddd; padding: 8px;">Size</th>
+                  <th style="border: 1px solid #ddd; padding: 8px;">XS</th>
+                  <th style="border: 1px solid #ddd; padding: 8px;">S</th>
+                  <th style="border: 1px solid #ddd; padding: 8px;">M</th>
+                  <th style="border: 1px solid #ddd; padding: 8px;">L</th>
+                  <th style="border: 1px solid #ddd; padding: 8px;">XL</th>
+                  <th style="border: 1px solid #ddd; padding: 8px;">2XL</th>
+                  <th style="border: 1px solid #ddd; padding: 8px;">3XL</th>
+                  <th style="border: 1px solid #ddd; padding: 8px;">4XL</th>
+                  <th style="border: 1px solid #ddd; padding: 8px;">5XL</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td style="border: 1px solid #ddd; padding: 8px;">Width, in</td>
+                  <td style="border: 1px solid #ddd; padding: 8px;">16.00</td>
+                  <td style="border: 1px solid #ddd; padding: 8px;">18.00</td>
+                  <td style="border: 1px solid #ddd; padding: 8px;">20.00</td>
+                  <td style="border: 1px solid #ddd; padding: 8px;">22.00</td>
+                  <td style="border: 1px solid #ddd; padding: 8px;">24.00</td>
+                  <td style="border: 1px solid #ddd; padding: 8px;">26.00</td>
+                  <td style="border: 1px solid #ddd; padding: 8px;">28.00</td>
+                  <td style="border: 1px solid #ddd; padding: 8px;">30.00</td>
+                  <td style="border: 1px solid #ddd; padding: 8px;">32.00</td>
+                </tr>
+                <tr>
+                  <td style="border: 1px solid #ddd; padding: 8px;">Length, in</td>
+                  <td style="border: 1px solid #ddd; padding: 8px;">27.00</td>
+                  <td style="border: 1px solid #ddd; padding: 8px;">28.00</td>
+                  <td style="border: 1px solid #ddd; padding: 8px;">29.00</td>
+                  <td style="border: 1px solid #ddd; padding: 8px;">30.00</td>
+                  <td style="border: 1px solid #ddd; padding: 8px;">31.00</td>
+                  <td style="border: 1px solid #ddd; padding: 8px;">32.00</td>
+                  <td style="border: 1px solid #ddd; padding: 8px;">33.00</td>
+                  <td style="border: 1px solid #ddd; padding: 8px;">34.00</td>
+                  <td style="border: 1px solid #ddd; padding: 8px;">35.00</td>
+                </tr>
+                <tr>
+                  <td style="border: 1px solid #ddd; padding: 8px;">Sleeve length, in</td>
+                  <td style="border: 1px solid #ddd; padding: 8px;">7.99</td>
+                  <td style="border: 1px solid #ddd; padding: 8px;">8.23</td>
+                  <td style="border: 1px solid #ddd; padding: 8px;">8.50</td>
+                  <td style="border: 1px solid #ddd; padding: 8px;">8.74</td>
+                  <td style="border: 1px solid #ddd; padding: 8px;">9.02</td>
+                  <td style="border: 1px solid #ddd; padding: 8px;">9.25</td>
+                  <td style="border: 1px solid #ddd; padding: 8px;">9.49</td>
+                  <td style="border: 1px solid #ddd; padding: 8px;">9.72</td>
+                  <td style="border: 1px solid #ddd; padding: 8px;">9.96</td>
+                </tr>
+                <tr>
+                  <td style="border: 1px solid #ddd; padding: 8px;">Size tolerance, in</td>
+                  <td style="border: 1px solid #ddd; padding: 8px;">1.50</td>
+                  <td style="border: 1px solid #ddd; padding: 8px;">1.50</td>
+                  <td style="border: 1px solid #ddd; padding: 8px;">1.50</td>
+                  <td style="border: 1px solid #ddd; padding: 8px;">1.50</td>
+                  <td style="border: 1px solid #ddd; padding: 8px;">1.50</td>
+                  <td style="border: 1px solid #ddd; padding: 8px;">1.50</td>
+                  <td style="border: 1px solid #ddd; padding: 8px;">1.50</td>
+                  <td style="border: 1px solid #ddd; padding: 8px;">1.50</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>`,
+        blueprint_id: 145,
         print_provider_id: 99,
         tags: ["whimnym"],
         is_printify_express_enabled: true,
         variants: [
+          // Dark Chocolate Variants
           {
-            id: 11898, // Dark Chocolate S
-            price: 1176,
+            id: 38155, // Dark Chocolate S
+            price: 1600,
             is_enabled: true,
             is_printify_express_eligible: true,
           },
           {
-            id: 11897, // Dark Chocolate M
-            price: 1176,
+            id: 38169, // Dark Chocolate M
+            price: 1600,
             is_enabled: true,
             is_printify_express_eligible: true,
           },
           {
-            id: 11896, // Dark Chocolate L
-            price: 1176,
+            id: 38183, // Dark Chocolate L
+            price: 1600,
             is_enabled: true,
             is_printify_express_eligible: true,
           },
           {
-            id: 11899, // Dark Chocolate XL
-            price: 1176,
+            id: 38197, // Dark Chocolate XL
+            price: 1600,
             is_enabled: true,
             is_printify_express_eligible: true,
           },
           {
-            id: 11900, // Dark Chocolate 2XL
-            price: 1420,
+            id: 42112, // Dark Chocolate 3XL
+            price: 2050,
             is_enabled: true,
             is_printify_express_eligible: true,
           },
           {
-            id: 11901, // Dark Chocolate 3XL
-            price: 1550,
+            id: 38211, // Dark Chocolate 2XL
+            price: 1850,
+            is_enabled: true,
+            is_printify_express_eligible: true,
+          },
+
+          // White Variants
+          {
+            id: 38205, // White XL
+            price: 1600,
             is_enabled: true,
             is_printify_express_eligible: true,
           },
           {
-            id: 23963, // Dark Chocolate 4XL
-            price: 1650,
+            id: 38163, // White S
+            price: 1600,
             is_enabled: true,
             is_printify_express_eligible: true,
           },
           {
-            id: 24097, // Dark Chocolate 5XL
-            price: 1650,
+            id: 38191, // White L
+            price: 1600,
             is_enabled: true,
             is_printify_express_eligible: true,
           },
           {
-            id: 12102, // White S
-            price: 1176,
+            id: 38177, // White M
+            price: 1600,
             is_enabled: true,
             is_printify_express_eligible: true,
           },
           {
-            id: 12101, // White M
-            price: 1176,
+            id: 67829, // White XS
+            price: 1600,
             is_enabled: true,
             is_printify_express_eligible: true,
           },
           {
-            id: 12100, // White L
-            price: 1176,
+            id: 66211, // White 4XL
+            price: 2300,
             is_enabled: true,
             is_printify_express_eligible: true,
           },
           {
-            id: 12103, // White XL
-            price: 1176,
+            id: 42120, // White 3XL
+            price: 2050,
             is_enabled: true,
             is_printify_express_eligible: true,
           },
           {
-            id: 12104, // White 2XL
-            price: 1420,
+            id: 38219, // White 2XL
+            price: 1850,
             is_enabled: true,
             is_printify_express_eligible: true,
           },
           {
-            id: 12105, // White 3XL
-            price: 1550,
+            id: 95175, // White 5XL
+            price: 2450,
+            is_enabled: true,
+            is_printify_express_eligible: true,
+          },
+
+          // Sport Grey Variants
+          {
+            id: 38204, // Sport Grey XL
+            price: 1600,
             is_enabled: true,
             is_printify_express_eligible: true,
           },
           {
-            id: 24031, // White 4XL
-            price: 1650,
+            id: 38162, // Sport Grey S
+            price: 1600,
             is_enabled: true,
             is_printify_express_eligible: true,
           },
           {
-            id: 24164, // White 5XL
-            price: 1650,
+            id: 38190, // Sport Grey L
+            price: 1600,
             is_enabled: true,
             is_printify_express_eligible: true,
           },
           {
-            id: 12072, // Sport Grey S
-            price: 1176,
+            id: 38176, // Sport Grey M
+            price: 1600,
             is_enabled: true,
             is_printify_express_eligible: true,
           },
           {
-            id: 12071, // Sport Grey M
-            price: 1176,
+            id: 67827, // Sport Grey XS
+            price: 1600,
             is_enabled: true,
             is_printify_express_eligible: true,
           },
           {
-            id: 12070, // Sport Grey L
-            price: 1176,
+            id: 66210, // Sport Grey 4XL
+            price: 2300,
             is_enabled: true,
             is_printify_express_eligible: true,
           },
           {
-            id: 12073, // Sport Grey XL
-            price: 1176,
+            id: 42119, // Sport Grey 3XL
+            price: 2050,
             is_enabled: true,
             is_printify_express_eligible: true,
           },
           {
-            id: 12074, // Sport Grey 2XL
-            price: 1420,
+            id: 38218, // Sport Grey 2XL
+            price: 1850,
             is_enabled: true,
             is_printify_express_eligible: true,
           },
           {
-            id: 12075, // Sport Grey 3XL
-            price: 1550,
+            id: 95176, // Sport Grey 5XL
+            price: 2450,
+            is_enabled: true,
+            is_printify_express_eligible: true,
+          },
+
+          // Cardinal Red Variants
+          {
+            id: 42815, // Cardinal Red XL
+            price: 1600,
             is_enabled: true,
             is_printify_express_eligible: true,
           },
           {
-            id: 24021, // Sport Grey 4XL
-            price: 1650,
+            id: 42812, // Cardinal Red S
+            price: 1600,
             is_enabled: true,
             is_printify_express_eligible: true,
           },
           {
-            id: 24153, // Sport Grey 5XL
-            price: 1650,
+            id: 42814, // Cardinal Red L
+            price: 1600,
             is_enabled: true,
             is_printify_express_eligible: true,
           },
           {
-            id: 12132, // Cardinal Red S
-            price: 1176,
+            id: 42813, // Cardinal Red M
+            price: 1600,
             is_enabled: true,
             is_printify_express_eligible: true,
           },
           {
-            id: 12131, // Cardinal Red M
-            price: 1176,
+            id: 66214, // Cardinal Red 4XL
+            price: 2300,
             is_enabled: true,
             is_printify_express_eligible: true,
           },
           {
-            id: 12130, // Cardinal Red L
-            price: 1176,
+            id: 42817, // Cardinal Red 3XL
+            price: 2050,
             is_enabled: true,
             is_printify_express_eligible: true,
           },
           {
-            id: 12133, // Cardinal Red XL
-            price: 1176,
+            id: 42816, // Cardinal Red 2XL
+            price: 1850,
+            is_enabled: true,
+            is_printify_express_eligible: true,
+          },
+
+          // Heather Navy Variants
+          {
+            id: 42830, // Heather Navy L
+            price: 1600,
             is_enabled: true,
             is_printify_express_eligible: true,
           },
           {
-            id: 12134, // Cardinal Red 2XL
-            price: 1420,
+            id: 42818, // Heather Navy S
+            price: 1600,
             is_enabled: true,
             is_printify_express_eligible: true,
           },
           {
-            id: 12135, // Cardinal Red 3XL
-            price: 1550,
+            id: 42824, // Heather Navy M
+            price: 1600,
             is_enabled: true,
             is_printify_express_eligible: true,
           },
           {
-            id: 24041, // Cardinal Red 4XL
-            price: 1650,
+            id: 42836, // Heather Navy XL
+            price: 1600,
             is_enabled: true,
             is_printify_express_eligible: true,
           },
           {
-            id: 24173, // Cardinal Red 5XL
-            price: 1650,
+            id: 67809, // Heather Navy XS
+            price: 1600,
             is_enabled: true,
             is_printify_express_eligible: true,
           },
           {
-            id: 12126, // Black S
-            price: 1176,
+            id: 66193, // Heather Navy 4XL
+            price: 2300,
             is_enabled: true,
             is_printify_express_eligible: true,
           },
           {
-            id: 12125, // Black M
-            price: 1176,
+            id: 42848, // Heather Navy 3XL
+            price: 2050,
             is_enabled: true,
             is_printify_express_eligible: true,
           },
           {
-            id: 12124, // Black L
-            price: 1176,
+            id: 42842, // Heather Navy 2XL
+            price: 1850,
             is_enabled: true,
             is_printify_express_eligible: true,
           },
           {
-            id: 12127, // Black XL
-            price: 1176,
+            id: 95152, // Heather Navy 5XL
+            price: 2450,
+            is_enabled: true,
+            is_printify_express_eligible: true,
+          },
+
+          // Black Variants
+          {
+            id: 38206, // Black XL
+            price: 1600,
             is_enabled: true,
             is_printify_express_eligible: true,
           },
           {
-            id: 12128, // Black 2XL
-            price: 1420,
+            id: 38192, // Black L
+            price: 1600,
             is_enabled: true,
             is_printify_express_eligible: true,
           },
           {
-            id: 12129, // Black 3XL
-            price: 1550,
+            id: 38178, // Black M
+            price: 1600,
             is_enabled: true,
             is_printify_express_eligible: true,
           },
           {
-            id: 24039, // Black 4XL
-            price: 1650,
+            id: 38164, // Black S
+            price: 1600,
             is_enabled: true,
             is_printify_express_eligible: true,
           },
           {
-            id: 24171, // Black 5XL
-            price: 1650,
+            id: 67831, // Black XS
+            price: 1600,
             is_enabled: true,
             is_printify_express_eligible: true,
           },
           {
-            id: 11976, // Maroon S
-            price: 1176,
+            id: 66213, // Black 4XL
+            price: 2300,
             is_enabled: true,
             is_printify_express_eligible: true,
           },
           {
-            id: 11975, // Maroon M
-            price: 1176,
+            id: 42122, // Black 3XL
+            price: 2050,
             is_enabled: true,
             is_printify_express_eligible: true,
           },
           {
-            id: 11974, // Maroon L
-            price: 1176,
+            id: 38220, // Black 2XL
+            price: 1850,
             is_enabled: true,
             is_printify_express_eligible: true,
           },
           {
-            id: 11977, // Maroon XL
-            price: 1176,
+            id: 95180, // Black 5XL
+            price: 2450,
+            is_enabled: true,
+            is_printify_express_eligible: true,
+          },
+
+          // Maroon Variants
+          {
+            id: 63307, // Maroon XL
+            price: 1600,
             is_enabled: true,
             is_printify_express_eligible: true,
           },
           {
-            id: 11978, // Maroon 2XL
-            price: 1420,
+            id: 63297, // Maroon M
+            price: 1600,
             is_enabled: true,
             is_printify_express_eligible: true,
           },
           {
-            id: 11979, // Maroon 3XL
-            price: 1550,
+            id: 63292, // Maroon S
+            price: 1600,
             is_enabled: true,
             is_printify_express_eligible: true,
           },
           {
-            id: 23989, // Maroon 4XL
-            price: 1650,
+            id: 63302, // Maroon L
+            price: 1600,
             is_enabled: true,
             is_printify_express_eligible: true,
           },
           {
-            id: 24122, // Maroon 5XL
-            price: 1650,
+            id: 63317, // Maroon 3XL
+            price: 2050,
             is_enabled: true,
             is_printify_express_eligible: true,
           },
           {
-            id: 64727, // Heather Navy S
-            price: 1176,
-            is_enabled: true,
-            is_printify_express_eligible: true,
-          },
-          {
-            id: 64728, // Heather Navy M
-            price: 1176,
-            is_enabled: true,
-            is_printify_express_eligible: true,
-          },
-          {
-            id: 64729, // Heather Navy L
-            price: 1176,
-            is_enabled: true,
-            is_printify_express_eligible: true,
-          },
-          {
-            id: 64730, // Heather Navy XL
-            price: 1176,
-            is_enabled: true,
-            is_printify_express_eligible: true,
-          },
-          {
-            id: 64731, // Heather Navy 2XL
-            price: 1420,
-            is_enabled: true,
-            is_printify_express_eligible: true,
-          },
-          {
-            id: 64732, // Heather Navy 3XL
-            price: 1550,
-            is_enabled: true,
-            is_printify_express_eligible: true,
-          },
-          {
-            id: 64733, // Heather Navy 4XL
-            price: 1650,
-            is_enabled: true,
-            is_printify_express_eligible: true,
-          },
-          {
-            id: 64734, // Heather Navy 5XL
-            price: 1650,
+            id: 63312, // Maroon 2XL
+            price: 1850,
             is_enabled: true,
             is_printify_express_eligible: true,
           },
@@ -557,22 +576,24 @@ const createTShirt = async (name, type, definition) => {
         print_areas: [
           {
             variant_ids: [
-              12102, // S
-              12101, // M
-              12100, // L
-              12103, // XL
-              12104, // 2XL
-              12105, // 3XL
-              24031, // 4XL
-              24164, // 5XL
-              12072, // S
-              12071, // M
-              12070, // L
-              12073, // XL
-              12074, // 2XL
-              12075, // 3XL
-              24021, // 4XL
-              24153, // 5XL
+              38205, // White XL
+              38163, // White S
+              38191, // White L
+              38177, // White M
+              67829, // White XS
+              66211, // White 4XL
+              42120, // White 3XL
+              38219, // White 2XL
+              95175, // White 5XL
+              38204, // Sport Grey XL
+              38162, // Sport Grey S
+              38190, // Sport Grey L
+              38176, // Sport Grey M
+              67827, // Sport Grey XS
+              66210, // Sport Grey 4XL
+              42119, // Sport Grey 3XL
+              38218, // Sport Grey 2XL
+              95176, // Sport Grey 5XL
             ], // Assign black image to these variants
             placeholders: [
               {
@@ -591,92 +612,47 @@ const createTShirt = async (name, type, definition) => {
           },
           {
             variant_ids: [
-              64727, // S
-              64728, // M
-              64729, // L
-              64730, // XL
-              64731, // 2XL
-              64732, // 3XL
-              64733, // 4XL
-              64734, // 5XL
-              11976, // S
-              11975, // M
-              11974, // L
-              11977, // XL
-              11978, // 2XL
-              11979, // 3XL
-              23989, // 4XL
-              24122, // 5XL
-              12126, // S
-              12125, // M
-              12124, // L
-              12127, // XL
-              12128, // 2XL
-              12129, // 3XL
-              24039, // 4XL
-              24171, // 5XL
-              12132, // S
-              12131, // M
-              12130, // L
-              12133, // XL
-              12134, // 2XL
-              12135, // 3XL
-              24041, // 4XL
-              24173, // 5XL
-              11898, // S
-              11897, // M
-              11896, // L
-              11899, // XL
-              11900, // 2XL
-              11901, // 3XL
-              23963, // 4XL
-              24097, // 5XL
+              38155, // Dark Chocolate S
+              38169, // Dark Chocolate M
+              38183, // Dark Chocolate L
+              38197, // Dark Chocolate XL
+              42112, // Dark Chocolate 3XL
+              38211, // Dark Chocolate 2XL
+              42830, // Heather Navy L
+              42818, // Heather Navy S
+              42824, // Heather Navy M
+              42836, // Heather Navy XL
+              67809, // Heather Navy XS
+              66193, // Heather Navy 4XL
+              42848, // Heather Navy 3XL
+              42842, // Heather Navy 2XL
+              95152, // Heather Navy 5XL
+              42815, // Cardinal Red XL
+              42812, // Cardinal Red S
+              42814, // Cardinal Red L
+              42813, // Cardinal Red M
+              66214, // Cardinal Red 4XL
+              42817, // Cardinal Red 3XL
+              42816, // Cardinal Red 2XL
+              63307, // Maroon XL
+              63297, // Maroon M
+              63292, // Maroon S
+              63302, // Maroon L
+              63317, // Maroon 3XL
+              63312, // Maroon 2XL
+              38206, // Black XL
+              38192, // Black L
+              38178, // Black M
+              38164, // Black S
+              67831, // Black XS
+              66213, // Black 4XL
+              42122, // Black 3XL
+              38220, // Black 2XL
+              95180, // Black 5XL
             ],
             placeholders: [
               {
                 position: "front",
-                images: [
-                  {
-                    id: whiteImageId, // White image ID goes here
-                    x: 0.5,
-                    y: 0.5,
-                    scale: 1,
-                    angle: 0,
-                  },
-                ],
-              },
-            ],
-          },
-          {
-            variant_ids: [
-              11974,
-              11975,
-              11976,
-              11977,
-              11978,
-              11979, // Maroon
-              12124,
-              12125,
-              12126,
-              12127,
-              12128,
-              12129, // Black
-              12190,
-              12191,
-              12192,
-              12193,
-              12194,
-              12195, // Military Green
-              23989, // Maroon
-              24039, // Black
-              24060, // Military Green
-              24122, // Maroon
-              24171, // Black
-              24194, // Military Green
-            ],
-            placeholders: [
-              {
-                position: "other",
                 images: [
                   {
                     id: whiteImageId, // White image ID goes here
@@ -707,6 +683,7 @@ const createTShirt = async (name, type, definition) => {
     if (data) {
       console.log("Product published to Shopify");
       const whiteImageUrl = getImageUrlForColor(productResponse.data);
+      console.log("Shirt url:", whiteImageUrl);
       return whiteImageUrl;
     } else {
       return;

@@ -31,7 +31,7 @@ const createHoodie = async (name, type, definition) => {
     let blackCard;
     if (type == 1) {
       console.log(type);
-      whiteCard = new NymPost(3951, 4919)
+      whiteCard = new NymPost(3531, 2352)
         .setNym(name)
         .setDefinition(definition)
         .setNymColor("white")
@@ -41,7 +41,7 @@ const createHoodie = async (name, type, definition) => {
         .setMarginTop("450px")
         .setHeight("2000px");
 
-      blackCard = new NymPost(3951, 4919)
+      blackCard = new NymPost(3531, 2352)
         .setNym(name)
         .setDefinition(definition)
         .setNymColor("black")
@@ -54,7 +54,7 @@ const createHoodie = async (name, type, definition) => {
 
     if (type == 2) {
       console.log(type);
-      whiteCard = new NymPosttwo(3951, 4919)
+      whiteCard = new NymPosttwo(3531, 2352)
         .setNym(name)
         .setNymColor("white")
         .setNymFontSize("460px")
@@ -63,7 +63,7 @@ const createHoodie = async (name, type, definition) => {
         .setWidth("2915px")
         .setPadding("518px");
 
-      blackCard = new NymPosttwo(3951, 4919)
+      blackCard = new NymPosttwo(3531, 2352)
         .setNym(name)
         .setNymColor("black")
         .setNymFontSize("460px")
@@ -75,14 +75,14 @@ const createHoodie = async (name, type, definition) => {
 
     if (type == 3) {
       console.log(type);
-      whiteCard = new NymPosttwo(3951, 4919)
+      whiteCard = new NymPosttwo(3531, 2352)
         .setNym(name)
         .setNymColor("white")
         .setNymFontSize("570px")
         .setHeight("3989px")
         .setPadding("540px");
 
-      blackCard = new NymPosttwo(3951, 4919)
+      blackCard = new NymPosttwo(3531, 2352)
         .setNym(name)
         .setNymColor("black")
         .setNymFontSize("570px")
@@ -210,272 +210,272 @@ const createHoodie = async (name, type, definition) => {
         variants: [
           {
             id: 42219, // Dark Chocolate S
-            price: 2660,
+            price: 2860,
             is_enabled: true,
           },
           {
             id: 42220, // Dark Chocolate M
-            price: 2660,
+            price: 2860,
             is_enabled: true,
           },
           {
             id: 42221, // Dark Chocolate L
-            price: 2660,
+            price: 2860,
             is_enabled: true,
           },
           {
             id: 42222, // Dark Chocolate XL
-            price: 2660,
+            price: 2860,
             is_enabled: true,
           },
           {
             id: 42223, // Dark Chocolate 2XL
-            price: 2950,
+            price: 3150,
             is_enabled: true,
           },
           {
             id: 42224, // Dark Chocolate 3XL
-            price: 3100,
+            price: 3300,
             is_enabled: true,
           },
           {
             id: 42225, // Dark Chocolate 4XL
-            price: 3100,
+            price: 3380,
             is_enabled: true,
           },
           {
             id: 42226, // Dark Chocolate 5XL
-            price: 3100,
+            price: 3380,
             is_enabled: true,
           },
           {
             id: 32910, // White S
-            price: 2660,
+            price: 2860,
             is_enabled: true,
           },
           {
             id: 32911, // White M
-            price: 2660,
+            price: 2860,
             is_enabled: true,
           },
           {
             id: 32912, // White L
-            price: 2660,
+            price: 2860,
             is_enabled: true,
           },
           {
             id: 32913, // White XL
-            price: 2660,
+            price: 2860,
             is_enabled: true,
           },
           {
             id: 32914, // White 2XL
-            price: 2950,
+            price: 3150,
             is_enabled: true,
           },
           {
             id: 32915, // White 3XL
-            price: 3100,
+            price: 3300,
             is_enabled: true,
           },
           {
             id: 32916, // White 4XL
-            price: 3100,
+            price: 3380,
             is_enabled: true,
           },
           {
             id: 32917, // White 5XL
-            price: 3100,
+            price: 3380,
             is_enabled: true,
           },
           {
             id: 32902, // Sport Grey S
-            price: 2660,
+            price: 2860,
             is_enabled: true,
           },
           {
             id: 32903, // Sport Grey M
-            price: 2660,
+            price: 2860,
             is_enabled: true,
           },
           {
             id: 32904, // Sport Grey L
-            price: 2660,
+            price: 2860,
             is_enabled: true,
           },
           {
             id: 32905, // Sport Grey XL
-            price: 2660,
+            price: 2860,
             is_enabled: true,
           },
           {
             id: 32906, // Sport Grey 2XL
-            price: 2950,
+            price: 3150,
             is_enabled: true,
           },
           {
             id: 32907, // Sport Grey 3XL
-            price: 3100,
+            price: 3300,
             is_enabled: true,
           },
           {
             id: 32908, // Sport Grey 4XL
-            price: 3100,
+            price: 3380,
             is_enabled: true,
           },
           {
             id: 32909, // Sport Grey 5XL
-            price: 3100,
+            price: 3380,
             is_enabled: true,
           },
           {
             id: 33409, // Cardinal Red S
-            price: 2660,
+            price: 2860,
             is_enabled: true,
           },
           {
             id: 33410, // Cardinal Red M
-            price: 2660,
+            price: 2860,
             is_enabled: true,
           },
           {
             id: 33411, // Cardinal Red L
-            price: 2660,
+            price: 2860,
             is_enabled: true,
           },
           {
             id: 33412, // Cardinal Red XL
-            price: 2660,
+            price: 2860,
             is_enabled: true,
           },
           {
             id: 33413, // Cardinal Red 2XL
-            price: 2950,
+            price: 3150,
             is_enabled: true,
           },
           {
             id: 33414, // Cardinal Red 3XL
-            price: 3100,
+            price: 3300,
             is_enabled: true,
           },
           {
             id: 33415, // Cardinal Red 4XL
-            price: 3100,
+            price: 3380,
             is_enabled: true,
           },
           {
             id: 33416, // Cardinal Red 5XL
-            price: 3100,
+            price: 3380,
             is_enabled: true,
           },
           {
             id: 32918, // Black S
-            price: 2660,
+            price: 2860,
             is_enabled: true,
           },
           {
             id: 32919, // Black M
-            price: 2660,
+            price: 2860,
             is_enabled: true,
           },
           {
             id: 32920, // Black L
-            price: 2660,
+            price: 2860,
             is_enabled: true,
           },
           {
             id: 32921, // Black XL
-            price: 2660,
+            price: 2860,
             is_enabled: true,
           },
           {
             id: 32922, // Black 2XL
-            price: 2950,
+            price: 3150,
             is_enabled: true,
           },
           {
             id: 32923, // Black 3XL
-            price: 3100,
+            price: 3300,
             is_enabled: true,
           },
           {
             id: 32924, // Black 4XL
-            price: 3100,
+            price: 3380,
             is_enabled: true,
           },
           {
             id: 32925, // Black 5XL
-            price: 3100,
+            price: 3380,
             is_enabled: true,
           },
           {
             id: 32886, // Maroon S
-            price: 2660,
+            price: 2860,
             is_enabled: true,
           },
           {
             id: 32887, // Maroon M
-            price: 2660,
+            price: 2860,
             is_enabled: true,
           },
           {
             id: 32888, // Maroon L
-            price: 2660,
+            price: 2860,
             is_enabled: true,
           },
           {
             id: 32889, // Maroon XL
-            price: 2660,
+            price: 2860,
             is_enabled: true,
           },
           {
             id: 32890, // Maroon 2XL
-            price: 2950,
+            price: 3150,
             is_enabled: true,
           },
           {
             id: 32891, // Maroon 3XL
-            price: 3100,
+            price: 3300,
             is_enabled: true,
           },
           {
             id: 32892, // Maroon 4XL
-            price: 3100,
+            price: 3380,
             is_enabled: true,
           },
           {
             id: 32893, // Maroon 5XL
-            price: 3100,
+            price: 3380,
             is_enabled: true,
           },
           {
             id: 66363, // Heather Navy S
-            price: 2660,
+            price: 2860,
             is_enabled: true,
           },
           {
             id: 66364, // Heather Navy M
-            price: 2660,
+            price: 2860,
             is_enabled: true,
           },
           {
             id: 66365, // Heather Navy L
-            price: 2660,
+            price: 2860,
             is_enabled: true,
           },
           {
             id: 66366, // Heather Navy XL
-            price: 2660,
+            price: 2860,
             is_enabled: true,
           },
           {
             id: 66367, // Heather Navy 2XL
-            price: 2950,
+            price: 3150,
             is_enabled: true,
           },
           {
             id: 66368, // Heather Navy 3XL
-            price: 3100,
+            price: 3300,
             is_enabled: true,
           },
         ],

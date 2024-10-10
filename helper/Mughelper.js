@@ -3,6 +3,7 @@ const path = require("path");
 const axios = require("axios");
 const { Font } = require("canvacord");
 const { NymPost } = require("../services/NymPost.jsx"); // Import your NymPost class
+const { NymPosttwo } = require("../services/NymPost_2.jsx");
 require("dotenv").config();
 const {
   getBase64FromFile,
@@ -28,37 +29,31 @@ const createMug = async (name, type, definition) => {
     if (type == 1) {
       console.log(type);
 
-      blackCard = new NymPost(3951, 4919)
+      blackCard = new NymPost(2475, 1155)
         .setNym(name)
         .setDefinition(definition)
         .setNymColor("black")
         .setDefinitionColor("black")
         .setNymFontSize("100px")
-        .setDefinitionFontSize("50px")
-        .setMarginTop("100px")
-        .setHeight("50px");
+        .setDefinitionFontSize("50px");
     }
 
     if (type == 2) {
       console.log(type);
 
-      blackCard = new NymPosttwo(3951, 4919)
+      blackCard = new NymPosttwo(2475, 1155)
         .setNym(name)
         .setNymColor("black")
-        .setNymFontSize("100px")
-        .setMarginTop("20px")
-        .setHeight("1000px")
-        .setWidth("1000px");
+        .setNymFontSize("100px");
     }
 
     if (type == 3) {
       console.log(type);
 
-      blackCard = new NymPosttwo(1988, 1196)
+      blackCard = new NymPosttwo(2475, 1155)
         .setNym(name)
         .setNymColor("black")
-        .setNymFontSize("100px")
-        .setHeight("500px");
+        .setNymFontSize("100px");
     }
 
     const blackImage = await blackCard.build({ format: "png" });
@@ -87,43 +82,106 @@ const createMug = async (name, type, definition) => {
     const productResponse = await axios.post(
       `https://api.printify.com/v1/shops/${shopId}/products.json`,
       {
-        title: `Latte Mug`,
-        description: `A true coffee lover knows that each variety of the aromatic drink deserves a special cup. These custom latte mugs come with high quality sublimation printing and make the perfect gift for any latte enthusiast. All our custom latte mugs feature stylish rounded corners, can accommodate 12 oz of delicious latte coffee and come with a comfy C-style handle for effortless sipping. <br/><div>.:Custom latte mugs, 12oz (0.35 l)</div><div>.:Rounded corners</div><br /><div>.:C-Handle</div><div>.:All custom latte mugs are made 100% white ceramic</div>
-        <div><strong>Size Chart:</strong></div>
-  <div style="overflow-x:auto;">
-    <table style="border-collapse: collapse; width: 100%; text-align: left; min-width: 600px;">
-      <thead>
-        <tr>
-          <th style="border: 1px solid #ddd; padding: 8px;"></th>
-          <th style="border: 1px solid #ddd; padding: 8px;">12oz</th>
-          
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td style="border: 1px solid #ddd; padding: 8px;">Height, in</td>
-          <td style="border: 1px solid #ddd; padding: 8px;">4.02</td>
-        </tr>
-        <tr>
-          <td style="border: 1px solid #ddd; padding: 8px;">Diameter , in</td>
-          <td style="border: 1px solid #ddd; padding: 8px;">3.70</td>
-        </tr>
-      </tbody>
-    </table>
-  </div>`,
-        blueprint_id: 289,
-        print_provider_id: 1,
+        title: `Accent Coffee Mug (11, 15oz)`,
+        description: `<div class="candle-description">
+            <h2>Accent Coffee Mug</h2>
+            <p>
+              Meet your next favorite morning companion, the accented ceramic mug. This mug brings the perfect blend of style and functionality to elevate your coffee or tea ritual. Available in two generous sizes, 11oz (0.33 l) and 15oz (0.44 l), this mug offers ample space for your favorite brew. Made with white ceramic and sporting a sleek glossy finish with eye-catching contrast, this mug is a bliss both to use and to look at. The ergonomic C-shaped handle provides a comfortable grip, while the lead and BPA-free construction guarantee peace of mind with every sip.
+            </p>
+
+            <ul>
+              <li><strong>Material:</strong> White ceramic with colored interior and handle</li>
+              <li><strong>Available sizes:</strong> 11oz (0.33 l) and 15oz (0.44 l)</li>
+              <li><strong>Colors:</strong> Choose from 5 interior and handle colors</li>
+              <li><strong>Handle:</strong> C-shaped handle</li>
+              <li><strong>Finish:</strong> Glossy finish</li>
+              <li><strong>Design:</strong> Eye-catching color contrast</li>
+              <li><strong>Safety:</strong> Lead and BPA-free</li>
+            </ul>
+
+          </div>
+            <div style="overflow-x:auto;">
+              <table style="border-collapse: collapse; width: 100%; text-align: left; min-width: 600px;">
+                <thead>
+                  <tr>
+                    <th style="border: 1px solid #ddd; padding: 8px;"></th>
+                    <th style="border: 1px solid #ddd; padding: 8px;">11oz</th>
+                    
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td style="border: 1px solid #ddd; padding: 8px;">Height, in</td>
+                    <td style="border: 1px solid #ddd; padding: 8px;">3.78</td>
+                  </tr>
+                  <tr>
+                    <td style="border: 1px solid #ddd; padding: 8px;">Diamter , in</td>
+                    <td style="border: 1px solid #ddd; padding: 8px;">3.23</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>`,
+        blueprint_id: 635,
+        print_provider_id: 28,
         tags: ["whimnym"],
         variants: [
           {
-            id: 43321, // 12oz variant ID
-            price: 1050,
+            id: 72180, // variant ID a
+            price: 899,
+            is_enabled: true,
+          },
+          {
+            id: 72182, // variant ID b
+            price: 899,
+            is_enabled: true,
+          },
+          {
+            id: 72183, // variant ID c
+            price: 899,
+            is_enabled: true,
+          },
+          {
+            id: 72184, // variant ID d
+            price: 899,
+            is_enabled: true,
+          },
+          {
+            id: 105883, // variant ID e
+            price: 1099,
+            is_enabled: true,
+          },
+          {
+            id: 105885, // variant ID f
+            price: 1099,
+            is_enabled: true,
+          },
+          {
+            id: 105886, // variant ID g
+            price: 1099,
+            is_enabled: true,
+          },
+          {
+            id: 105887, // variant ID h
+            price: 1099,
+            is_enabled: true,
+          },
+          {
+            id: 105888, // variant ID i
+            price: 899,
+            is_enabled: true,
+          },
+          {
+            id: 105889, // variant ID j
+            price: 1099,
             is_enabled: true,
           },
         ],
         print_areas: [
           {
-            variant_ids: [43321], // 12oz variant
+            variant_ids: [
+              72180, 72182, 72183, 72184, 105883, 105885, 105886, 105887,
+              105888, 105889,
+            ], // 12oz variant
             placeholders: [
               {
                 position: "front",
@@ -163,7 +221,7 @@ const createMug = async (name, type, definition) => {
 
     const data = await publishData(productId);
     if (data) {
-      return productImage2.src;
+      return productImage3.src;
     } else {
       return;
     }
