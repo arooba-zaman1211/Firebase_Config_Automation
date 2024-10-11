@@ -57,7 +57,7 @@ const createHoodie = async (name, type, definition) => {
       whiteCard = new NymPosttwo(3531, 2352)
         .setNym(name)
         .setNymColor("white")
-        .setNymFontSize("460px")
+        .setNymFontSize("400px")
         .setMarginTop("403px")
         .setHeight("2244px")
         .setWidth("2915px")
@@ -66,7 +66,7 @@ const createHoodie = async (name, type, definition) => {
       blackCard = new NymPosttwo(3531, 2352)
         .setNym(name)
         .setNymColor("black")
-        .setNymFontSize("460px")
+        .setNymFontSize("400px")
         .setMarginTop("403px")
         .setHeight("2244px")
         .setWidth("2915px")
@@ -78,16 +78,16 @@ const createHoodie = async (name, type, definition) => {
       whiteCard = new NymPosttwo(3531, 2352)
         .setNym(name)
         .setNymColor("white")
-        .setNymFontSize("570px")
-        .setHeight("3989px")
-        .setPadding("540px");
+        .setNymFontSize("500px")
+        .setPadding("290px")
+        .setWidth("2951px");
 
       blackCard = new NymPosttwo(3531, 2352)
         .setNym(name)
         .setNymColor("black")
-        .setNymFontSize("570px")
-        .setHeight("3989px")
-        .setPadding("540px");
+        .setNymFontSize("500px")
+        .setPadding("290px")
+        .setWidth("2951px");
     }
     const whiteImage = await whiteCard.build({ format: "png" });
     const whiteFileName = generateUniqueFileName();

@@ -34,8 +34,8 @@ const createMug = async (name, type, definition) => {
         .setDefinition(definition)
         .setNymColor("black")
         .setDefinitionColor("black")
-        .setNymFontSize("100px")
-        .setDefinitionFontSize("50px");
+        .setNymFontSize("160px")
+        .setDefinitionFontSize("67px");
     }
 
     if (type == 2) {
@@ -44,7 +44,8 @@ const createMug = async (name, type, definition) => {
       blackCard = new NymPosttwo(2475, 1155)
         .setNym(name)
         .setNymColor("black")
-        .setNymFontSize("100px");
+        .setNymFontSize("110px")
+        .setWidth("920px");
     }
 
     if (type == 3) {
@@ -53,7 +54,8 @@ const createMug = async (name, type, definition) => {
       blackCard = new NymPosttwo(2475, 1155)
         .setNym(name)
         .setNymColor("black")
-        .setNymFontSize("100px");
+        .setNymFontSize("160px")
+        .setWidth("920px");
     }
 
     const blackImage = await blackCard.build({ format: "png" });

@@ -84,7 +84,7 @@ class NymPost extends Builder {
 
     // If the Nym length exceeds the threshold, reduce the font size
     if (Nym.length > thresholdLength) {
-      const decreaseFactor = 5; // Amount to reduce per extra letter
+      const decreaseFactor = 10; // Amount to reduce per extra letter
       fontSize = Math.max(
         fontSize - (Nym.length - thresholdLength) * decreaseFactor,
         100
@@ -132,12 +132,12 @@ class NymPost extends Builder {
         "h1",
         {
           style: {
-            fontSize: adjustedFontSize, // Dynamically adjusted font size
+            fontSize: nymFontSize, // Dynamically adjusted font size
             fontFamily: "BubbleGum",
             color: NymColor,
             lineHeight: "1", // Ensures no extra space between lines
             margin: "0", // Remove default margin
-            paddingBottom: "20px", // Optional: spacing between Nym and definition
+            paddingBottom: "5px", // Optional: spacing between Nym and definition
           },
         },
         Nym // Render Nym text
@@ -153,7 +153,7 @@ class NymPost extends Builder {
             lineHeight: "1.4",
             margin: "0", // Remove default margin
             textAlign: "center", // Center align definition
-            paddingTop: "20px", // Optional: spacing above definition
+            paddingTop: "5px", // Optional: spacing above definition
           },
         },
         definition // Render the definition

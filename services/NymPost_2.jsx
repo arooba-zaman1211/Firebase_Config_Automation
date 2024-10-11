@@ -20,7 +20,7 @@ class NymPosttwo extends Builder {
       marginTop: "",
       Width: width + "px", // Set width to the default width provided
       Height: height + "px", // Set height to the default height provided
-      Padding: "50px",
+      Padding: "",
     });
 
     this.backgroundImage = null;

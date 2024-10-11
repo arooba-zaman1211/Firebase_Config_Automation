@@ -37,20 +37,22 @@ const createTShirt = async (name, type, definition) => {
         .setDefinition(definition)
         .setNymColor("white")
         .setDefinitionColor("white")
-        .setNymFontSize("550px")
-        .setDefinitionFontSize("260px")
+        .setNymFontSize("540px")
+        .setDefinitionFontSize("250px")
         .setMarginTop("386px")
-        .setHeight("1946px");
+        .setHeight("1946px")
+        .setPadding("271px");
 
       blackCard = new NymPost(3951, 4919)
         .setNym(name)
         .setDefinition(definition)
         .setNymColor("black")
         .setDefinitionColor("black")
-        .setNymFontSize("550px")
-        .setDefinitionFontSize("260px")
+        .setNymFontSize("540px")
+        .setDefinitionFontSize("250px")
         .setMarginTop("386px")
-        .setHeight("1946px");
+        .setHeight("1946px")
+        .setPadding("271px");
     }
 
     if (type == 2) {
@@ -59,19 +61,19 @@ const createTShirt = async (name, type, definition) => {
         .setNym(name)
         .setNymColor("white")
         .setNymFontSize("460px")
-        .setMarginTop("403px")
+        .setMarginTop("349px")
         .setHeight("2244px")
         .setWidth("2915px")
-        .setPadding("518px");
+        .setPadding("700px");
 
       blackCard = new NymPosttwo(3951, 4919)
         .setNym(name)
         .setNymColor("black")
         .setNymFontSize("460px")
-        .setMarginTop("403px")
+        .setMarginTop("349px")
         .setHeight("2244px")
         .setWidth("2915px")
-        .setPadding("518px");
+        .setPadding("700px");
     }
 
     if (type == 3) {
@@ -80,15 +82,15 @@ const createTShirt = async (name, type, definition) => {
         .setNym(name)
         .setNymColor("white")
         .setNymFontSize("570px")
-        .setHeight("3989px")
-        .setPadding("540px");
+        .setWidth("3505px")
+        .setPadding("240px");
 
       blackCard = new NymPosttwo(3951, 4919)
         .setNym(name)
         .setNymColor("black")
         .setNymFontSize("570px")
-        .setHeight("3989px")
-        .setPadding("540px");
+        .setWidth("3505px")
+        .setPadding("240px");
     }
     // 1. Generate the image using Canvacord and save it locally
 

@@ -29,32 +29,35 @@ const createCandle = async (name, type, definition) => {
     if (type == 1) {
       console.log(type);
 
-      blackCard = new NymPost(624, 546)
+      blackCard = new NymPost(458, 400)
         .setNym(name)
         .setDefinition(definition)
         .setNymColor("black")
         .setDefinitionColor("black")
-        .setNymFontSize("100px")
-        .setDefinitionFontSize("50px");
+        .setNymFontSize("63px")
+        .setDefinitionFontSize("27px");
     }
 
     if (type == 2) {
       console.log(type);
 
-      blackCard = new NymPosttwo(624, 546)
+      blackCard = new NymPosttwo(458, 400)
         .setNym(name)
         .setNymColor("black")
-        .setNymFontSize("100px");
+        .setNymFontSize("50px")
+        .setWidth("359px")
+        .setPadding("133px");
     }
 
     if (type == 3) {
       console.log(type);
 
-      blackCard = new NymPosttwo(624, 546)
+      blackCard = new NymPosttwo(458, 400)
         .setNym(name)
         .setNymColor("black")
-        .setNymFontSize("100px")
-        .setHeight("500px");
+        .setNymFontSize("60px")
+        .setWidth("359px")
+        .setPadding("133px");
     }
 
     const blackImage = await blackCard.build({ format: "png" });
@@ -383,7 +386,7 @@ const createCandle = async (name, type, definition) => {
     console.log("product response 2: ", productImage2);
     console.log("product response 3: ", productImage3);
     // 4. Publish the product to Shopify
-
+    console.log(productImage3.src);
     const data = await publishData(productId);
     if (data) {
       return productImage3.src;
