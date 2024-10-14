@@ -2,7 +2,11 @@ const express = require("express");
 const app = express();
 const productRoutes = require("../routes/Products_Routes");
 const connectDB = require("../config/dbConnection.js");
-
+const { NymPostthree } = require("../services/NymPost_3.jsx");
+const { NymPostfour } = require("../services/NymPost_4.jsx");
+const { generateUniqueFileName } = require("../helper/Helper.js");
+const path = require("path");
+const fs = require("fs");
 app.use(express.json()); // To parse JSON body data
 require("dotenv").config();
 
@@ -79,6 +83,11 @@ const whiteCard = new NymPosttwo(3951, 4919)
   .setHeight("2244px")
   .setWidth("2915px")
   .setPadding("518px");
+*/
+
+const whiteCard = new NymPostfour({
+  formatNym: false,
+});
 
 const saveWhiteCard = async () => {
   try {
@@ -99,4 +108,4 @@ const saveWhiteCard = async () => {
 };
 
 // Call the async function to save the image
-saveWhiteCard();*/
+saveWhiteCard();

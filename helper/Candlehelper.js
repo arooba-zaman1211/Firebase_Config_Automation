@@ -4,6 +4,7 @@ const axios = require("axios");
 const { Font } = require("canvacord");
 const { NymPost } = require("../services/NymPost.jsx"); // Import your NymPost class
 const { NymPosttwo } = require("../services/NymPost_2.jsx");
+const { NymPostthree } = require("../services/NymPost_3.jsx");
 require("dotenv").config();
 const {
   getBase64FromFile,
@@ -11,6 +12,7 @@ const {
   uploadImageToPrintify,
   publishData,
 } = require("../helper/Helper.js");
+const { NymPostfour } = require("../services/NymPost_4.jsx");
 
 const token = process.env.PRINTIFY_ACCESS_TOKEN;
 const shopId = process.env.PRINTIFY_SHOP_ID;
@@ -25,62 +27,173 @@ Font.fromFileSync(
 // Controller function to generate and upload image
 const createCandle = async (name, type, definition) => {
   try {
-    let blackCard;
+    let black4oz;
+    let black9oz;
     if (type == 1) {
       console.log(type);
 
-      blackCard = new NymPost(458, 400)
-        .setNym(name)
-        .setDefinition(definition)
-        .setNymColor("black")
-        .setDefinitionColor("black")
-        .setNymFontSize("63px")
-        .setDefinitionFontSize("27px");
+      black4oz = new NymPostfour({
+        formatNym: false,
+        Nym: name,
+        Definition: definition,
+      });
+      black9oz = new NymPostfour({
+        width: 863,
+        height: 706,
+        innerBorderWidth: 695,
+        innerBorderHeight: 563,
+        innerBorderTop: 71,
+        innerBorderLeft: 91,
+        nymWidth: 513,
+        nymHeight: 60,
+        nymFontSize: "100px",
+        nymLineHeight: "116.3px",
+        definitionWidth: 580,
+        definitionHeight: 24,
+        definitionFontSize: "41px",
+        definitionLineHeight: "17px",
+        bottomTextWidth: 252,
+        bottomTextHeight: 32,
+        bottomTextTop: 500,
+        bottomFontSize: "22px",
+        bottomLineHeight: "21px",
+        Nym: name,
+        Definition: definition,
+        BottomText: "Soy Wax Candle \n 9 oz / 45+ hours",
+        NymColor: "#000000",
+        formatNym: false,
+      });
     }
 
     if (type == 2) {
       console.log(type);
 
-      blackCard = new NymPosttwo(458, 400)
-        .setNym(name)
-        .setNymColor("black")
-        .setNymFontSize("50px")
-        .setWidth("359px")
-        .setPadding("133px");
+      black4oz = new NymPostthree({
+        width: 624,
+        height: 546,
+        innerBorderWidth: 458,
+        innerBorderHeight: 400,
+        innerBorderTop: 73,
+        innerBorderLeft: 83,
+        nymWidth: 305,
+        nymHeight: 211,
+        nymTop: 167,
+        nymLeft: 160,
+        nymFontSize: "50px",
+        nymLineHeight: "50px",
+        bottomTextWidth: 252,
+        bottomTextHeight: 32,
+        bottomTextTop: 350,
+        bottomTextLeft: 186,
+        bottomFontSize: "17px",
+        bottomLineHeight: "17px",
+        Nym: name,
+        NymColor: "#000000",
+        formatNym: false,
+      });
+
+      black9oz = new NymPostthree({
+        width: 863,
+        height: 706,
+        innerBorderWidth: 695,
+        innerBorderHeight: 563,
+        innerBorderTop: 71,
+        innerBorderLeft: 91,
+        nymWidth: 514,
+        nymHeight: 302,
+        nymTop: 202,
+        nymLeft: 174,
+        nymFontSize: "80px",
+        nymLineHeight: "70px",
+        bottomTextWidth: 252,
+        bottomTextHeight: 32,
+        bottomTextTop: 500,
+        bottomTextLeft: 305,
+        bottomFontSize: "22px",
+        bottomLineHeight: "21px",
+        Nym: name,
+        BottomText: "Soy Wax Candle \n 9 oz / 45+ hours",
+        NymColor: "#000000",
+        formatNym: false,
+      });
     }
 
     if (type == 3) {
       console.log(type);
 
-      blackCard = new NymPosttwo(458, 400)
-        .setNym(name)
-        .setNymColor("black")
-        .setNymFontSize("60px")
-        .setWidth("359px")
-        .setPadding("133px");
+      black4oz = new NymPostthree({
+        Nym: name,
+      });
+
+      black9oz = new NymPostthree({
+        width: 863,
+        height: 706,
+        innerBorderWidth: 695,
+        innerBorderHeight: 563,
+        innerBorderTop: 71,
+        innerBorderLeft: 91,
+        nymWidth: 534,
+        nymHeight: 372,
+        nymTop: 167,
+        nymLeft: 164,
+        nymFontSize: "92px",
+        nymLineHeight: "85px",
+        bottomTextWidth: 252,
+        bottomTextHeight: 32,
+        bottomTextTop: 500,
+        bottomTextLeft: 305,
+        bottomFontSize: "22px",
+        bottomLineHeight: "21px",
+        Nym: name,
+        BottomText: "Soy Wax Candle \n 9 oz / 45+ hours",
+        NymColor: "#000000",
+        formatNym: true,
+      });
     }
 
-    const blackImage = await blackCard.build({ format: "png" });
-    const blackFileName = generateUniqueFileName();
-    const blackFilePath = path.join(
+    const blackImage_1 = await black4oz.build({ format: "png" });
+    const blackFileName_1 = generateUniqueFileName();
+    const blackFilePath_1 = path.join(
       __dirname,
       "../public/images",
-      blackFileName
+      blackFileName_1
     );
 
     // Save the black image to the file system
-    fs.writeFileSync(blackFilePath, blackImage);
+    fs.writeFileSync(blackFilePath_1, blackImage_1);
 
     // Convert the saved black image to Base64 format
-    const blackBase64Image = await getBase64FromFile(blackFilePath);
+    const blackBase64Image_1 = await getBase64FromFile(blackFilePath_1);
 
     // Upload black card image to Printify
-    const blackImageId = await uploadImageToPrintify(
-      blackFileName,
-      blackBase64Image,
+    const blackImageId_1 = await uploadImageToPrintify(
+      blackFileName_1,
+      blackBase64Image_1,
       token
     );
-    console.log(`Black card uploaded with ID: ${blackImageId}`);
+    console.log(`Black card uploaded with ID: ${blackImageId_1}`);
+
+    const blackImage_2 = await black9oz.build({ format: "png" });
+    const blackFileName_2 = generateUniqueFileName();
+    const blackFilePath_2 = path.join(
+      __dirname,
+      "../public/images",
+      blackFileName_2
+    );
+
+    // Save the black image to the file system
+    fs.writeFileSync(blackFilePath_2, blackImage_2);
+
+    // Convert the saved black image to Base64 format
+    const blackBase64Image_2 = await getBase64FromFile(blackFilePath_2);
+
+    // Upload black card image to Printify
+    const blackImageId_2 = await uploadImageToPrintify(
+      blackFileName_2,
+      blackBase64Image_2,
+      token
+    );
+    console.log(`Black card uploaded with ID: ${blackImageId_2}`);
 
     // 4. Create a product in Printify
     const productResponse = await axios.post(
@@ -322,15 +435,6 @@ const createCandle = async (name, type, definition) => {
               107593, // variant ID g
               107594, // variant ID h
               107595, // variant ID i
-              107596, // variant ID j
-              107597, // variant ID k
-              107598, // variant ID l
-              107599, // variant ID m
-              107600, // variant ID n
-              107601, // variant ID o
-              107602, // variant ID p
-              107603, // variant ID q
-              107604, // variant ID r
               107605, // variant ID s
               107606, // variant ID t
               107607, // variant ID u
@@ -340,6 +444,35 @@ const createCandle = async (name, type, definition) => {
               107611, // variant ID y
               107612, // variant ID z
               107613, // variant ID aa
+            ], // 12oz variant
+            placeholders: [
+              {
+                position: "front",
+                images: [
+                  {
+                    id: blackImageId_1, // Image ID for black variant
+                    x: 0.5,
+                    y: 0.5,
+                    scale: 1,
+                    angle: 0,
+                  },
+                ],
+                height: 1196, // Custom height for 12oz variant
+                width: 1988, // Custom width for 12oz variant
+              },
+            ],
+          },
+          {
+            variant_ids: [
+              107596, // variant ID j
+              107597, // variant ID k
+              107598, // variant ID l
+              107599, // variant ID m
+              107600, // variant ID n
+              107601, // variant ID o
+              107602, // variant ID p
+              107603, // variant ID q
+              107604, // variant ID r
               107614, // variant ID bb
               107615, // variant ID cc
               107616, // variant ID dd
@@ -355,7 +488,7 @@ const createCandle = async (name, type, definition) => {
                 position: "front",
                 images: [
                   {
-                    id: blackImageId, // Image ID for black variant
+                    id: blackImageId_2, // Image ID for black variant
                     x: 0.5,
                     y: 0.5,
                     scale: 1,
