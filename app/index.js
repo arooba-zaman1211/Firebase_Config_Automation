@@ -4,6 +4,9 @@ const productRoutes = require("../routes/Products_Routes");
 const connectDB = require("../config/dbConnection.js");
 const { NymPostthree } = require("../services/NymPost_3.jsx");
 const { NymPostfour } = require("../services/NymPost_4.jsx");
+const { NymPostfive } = require("../services/NymPost_5.jsx");
+const { NymPostsix } = require("../services/NymPost_6.jsx");
+const { NymPost } = require("../services/NymPost.jsx");
 const { generateUniqueFileName } = require("../helper/Helper.js");
 const path = require("path");
 const fs = require("fs");
@@ -85,8 +88,43 @@ const whiteCard = new NymPosttwo(3951, 4919)
   .setPadding("518px");
 */
 
-const whiteCard = new NymPostfour({
-  formatNym: false,
+/*const whiteCard = new NymPostthree({
+  width: 863,
+  height: 706,
+  innerBorderWidth: 695,
+  innerBorderHeight: 563,
+  innerBorderTop: 71,
+  innerBorderLeft: 91,
+  nymWidth: 534,
+  nymHeight: 372,
+  nymTop: 167,
+  nymLeft: 164,
+  nymFontSize: "92px",
+  nymLineHeight: "85px",
+  bottomTextWidth: 252,
+  bottomTextHeight: 32,
+  bottomTextTop: 500,
+  bottomTextLeft: 305,
+  bottomFontSize: "22px",
+  bottomLineHeight: "21px",
+  Nym: "caught flipping again",
+  BottomText: "Soy Wax Candle \n 9 oz / 45+ hours",
+  NymColor: "#000000",
+  formatNym: true,
+});*/
+
+whiteCard = new NymPost({
+  width: 3852, // Default outer container width
+  height: 4398, // Default outer container height
+  nymFontSize: "570px", // Default font size for Nym text
+  nymLineHeight: "662.91px", // Default line height for Nym text
+  Nym: "caught\nflipping\nagain",
+  NymColor: "#000000",
+  formatNym: false, // Add this default parameter
+  top: 245, // Top position for the text
+  left: 223, // Left position for the text
+  nymWidth: 3505, // Width for Nym text
+  nymHeight: 3989, // Height for Nym text
 });
 
 const saveWhiteCard = async () => {

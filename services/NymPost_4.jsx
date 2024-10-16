@@ -1,6 +1,7 @@
+// Candle 1
 const { JSX, Builder } = require("canvacord");
 const { Font } = require("canvacord");
-
+const { createCanvas } = require("canvas");
 // Load fonts from file
 Font.fromFileSync(
   "public/assets/fonts/BubbleGum/BubblegumSans-Regular.ttf",
@@ -116,6 +117,28 @@ class NymPostfour extends Builder {
       bottomLineHeight,
     } = this.styles;
 
+    // Create a canvas to measure text dimensions
+    const canvas = createCanvas(1, 1); // Create a blank canvas
+    const context = canvas.getContext("2d");
+
+    // Function to get the adjusted font size
+    const getAdjustedFontSize = (text) => {
+      context.font = `${nymFontSize} BubbleGum`;
+      let measuredTextWidth = context.measureText(text).width;
+
+      // If the text is too wide, decrease the font size until it fits
+      let currentFontSize = parseFloat(nymFontSize);
+      while (measuredTextWidth > nymWidth) {
+        currentFontSize -= 1; // Decrease font size by 1px
+        context.font = `${currentFontSize}px BubbleGum`;
+        measuredTextWidth = context.measureText(text).width;
+      }
+      return `${currentFontSize}px`;
+    };
+
+    const adjustedNymFontSize = getAdjustedFontSize(Nym);
+    const adjustedLineHeight = parseFloat(adjustedNymFontSize) * 1.15; // Set line height as needed
+
     const formattedNym = this.formatNym ? Nym.split(" ").join("\n") : Nym;
 
     return JSX.createElement(
@@ -155,10 +178,10 @@ class NymPostfour extends Builder {
           "h1",
           {
             style: {
-              fontSize: nymFontSize,
+              fontSize: adjustedNymFontSize,
               fontFamily: "BubbleGum",
               color: NymColor,
-              lineHeight: nymLineHeight,
+              lineHeight: `${adjustedLineHeight}px`,
               textAlign: "center",
               whiteSpace: "pre-wrap", // Enable line breaks
               width: `${nymWidth}px`,
@@ -166,6 +189,7 @@ class NymPostfour extends Builder {
               justifyContent: "center", // Horizontal centering
               alignItems: "center",
               flexDirection: "column", // Stack lines in a column
+              textTransform: "uppercase",
             },
           },
           formattedNym
@@ -186,6 +210,7 @@ class NymPostfour extends Builder {
               justifyContent: "center", // Horizontal centering
               alignItems: "center",
               flexDirection: "column", // Stack lines in a column
+              marginTop: "10px", // Adjust the distance between Nym and Definition if needed
             },
           },
           Definition

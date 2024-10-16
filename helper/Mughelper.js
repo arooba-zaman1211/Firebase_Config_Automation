@@ -2,8 +2,8 @@ const fs = require("fs");
 const path = require("path");
 const axios = require("axios");
 const { Font } = require("canvacord");
-const { NymPost } = require("../services/NymPost.jsx"); // Import your NymPost class
-const { NymPosttwo } = require("../services/NymPost_2.jsx");
+const { NymPostfive } = require("../services/NymPost_5.jsx");
+const { NymPostsix } = require("../services/NymPost_6.jsx");
 require("dotenv").config();
 const {
   getBase64FromFile,
@@ -29,33 +29,61 @@ const createMug = async (name, type, definition) => {
     if (type == 1) {
       console.log(type);
 
-      blackCard = new NymPost(2475, 1155)
-        .setNym(name)
-        .setDefinition(definition)
-        .setNymColor("black")
-        .setDefinitionColor("black")
-        .setNymFontSize("160px")
-        .setDefinitionFontSize("67px");
+      blackCard = new NymPostsix({
+        width: 2475,
+        height: 1155, // Default outer container height
+        nymFontSize: "160px", // Default font size for Nym text
+        nymLineHeight: "17px", // Default line height for Nym text
+        definitionFontSize: "67px", // Default font size for Definition text
+        definitionLineHeight: "17px", // Default line height for Definition text
+        Nym: "HI, I'M NAT",
+        Definition: "Short for Natural Disaster",
+        NymColor: "#000000",
+        formatNym: true, // Add this default parameter
+        top: 360, // Top position for the Nym text
+        definitionTop: 547, // Top position for the Definition text
+        left: 76, // Left position for the text
+        nymWidth: 920, // Width for Nym text
+        definitionWidth: 849, // Width for Definition text
+        nymHeight: 182, // Height for Nym text
+        definitionHeight: 88, // Height for Definition text
+      });
     }
 
     if (type == 2) {
       console.log(type);
 
-      blackCard = new NymPosttwo(2475, 1155)
-        .setNym(name)
-        .setNymColor("black")
-        .setNymFontSize("110px")
-        .setWidth("920px");
+      blackCard = new NymPostfive({
+        width: 2475, // Default outer container width
+        height: 1155, // Default outer container height
+        nymFontSize: "160px", // Default font size for Nym text
+        nymLineHeight: "155px", // Default line height for Nym text
+        Nym: name,
+        NymColor: "#000000",
+        formatNym: false, // Add this default parameter
+        top: 470, // Top position for the text
+        left: 76, // Left position for the text
+        nymWidth: 920, // Width for Nym text
+        nymHeight: 182, // Height for Nym text
+      });
     }
 
     if (type == 3) {
       console.log(type);
 
-      blackCard = new NymPosttwo(2475, 1155)
-        .setNym(name)
-        .setNymColor("black")
-        .setNymFontSize("160px")
-        .setWidth("920px");
+      blackCard = new NymPostfive({
+        width: 2475, // Default outer container width
+        height: 1155, // Default outer container height
+        nymFontSize: "160px", // Default font size for Nym text
+        nymLineHeight: "155px", // Default line height for Nym text
+        Nym: name,
+        NymColor: "#000000",
+        formatNym: true, // Add this default parameter
+        top: 470, // Top position for the text
+        left: 76, // Left position for the text
+        nymWidth: 920, // Width for Nym text
+        nymHeight: 182, // Height for Nym text
+      });
     }
 
     const blackImage = await blackCard.build({ format: "png" });

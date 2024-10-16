@@ -14,14 +14,14 @@ const createAndUploadImage = async (req, res) => {
 
     //const tshirt = await createTShirt(name, type, definition);
     //const hoodie = await createHoodie(name, type, definition);
-    //const mug = await createMug(name, type, definition);
-    const candle = await createCandle(name, type, definition);
+    const mug = await createMug(name, type, definition);
+    //const candle = await createCandle(name, type, definition);
     let caption = "Check out our new Products! #CustomTshirt #Printify";
 
     /*if (!tshirt || !hoodie || !mug || !candle) {
       res.status(400).send("Error creating and uploading image or product");
     }*/
-    const images_url = [candle /*  mug  tshirt, hoodie*/];
+    const images_url = [, /*candle */ mug /* tshirt, hoodie*/];
 
     const db = await postsSchema.create({
       urls: images_url,

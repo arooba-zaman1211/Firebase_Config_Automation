@@ -33,10 +33,32 @@ const createCandle = async (name, type, definition) => {
       console.log(type);
 
       black4oz = new NymPostfour({
+        width: 624,
+        height: 546,
+        innerBorderWidth: 458,
+        innerBorderHeight: 400,
+        innerBorderTop: 73,
+        innerBorderLeft: 83,
+        nymWidth: 391,
+        nymHeight: 60,
+        nymFontSize: "70px",
+        nymLineHeight: "81.41px",
+        definitionWidth: 391,
+        definitionHeight: 19,
+        definitionFontSize: "27px",
+        definitionLineHeight: "17px",
+        bottomTextWidth: 252,
+        bottomTextHeight: 32,
+        bottomTextTop: 350,
+        bottomFontSize: "22px",
+        bottomLineHeight: "21px",
+        Nym: "HI, I'M NAT",
+        Definition: "Short for Natural Disaster",
+        BottomText: "Soy Wax Candle \n 4 oz / 20+ hours",
+        NymColor: "#000000",
         formatNym: false,
-        Nym: name,
-        Definition: definition,
       });
+
       black9oz = new NymPostfour({
         width: 863,
         height: 706,
@@ -122,7 +144,28 @@ const createCandle = async (name, type, definition) => {
       console.log(type);
 
       black4oz = new NymPostthree({
-        Nym: name,
+        width: 645, // Define specific width for 4oz
+        height: 546, // Define specific height for 4oz
+        innerBorderWidth: 458,
+        innerBorderHeight: 400,
+        innerBorderTop: 73,
+        innerBorderLeft: 93,
+        nymWidth: 359,
+        nymHeight: 250,
+        nymTop: 148,
+        nymLeft: 133,
+        nymFontSize: "60px", // Responsive font size
+        nymLineHeight: "55px", // Responsive line height
+        bottomTextWidth: 252,
+        bottomTextHeight: 32,
+        bottomTextTop: 350,
+        bottomTextLeft: 186,
+        bottomFontSize: "17px", // Responsive font size for bottom text
+        bottomLineHeight: "17px",
+        Nym: name, // Use the provided name variable
+        BottomText: "Soy Wax Candle \n 4 oz / 20+ hours",
+        NymColor: "#000000",
+        formatNym: true,
       });
 
       black9oz = new NymPostthree({

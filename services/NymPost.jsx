@@ -1,30 +1,45 @@
 const { JSX, Builder } = require("canvacord");
 const { Font } = require("canvacord");
+const { createCanvas } = require("canvas");
 
+// Load fonts from file
 Font.fromFileSync(
   "public/assets/fonts/BubbleGum/BubblegumSans-Regular.ttf",
   "BubbleGum"
 );
-Font.fromFileSync("public/assets/fonts/Raleway/Raleway-Regular.ttf", "Raleway");
 
 class NymPost extends Builder {
-  constructor(width = 3590, height = 2203) {
+  constructor({
+    width = 3505, // Width from your provided data
+    height = 3989, // Height from your provided data
+    nymFontSize = "570px", // Font size for Nym text
+    nymLineHeight = "662.91px", // Line height for Nym text
+    Nym = "", // The Nym text
+    NymColor = "#000000", // Default text color
+    formatNym = false, // Whether to format Nym to uppercase
+    top = 245, // Top position from your provided data
+    left = 223, // Left position from your provided data
+    nymWidth = 3505, // Match width for Nym text
+    nymHeight = 3989, // Match height for Nym text
+  } = {}) {
     super(width, height);
     this.bootstrap({
-      Nym: "",
-      NymColor: "#000000", // Default Nym color (black)
-      definition: "",
-      definitionColor: "#000000", // Default definition color (black)
-      nymFontSize: "610px", // Default font size for Nym
-      definitionFontSize: "313px", // Default font size for definition
-      marginTop: "",
-      Width: width + "px", // Set width to the default width provided
-      Height: height + "px", // Set height to the default height provided
-      Padding: "50px",
+      Nym,
+      NymColor,
+      nymFontSize,
     });
 
-    this.backgroundImage = null;
-    this.backgroundImageLoaded = false;
+    this.styles = {
+      width,
+      height,
+      nymFontSize,
+      nymLineHeight,
+      formatNym,
+      nymWidth,
+      nymHeight,
+      top, // Include top and left in the styles
+      left,
+    };
   }
 
   setNym(value) {
@@ -32,131 +47,80 @@ class NymPost extends Builder {
     return this;
   }
 
-  setNymColor(color) {
-    this.options.set("NymColor", color);
-    return this;
-  }
-
-  setDefinition(value) {
-    this.options.set("definition", value);
-    return this;
-  }
-
-  setDefinitionColor(color) {
-    this.options.set("definitionColor", color);
-    return this;
-  }
-
-  setNymFontSize(size) {
-    this.options.set("nymFontSize", size);
-    return this;
-  }
-
-  setDefinitionFontSize(size) {
-    this.options.set("definitionFontSize", size);
-    return this;
-  }
-
-  setMarginTop(margin) {
-    this.options.set("marginTop", margin);
-    return this;
-  }
-
-  setWidth(size) {
-    this.options.set("Width", size);
-    return this;
-  }
-
-  setHeight(size) {
-    this.options.set("Height", size);
-    return this;
-  }
-
-  setPadding(padding) {
-    this.options.set("Padding", padding);
-    return this;
-  }
-
-  // Dynamically adjust the font size based on Nym length
-  adjustFontSize(Nym) {
-    const thresholdLength = 10; // Start reducing font size after 10 letters
-    let fontSize = parseInt(this.options.get("nymFontSize"));
-
-    // If the Nym length exceeds the threshold, reduce the font size
-    if (Nym.length > thresholdLength) {
-      const decreaseFactor = 10; // Amount to reduce per extra letter
-      fontSize = Math.max(
-        fontSize - (Nym.length - thresholdLength) * decreaseFactor,
-        100
-      );
-    }
-
-    return fontSize + "px";
-  }
-
   async render() {
+    const { Nym, NymColor } = this.options.getOptions();
     const {
-      Nym,
-      definition,
-      NymColor,
-      definitionColor,
+      width,
+      height,
       nymFontSize,
-      definitionFontSize,
-      marginTop,
-      Width,
-      Height,
-      Padding,
-    } = this.options.getOptions();
+      nymLineHeight,
+      formatNym,
+      nymWidth,
+      nymHeight,
+      top,
+      left,
+    } = this.styles;
 
-    // Dynamically adjust the font size based on Nym length
-    const adjustedFontSize = this.adjustFontSize(Nym);
+    // Create a canvas to measure text dimensions
+    const canvas = createCanvas(1, 1);
+    const context = canvas.getContext("2d");
+
+    // Set the font to measure the text
+    context.font = `${nymFontSize} BubbleGum`;
+
+    // Measure the text dimensions
+    const measuredTextWidth = context.measureText(Nym.toUpperCase()).width;
+    const measuredTextHeight = parseFloat(nymLineHeight);
+
+    // Check if the Nym text fits within the available width
+    const isNymTextFitting = measuredTextWidth < nymWidth;
+
+    // Adjust final font size if needed
+    const finalNymFontSize = isNymTextFitting
+      ? nymFontSize
+      : `${(nymWidth / measuredTextWidth) * parseFloat(nymFontSize)}px`;
+    const finalNymLineHeight = `${
+      parseFloat(finalNymFontSize) *
+      (parseFloat(nymLineHeight) / parseFloat(nymFontSize))
+    }px`;
+
+    // Format Nym text to uppercase if needed
+    const formattedNym = formatNym ? Nym.toUpperCase() : Nym;
 
     return JSX.createElement(
       "div",
       {
         style: {
+          width: `${width}px`,
+          height: `${height}px`,
+          position: "relative",
           display: "flex",
-          flexDirection: "column",
-          alignItems: "center", // Center elements horizontally
-          justifyContent: "center", // Center elements vertically
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-          width: Width,
-          height: Height,
-          boxSizing: "border-box",
-          marginTop: marginTop,
-          padding: Padding, // Ensure padding is included
+          alignItems: "center",
+          justifyContent: "center",
+          textAlign: "center",
         },
       },
+      // Nym Text
       JSX.createElement(
         "h1",
         {
           style: {
-            fontSize: nymFontSize, // Dynamically adjusted font size
+            fontSize: finalNymFontSize,
             fontFamily: "BubbleGum",
             color: NymColor,
-            lineHeight: "1", // Ensures no extra space between lines
-            margin: "0", // Remove default margin
-            paddingBottom: "5px", // Optional: spacing between Nym and definition
+            lineHeight: finalNymLineHeight,
+            whiteSpace: "pre-wrap",
+            width: `${nymWidth}px`,
+            height: `${nymHeight}px`,
+            margin: 0,
+            position: "absolute",
+            top: `${top}px`, // From your provided data
+            left: `${left}px`, // From your provided data
+            textTransform: "uppercase",
+            textAlign: "center", // Ensure text is centered within the bounding box
           },
         },
-        Nym // Render Nym text
-      ),
-
-      JSX.createElement(
-        "p",
-        {
-          style: {
-            fontSize: definitionFontSize, // Font size for definition
-            fontFamily: "Raleway",
-            color: definitionColor,
-            lineHeight: "1.4",
-            margin: "0", // Remove default margin
-            textAlign: "center", // Center align definition
-            paddingTop: "5px", // Optional: spacing above definition
-          },
-        },
-        definition // Render the definition
+        formattedNym
       )
     );
   }
