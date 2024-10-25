@@ -1,4 +1,4 @@
-// Mug 1, 2
+// Mug 2, 3
 const { JSX, Builder } = require("canvacord");
 const { Font } = require("canvacord");
 const { createCanvas } = require("canvas");

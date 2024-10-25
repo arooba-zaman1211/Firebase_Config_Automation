@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const imageController = require("../controllers/Products/ProductsController");
+const imageController = require("../controllers/products/productController");
 
 router.post("/upload", imageController.createAndUploadImage);
 

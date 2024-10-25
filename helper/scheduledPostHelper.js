@@ -1,4 +1,6 @@
-const { postToInsta } = require("./Helper.js");
+const {
+  postToInsta,
+} = require("../controllers/instagrampost/instaController.js");
 const postsSchema = require("../models/instaPost.js");
 const cron = require("node-cron");
 

@@ -170,7 +170,7 @@ class NymPostfour extends Builder {
             left: `${innerBorderLeft}px`,
             alignItems: "center",
             justifyContent: "center", // Centering the contents
-            padding: "20px 0",
+            padding: "20px 0", // "20px 0"
           },
         },
         // Nym Text
@@ -210,7 +210,7 @@ class NymPostfour extends Builder {
               justifyContent: "center", // Horizontal centering
               alignItems: "center",
               flexDirection: "column", // Stack lines in a column
-              marginTop: "10px", // Adjust the distance between Nym and Definition if needed
+              marginTop: "-20px", // Adjust the distance between Nym and Definition if needed
             },
           },
           Definition
