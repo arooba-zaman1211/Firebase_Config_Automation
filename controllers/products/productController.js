@@ -17,36 +17,62 @@ const createAndUploadImage = async (req, res) => {
     const name = req.body.text_1;
     const type = req.body.design_id;
     const definition = req.body.text_2;
+    const objectId = req.body._id;
+    const tags = req.body.tags;
+    const product_description = req.body.product_description;
+    console.log(objectId);
 
-    const tshirt = await createTShirt(name, type, definition);
+    const tshirt = await createTShirt(
+      name,
+      type,
+      definition,
+      tags,
+      product_description[0]
+    );
     if (!tshirt) {
       res
         .status(400)
         .send("Error creating and uploading T-shirt image or product");
       return;
     }
-    const hoodie = await createHoodie(name, type, definition);
+    const hoodie = await createHoodie(
+      name,
+      type,
+      definition,
+      tags,
+      product_description[1]
+    );
     if (!hoodie) {
       res
         .status(400)
         .send("Error creating and uploading Hoodie image or product");
       return;
     }
-    const mug = await createMug(name, type, definition);
+    const mug = await createMug(
+      name,
+      type,
+      definition,
+      tags,
+      product_description[2]
+    );
 
     if (!mug) {
       res.status(400).send("Error creating and uploading Mug image or product");
       return;
     }
-    const candle = await createCandle(name, type, definition);
+    const candle = await createCandle(
+      name,
+      type,
+      definition,
+      tags,
+      product_description[3]
+    );
     if (!candle) {
       res
         .status(400)
         .send("Error creating and uploading Candle image or product");
       return;
     }
-
-    let caption = "Check out our new Products! #CustomTshirt #Printify";
 
     console.log("new design");
 
@@ -81,7 +107,7 @@ const createAndUploadImage = async (req, res) => {
         height: 1080, // Height from your provided data
         nymFontSize: "190px", // Font size for Nym text
         nymLineHeight: "161px", // Line height for Nym text
-        Nym: definition, // The Nym text
+        Nym: name, // The Nym text
         NymColor: "#000000", // Default text color
         formatNym: false, // Whether to format Nym to uppercase
         top: 247, // Top position from your provided data
@@ -97,7 +123,7 @@ const createAndUploadImage = async (req, res) => {
         height: 1080, // Height from your provided data
         nymFontSize: "207px", // Font size for Nym text
         nymLineHeight: "181px", // Line height for Nym text
-        Nym: definition, // The Nym text
+        Nym: name, // The Nym text
         NymColor: "#000000", // Default text color
         formatNym: true, // Whether to format Nym to uppercase
         top: 179, // Top position from your provided data
@@ -157,22 +183,26 @@ const createAndUploadImage = async (req, res) => {
       mug,
       tshirt,
       hoodie,
-      "https://drive.google.com/uc?export=view&id=1n1KTEDWMTiQhVs9rKJ-NF7QYcMg4u01J",
+      "https://drive.usercontent.google.com/download?id=1n1KTEDWMTiQhVs9rKJ-NF7QYcMg4u01J&export=view&authuser=0",
     ];
 
     console.log(images_url);
-    /*const db = await postsSchema.create({
-      urls: images_url,
-      status: "pending",
-      caption,
-      scheduled_time: new Date(Date.now() + 5 * 60 * 1000),
-    });*/
 
-    /*if (db) {
-      console.log("Saved to database");
-    }*/
-    res.status(200).json(postToInsta);
+    const db = await postsSchema.updateOne(
+      { _id: objectId },
+      { $push: { images: { $each: images_url } } }
+    );
+
+    if (db.modifiedCount === 0) {
+      console.log(
+        "No document matched the provided _id or no modifications were made."
+      );
+      res.status(400).send("Images not saved to database");
+      return;
+    }
+    res.status(200).send("Success");
   } catch (error) {
+    console.log(error);
     res.status(500).send("Error creating and uploading image or product");
   }
 };

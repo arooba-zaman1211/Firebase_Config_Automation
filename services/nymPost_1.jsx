@@ -3,7 +3,6 @@ const { JSX, Builder } = require("canvacord");
 const { Font } = require("canvacord");
 const { createCanvas } = require("canvas");
 
-// Load fonts from file
 Font.fromFileSync(
   "public/assets/fonts/BubbleGum/BubblegumSans-Regular.ttf",
   "BubbleGum"
@@ -12,24 +11,24 @@ Font.fromFileSync("public/assets/fonts/Raleway/Raleway-Regular.ttf", "Raleway");
 
 class NymPostone extends Builder {
   constructor({
-    width = 3852, // Outer border width from your provided data
-    height = 4398, // Outer border height from your provided data
-    nymFontSize = "540px", // Default font size for Nym text
-    nymLineHeight = "628.02px", // Default line height for Nym text
-    definitionFontSize = "250px", // Default font size for Definition text
-    definitionLineHeight = "293.5px", // Default line height for Definition text
+    width = 3852,
+    height = 4398,
+    nymFontSize = "540px",
+    nymLineHeight = "628.02px",
+    definitionFontSize = "250px",
+    definitionLineHeight = "293.5px",
     Nym = "Your Nym Text Here",
     Definition = "Your Definition Text Here",
     NymColor = "#000000",
-    formatNym = false, // Whether to format Nym to uppercase
-    nymTop = 326, // Top position for Nym text
-    definitionTop = 904, // Top position for Definition text
-    left = 271, // Left position for both texts
-    nymWidth = 3263, // Width for Nym text
-    nymHeight = 558, // Height for Nym text
-    definitionWidth = 3263, // Width for Definition text
-    definitionHeight = 241, // Height for Definition text
-    distanceBetweenTexts = 20, // Distance between Nym and Definition
+    formatNym = false,
+    nymTop = 326,
+    definitionTop = 904,
+    left = 271,
+    nymWidth = 3263,
+    nymHeight = 558,
+    definitionWidth = 3263,
+    definitionHeight = 241,
+    distanceBetweenTexts = 20,
   } = {}) {
     super(width, height);
     this.bootstrap({
@@ -55,6 +54,7 @@ class NymPostone extends Builder {
       definitionWidth,
       definitionHeight,
       distanceBetweenTexts,
+      definitionTop,
     };
   }
 
@@ -75,13 +75,12 @@ class NymPostone extends Builder {
       definitionWidth,
       definitionHeight,
       distanceBetweenTexts,
+      definitionTop,
     } = this.styles;
 
-    // Create a canvas to measure text dimensions
     const canvas = createCanvas(1, 1);
     const context = canvas.getContext("2d");
 
-    // Function to get the adjusted font size for Nym text
     const getAdjustedFontSize = (
       text,
       baseFontSize,
@@ -91,13 +90,12 @@ class NymPostone extends Builder {
       context.font = `${baseFontSize} BubbleGum`;
       let measuredTextWidth = context.measureText(text).width;
 
-      // If the text is too wide or too tall, decrease the font size until it fits
       let currentFontSize = parseFloat(baseFontSize);
       while (
         (measuredTextWidth > widthLimit || currentFontSize > heightLimit) &&
         currentFontSize > 0
       ) {
-        currentFontSize -= 1; // Decrease font size by 1px
+        currentFontSize -= 1;
         context.font = `${currentFontSize}px BubbleGum`;
         measuredTextWidth = context.measureText(text).width;
       }
@@ -110,11 +108,8 @@ class NymPostone extends Builder {
       nymWidth,
       nymHeight
     );
-
-    // Calculate the height of the Nym text based on the adjusted font size and line height
     const adjustedNymHeight = Math.ceil(parseFloat(adjustedNymFontSize) * 1.15);
 
-    // Calculate the top position for Definition text based on Nym's adjusted height and fixed distance
     const adjustedDefinitionTop =
       nymTop + adjustedNymHeight + distanceBetweenTexts;
 
@@ -125,13 +120,46 @@ class NymPostone extends Builder {
       definitionHeight
     );
 
-    // Calculate line heights
     const adjustedNymLineHeight = `${parseFloat(adjustedNymFontSize) * 1.15}px`;
     const adjustedDefinitionLineHeight = `${
       parseFloat(adjustedDefinitionFontSize) * 1.15
     }px`;
 
-    // Format Nym text to uppercase if specified
+    const originalDefinitionHeight = parseFloat(definitionLineHeight);
+    const originalNymHeight = parseFloat(nymLineHeight);
+
+    console.log("Parsed Original Definition Height:", originalDefinitionHeight);
+    console.log("Parsed Original Nym Height:", originalNymHeight);
+
+    const adjustedNymFontSizeValue = parseFloat(adjustedNymFontSize);
+
+    console.log(
+      "Parsed Adjusted Nym Font Size Value:",
+      adjustedNymFontSizeValue
+    );
+    var newDefinitionLineHeight = 0;
+    var newNymLineHeight = 0;
+    if (
+      isNaN(originalDefinitionHeight) ||
+      isNaN(originalNymHeight) ||
+      isNaN(adjustedNymFontSizeValue)
+    ) {
+      console.error("One or more input values are not valid numbers.");
+    } else {
+      const originalsize = parseFloat(nymFontSize);
+      const sizeRatio = adjustedNymFontSizeValue / originalsize;
+
+      console.log("Size Ratio:", sizeRatio);
+
+      const lineHeightDifference = originalNymHeight - originalDefinitionHeight;
+
+      console.log("Line Height Difference:", lineHeightDifference);
+
+      const mul = lineHeightDifference * sizeRatio;
+      newDefinitionLineHeight = mul * 2.14;
+      newNymLineHeight = newDefinitionLineHeight;
+    }
+
     const formattedNym = formatNym ? Nym.toUpperCase() : Nym;
 
     return JSX.createElement(
@@ -149,7 +177,6 @@ class NymPostone extends Builder {
           padding: "10px",
         },
       },
-      // Nym Text
       JSX.createElement(
         "h1",
         {
@@ -157,7 +184,7 @@ class NymPostone extends Builder {
             fontSize: adjustedNymFontSize,
             fontFamily: "BubbleGum",
             color: NymColor,
-            lineHeight: adjustedNymLineHeight,
+            lineHeight: newNymLineHeight,
             width: `${nymWidth}px`,
             height: `${nymHeight}px`,
             margin: 0,
@@ -172,7 +199,6 @@ class NymPostone extends Builder {
         },
         formattedNym
       ),
-      // Definition Text
       JSX.createElement(
         "p",
         {
@@ -180,7 +206,7 @@ class NymPostone extends Builder {
             fontSize: adjustedDefinitionFontSize,
             fontFamily: "Raleway",
             color: NymColor,
-            lineHeight: adjustedDefinitionLineHeight,
+            lineHeight: newDefinitionLineHeight,
             width: `${definitionWidth}px`,
             height: `${definitionHeight}px`,
             margin: 0,

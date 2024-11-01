@@ -3,7 +3,6 @@ const { JSX, Builder } = require("canvacord");
 const { Font } = require("canvacord");
 const { createCanvas } = require("canvas");
 
-// Load fonts from file
 Font.fromFileSync(
   "public/assets/fonts/BubbleGum/BubblegumSans-Regular.ttf",
   "BubbleGum"
@@ -12,25 +11,25 @@ Font.fromFileSync("public/assets/fonts/Raleway/Raleway-Regular.ttf", "Raleway");
 
 class NymPostseven extends Builder {
   constructor({
-    width = 3852, // Outer border width
-    height = 4398, // Outer border height
-    nymFontSize = "540px", // Default font size for Nym text
-    nymLineHeight = "628.02px", // Default line height for Nym text
-    definitionFontSize = "250px", // Default font size for Definition text
-    definitionLineHeight = "293.5px", // Default line height for Definition text
+    width = 3852,
+    height = 4398,
+    nymFontSize = "540px",
+    nymLineHeight = "628.02px",
+    definitionFontSize = "250px",
+    definitionLineHeight = "293.5px",
     Nym = "Your Nym Text Here",
     Definition = "Your Definition Text Here",
     NymColor = "#000000",
-    formatNym = false, // Whether to format Nym to uppercase
-    top = 326, // Top position for Nym text
-    definitionTop = 904, // Top position for Definition text
-    left = 0, // Left position for both texts
-    nymWidth = 3263, // Width for Nym text
-    nymHeight = 558, // Height for Nym text
-    definitionWidth = 3263, // Width for Definition text
-    definitionHeight = 241, // Height for Definition text
-    distanceBetweenTexts = 20, // Distance between Nym and Definition
-    backgroundImageUrl = null, // Background image URL
+    formatNym = false,
+    top = 326,
+    definitionTop = 904,
+    left = 0,
+    nymWidth = 3263,
+    nymHeight = 558,
+    definitionWidth = 3263,
+    definitionHeight = 241,
+    distanceBetweenTexts = 20,
+    backgroundImageUrl = null,
   } = {}) {
     super(width, height);
     this.bootstrap({
@@ -57,7 +56,7 @@ class NymPostseven extends Builder {
       definitionWidth,
       definitionHeight,
       distanceBetweenTexts,
-      backgroundImageUrl, // Add this to styles
+      backgroundImageUrl,
     };
   }
 
@@ -84,7 +83,6 @@ class NymPostseven extends Builder {
     const canvas = createCanvas(1, 1);
     const context = canvas.getContext("2d");
 
-    // Split text into multiple lines if it's too long
     const splitTextIfNeeded = (text, maxWidth) => {
       context.font = `${nymFontSize} BubbleGum`;
       let words = text.split("");
@@ -98,7 +96,7 @@ class NymPostseven extends Builder {
 
         if (testLineWidth > maxWidth && !breakAdded) {
           lines.push(currentLine);
-          currentLine = "-" + letter; // Start a new line with the dash
+          currentLine = "-" + letter;
           breakAdded = true;
         } else {
           currentLine = testLine;

@@ -3,7 +3,6 @@ const { JSX, Builder } = require("canvacord");
 const { Font } = require("canvacord");
 const { createCanvas } = require("canvas");
 
-// Load fonts from file
 Font.fromFileSync(
   "public/assets/fonts/BubbleGum/BubblegumSans-Regular.ttf",
   "BubbleGum"
@@ -12,8 +11,8 @@ Font.fromFileSync("public/assets/fonts/Raleway/Raleway-Regular.ttf", "Raleway");
 
 class NymPostthree extends Builder {
   constructor({
-    width = 645, // Default outer container width
-    height = 546, // Default outer container height
+    width = 645,
+    height = 546,
     innerBorderWidth = 458,
     innerBorderHeight = 400,
     innerBorderTop = 73,
@@ -22,20 +21,20 @@ class NymPostthree extends Builder {
     nymHeight = 250,
     nymTop = 148,
     nymLeft = 133,
-    nymFontSize = "5vw", // Use vw for responsiveness
-    nymLineHeight = "5.5vw", // Adjusted for responsiveness
+    nymFontSize = "5vw",
+    nymLineHeight = "5.5vw",
     bottomTextWidth = 252,
     bottomTextHeight = 32,
     bottomTextTop = 350,
     bottomTextLeft = 186,
-    bottomFontSize = "2vw", // Responsive font size for bottom text
-    bottomLineHeight = "2.2vw", // Line height responsive
+    bottomFontSize = "2vw",
+    bottomLineHeight = "2.2vw",
     Nym = "",
     BottomText = "Soy Wax Candle \n 4 oz / 20+ hours",
     NymColor = "#000000",
-    formatNym = false, // Add this default parameter
+    formatNym = false,
   } = {}) {
-    super(width, height); // Pass outer dimensions to the parent Builder class
+    super(width, height);
     this.bootstrap({
       Nym,
       BottomText,
@@ -92,7 +91,7 @@ class NymPostthree extends Builder {
       nymWidth,
       nymLineHeight,
       nymHeight,
-      nymFontSize, // Pass the original nymFontSize for reference
+      nymFontSize,
       bottomTextWidth,
       bottomTextHeight,
       bottomTextTop,
@@ -102,8 +101,6 @@ class NymPostthree extends Builder {
       formatNym,
     } = this.styles;
 
-    // Adjusted dimensions (100 less than the inner border)
-
     const newWidth = innerBorderWidth - 120;
     const newHeight = innerBorderHeight - 120;
 
@@ -111,25 +108,20 @@ class NymPostthree extends Builder {
     const nymLineHeightNum = parseFloat(nymLineHeight);
 
     const lineHeightRatio = nymLineHeightNum / nymFontSizeNum;
-    // Dynamically calculate the font size based on container size
-    const calculatedNymFontSize = `${Math.min(newWidth, newHeight) * 0.15}px`; // Adjust the multiplier for scaling
+    const calculatedNymFontSize = `${Math.min(newWidth, newHeight) * 0.15}px`;
     const calculatedNymLineHeight = `${
       parseFloat(calculatedNymFontSize) * lineHeightRatio
     }px`;
 
-    // Create a canvas to measure text dimensions
-    const canvas = createCanvas(1, 1); // Create a blank canvas
+    const canvas = createCanvas(1, 1);
     const context = canvas.getContext("2d");
 
-    // Set the font to measure the text
-    context.font = `${nymFontSize} BubbleGum`; // Adjust the font name as needed
+    context.font = `${nymFontSize} BubbleGum`;
     const measuredTextWidth = context.measureText(Nym.toUpperCase()).width;
 
-    // Check if the Nym text fits within the available width and height
     const isNymTextFitting =
       measuredTextWidth < newWidth && parseFloat(nymFontSize) < newHeight;
 
-    // Set the final font size based on whether it fits
     const finalNymFontSize = isNymTextFitting
       ? nymFontSize
       : calculatedNymFontSize;
@@ -137,9 +129,6 @@ class NymPostthree extends Builder {
       ? nymLineHeight
       : calculatedNymLineHeight;
 
-    console.log("Line height:", finalNymLineHeight);
-
-    // Format Nym text to uppercase
     const formattedNym = formatNym ? Nym.toUpperCase() : Nym;
 
     return JSX.createElement(
@@ -153,7 +142,6 @@ class NymPostthree extends Builder {
           display: "flex",
         },
       },
-      // Inner boundary
       JSX.createElement(
         "div",
         {
@@ -167,10 +155,9 @@ class NymPostthree extends Builder {
             top: `${innerBorderTop}px`,
             left: `${innerBorderLeft}px`,
             alignItems: "center",
-            justifyContent: "center", // Ensure vertical centering for Nym text
+            justifyContent: "center",
           },
         },
-        // Middle Text (Nym Text) centered both vertically and horizontally
         JSX.createElement(
           "h1",
           {
@@ -180,24 +167,23 @@ class NymPostthree extends Builder {
               color: NymColor,
               lineHeight: finalNymLineHeight,
               textAlign: "center",
-              whiteSpace: "pre-wrap", // Enable line breaks
+              whiteSpace: "pre-wrap",
               width: `${nymWidth}px`,
               display: "flex",
-              justifyContent: "center", // Horizontal centering
+              justifyContent: "center",
               alignItems: "center",
-              flexDirection: "column", // Stack lines in a column
-              textTransform: formatNym ? "uppercase" : "none", // Ensure text is capitalized
+              flexDirection: "column",
+              textTransform: formatNym ? "uppercase" : "none",
             },
           },
-          formattedNym // Text with line breaks if formatting is enabled
+          formattedNym
         )
       ),
-      // Bottom Text - Fixed in position regardless of Nym text
       JSX.createElement(
         "p",
         {
           style: {
-            position: "absolute", // Maintain absolute positioning
+            position: "absolute",
             fontSize: bottomFontSize,
             fontFamily: "Raleway",
             color: NymColor,

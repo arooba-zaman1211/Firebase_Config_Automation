@@ -2,7 +2,6 @@ const { JSX, Builder } = require("canvacord");
 const { Font } = require("canvacord");
 const { createCanvas } = require("canvas");
 
-// Load fonts from file
 Font.fromFileSync(
   "public/assets/fonts/BubbleGum/BubblegumSans-Regular.ttf",
   "BubbleGum"
@@ -10,17 +9,17 @@ Font.fromFileSync(
 
 class NymPosteight extends Builder {
   constructor({
-    width = 3852, // Width from your provided data
-    height = 4398, // Height from your provided data
-    nymFontSize = "570px", // Font size for Nym text
-    nymLineHeight = "662.91px", // Line height for Nym text
-    Nym = "", // The Nym text
-    NymColor = "#000000", // Default text color
-    formatNym = false, // Whether to format Nym to uppercase
-    top = 245, // Top position from your provided data
-    left = 0, // Left position from your provided data
-    nymWidth = 3505, // Match width for Nym text
-    nymHeight = 3989, // Match height for Nym text
+    width = 3852,
+    height = 4398,
+    nymFontSize = "570px",
+    nymLineHeight = "662.91px",
+    Nym = "",
+    NymColor = "#000000",
+    formatNym = false,
+    top = 245,
+    left = 0,
+    nymWidth = 3505,
+    nymHeight = 3989,
     backgroundImageUrl = null,
   } = {}) {
     super(width, height);
@@ -68,17 +67,14 @@ class NymPosteight extends Builder {
     const nymLineHeightNum = parseFloat(nymLineHeight);
     const lineHeightRatio = nymLineHeightNum / nymFontSizeNum;
 
-    // Dynamically calculate the font size based on container size
     const calculatedNymFontSize = `${Math.min(nymWidth, nymHeight) * 0.15}px`;
     const calculatedNymLineHeight = `${
       parseFloat(calculatedNymFontSize) * lineHeightRatio
     }px`;
 
-    // Create a canvas to measure text dimensions
     const canvas = createCanvas(1, 1);
     const context = canvas.getContext("2d");
 
-    // Set the font to measure the text
     context.font = `${nymFontSize} BubbleGum`;
 
     const isNymTextFitting = nymFontSizeNum < nymHeight;
@@ -86,12 +82,10 @@ class NymPosteight extends Builder {
     const finalNymFontSize = isNymTextFitting
       ? nymFontSize
       : calculatedNymFontSize;
-    console.log("font size", finalNymFontSize);
     const finalNymLineHeight = isNymTextFitting
       ? nymLineHeight
       : calculatedNymLineHeight;
 
-    // Format Nym text to uppercase if needed
     const formattedNym = formatNym ? Nym.toUpperCase() : Nym;
 
     return JSX.createElement(

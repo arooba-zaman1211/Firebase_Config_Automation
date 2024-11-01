@@ -24,8 +24,7 @@ Font.fromFileSync(
   "Inter-Regular"
 );
 
-// Controller function to generate and upload image
-const createMug = async (name, type, definition) => {
+const createMug = async (name, type, definition, tags, product_description) => {
   try {
     let blackCard;
     let redCard;
@@ -33,275 +32,529 @@ const createMug = async (name, type, definition) => {
     let blueCard;
     let navyCard;
 
-    if (type == 1) {
-      console.log(type);
+    let blackCard2;
+    let redCard2;
+    let pinkCard2;
+    let blueCard2;
+    let navyCard2;
 
+    if (type == 1) {
       blackCard = new NymPostsix({
         width: 2475,
-        height: 1155, // Default outer container height
-        nymFontSize: "160px", // Default font size for Nym text
-        nymLineHeight: "17px", // Default line height for Nym text
-        definitionFontSize: "67px", // Default font size for Definition text
-        definitionLineHeight: "17px", // Default line height for Definition text
+        height: 1155,
+        nymFontSize: "160px",
+        nymLineHeight: "17px",
+        definitionFontSize: "67px",
+        definitionLineHeight: "17px",
         Nym: name,
         Definition: definition,
         NymColor: "#000000",
-        formatNym: true, // Add this default parameter
-        top: 360, // Top position for the Nym text
-        definitionTop: 547, // Top position for the Definition text
-        left: 76, // Left position for the text
-        nymWidth: 920, // Width for Nym text
-        definitionWidth: 849, // Width for Definition text
-        nymHeight: 182, // Height for Nym text
-        definitionHeight: 88, // Height for Definition text
+        formatNym: true,
+        top: 360,
+        definitionTop: 547,
+        left: 76,
+        nymWidth: 920,
+        definitionWidth: 849,
+        nymHeight: 182,
+        definitionHeight: 88,
       });
 
       redCard = new NymPostsix({
         width: 2475,
-        height: 1155, // Default outer container height
-        nymFontSize: "160px", // Default font size for Nym text
-        nymLineHeight: "17px", // Default line height for Nym text
-        definitionFontSize: "67px", // Default font size for Definition text
-        definitionLineHeight: "17px", // Default line height for Definition text
+        height: 1155,
+        nymFontSize: "160px",
+        nymLineHeight: "17px",
+        definitionFontSize: "67px",
+        definitionLineHeight: "17px",
         Nym: name,
         Definition: definition,
         NymColor: "#A92A1A",
-        formatNym: true, // Add this default parameter
-        top: 360, // Top position for the Nym text
-        definitionTop: 547, // Top position for the Definition text
-        left: 76, // Left position for the text
-        nymWidth: 920, // Width for Nym text
-        definitionWidth: 849, // Width for Definition text
-        nymHeight: 182, // Height for Nym text
-        definitionHeight: 88, // Height for Definition text
+        formatNym: true,
+        top: 360,
+        definitionTop: 547,
+        left: 76,
+        nymWidth: 920,
+        definitionWidth: 849,
+        nymHeight: 182,
+        definitionHeight: 88,
       });
 
       pinkCard = new NymPostsix({
         width: 2475,
-        height: 1155, // Default outer container height
-        nymFontSize: "160px", // Default font size for Nym text
-        nymLineHeight: "17px", // Default line height for Nym text
-        definitionFontSize: "67px", // Default font size for Definition text
-        definitionLineHeight: "17px", // Default line height for Definition text
+        height: 1155,
+        nymFontSize: "160px",
+        nymLineHeight: "17px",
+        definitionFontSize: "67px",
+        definitionLineHeight: "17px",
         Nym: name,
         Definition: definition,
         NymColor: "#E0A19B",
-        formatNym: true, // Add this default parameter
-        top: 360, // Top position for the Nym text
-        definitionTop: 547, // Top position for the Definition text
-        left: 76, // Left position for the text
-        nymWidth: 920, // Width for Nym text
-        definitionWidth: 849, // Width for Definition text
-        nymHeight: 182, // Height for Nym text
-        definitionHeight: 88, // Height for Definition text
+        formatNym: true,
+        top: 360,
+        definitionTop: 547,
+        left: 76,
+        nymWidth: 920,
+        definitionWidth: 849,
+        nymHeight: 182,
+        definitionHeight: 88,
       });
 
       blueCard = new NymPostsix({
         width: 2475,
-        height: 1155, // Default outer container height
-        nymFontSize: "160px", // Default font size for Nym text
-        nymLineHeight: "17px", // Default line height for Nym text
-        definitionFontSize: "67px", // Default font size for Definition text
-        definitionLineHeight: "17px", // Default line height for Definition text
+        height: 1155,
+        nymFontSize: "160px",
+        nymLineHeight: "17px",
+        definitionFontSize: "67px",
+        definitionLineHeight: "17px",
         Nym: name,
         Definition: definition,
         NymColor: "#4182A1",
-        formatNym: true, // Add this default parameter
-        top: 360, // Top position for the Nym text
-        definitionTop: 547, // Top position for the Definition text
-        left: 76, // Left position for the text
-        nymWidth: 920, // Width for Nym text
-        definitionWidth: 849, // Width for Definition text
-        nymHeight: 182, // Height for Nym text
-        definitionHeight: 88, // Height for Definition text
+        formatNym: true,
+        top: 360,
+        definitionTop: 547,
+        left: 76,
+        nymWidth: 920,
+        definitionWidth: 849,
+        nymHeight: 182,
+        definitionHeight: 88,
       });
 
       navyCard = new NymPostsix({
         width: 2475,
-        height: 1155, // Default outer container height
-        nymFontSize: "160px", // Default font size for Nym text
-        nymLineHeight: "17px", // Default line height for Nym text
-        definitionFontSize: "67px", // Default font size for Definition text
-        definitionLineHeight: "17px", // Default line height for Definition text
+        height: 1155,
+        nymFontSize: "160px",
+        nymLineHeight: "17px",
+        definitionFontSize: "67px",
+        definitionLineHeight: "17px",
         Nym: name,
         Definition: definition,
         NymColor: "#191838",
-        formatNym: true, // Add this default parameter
-        top: 360, // Top position for the Nym text
-        definitionTop: 547, // Top position for the Definition text
-        left: 76, // Left position for the text
-        nymWidth: 920, // Width for Nym text
-        definitionWidth: 849, // Width for Definition text
-        nymHeight: 182, // Height for Nym text
-        definitionHeight: 88, // Height for Definition text
+        formatNym: true,
+        top: 360,
+        definitionTop: 547,
+        left: 76,
+        nymWidth: 920,
+        definitionWidth: 849,
+        nymHeight: 182,
+        definitionHeight: 88,
+      });
+
+      //15 oz
+
+      blackCard2 = new NymPostsix({
+        width: 2475,
+        height: 1275,
+        nymFontSize: "160px",
+        nymLineHeight: "17px",
+        definitionFontSize: "67px",
+        definitionLineHeight: "17px",
+        Nym: name,
+        Definition: definition,
+        NymColor: "#000000",
+        formatNym: true,
+        top: 460,
+        definitionTop: 547,
+        left: 50,
+        nymWidth: 920,
+        definitionWidth: 849,
+        nymHeight: 182,
+        definitionHeight: 88,
+      });
+
+      redCard2 = new NymPostsix({
+        width: 2475,
+        height: 1275,
+        nymFontSize: "160px",
+        nymLineHeight: "17px",
+        definitionFontSize: "67px",
+        definitionLineHeight: "17px",
+        Nym: name,
+        Definition: definition,
+        NymColor: "#A92A1A",
+        formatNym: true,
+        top: 460,
+        definitionTop: 547,
+        left: 50,
+        nymWidth: 920,
+        definitionWidth: 849,
+        nymHeight: 182,
+        definitionHeight: 88,
+      });
+
+      pinkCard2 = new NymPostsix({
+        width: 2475,
+        height: 1275,
+        nymFontSize: "160px",
+        nymLineHeight: "17px",
+        definitionFontSize: "67px",
+        definitionLineHeight: "17px",
+        Nym: name,
+        Definition: definition,
+        NymColor: "#E0A19B",
+        formatNym: true,
+        top: 460,
+        definitionTop: 547,
+        left: 50,
+        nymWidth: 920,
+        definitionWidth: 849,
+        nymHeight: 182,
+        definitionHeight: 88,
+      });
+
+      blueCard2 = new NymPostsix({
+        width: 2475,
+        height: 1275,
+        nymFontSize: "160px",
+        nymLineHeight: "17px",
+        definitionFontSize: "67px",
+        definitionLineHeight: "17px",
+        Nym: name,
+        Definition: definition,
+        NymColor: "#4182A1",
+        formatNym: true,
+        top: 460,
+        definitionTop: 547,
+        left: 50,
+        nymWidth: 920,
+        definitionWidth: 849,
+        nymHeight: 182,
+        definitionHeight: 88,
+      });
+
+      navyCard2 = new NymPostsix({
+        width: 2475,
+        height: 1275,
+        nymFontSize: "160px",
+        nymLineHeight: "17px",
+        definitionFontSize: "67px",
+        definitionLineHeight: "17px",
+        Nym: name,
+        Definition: definition,
+        NymColor: "#191838",
+        formatNym: true,
+        top: 460,
+        definitionTop: 547,
+        left: 50,
+        nymWidth: 920,
+        definitionWidth: 849,
+        nymHeight: 182,
+        definitionHeight: 88,
       });
     }
 
     if (type == 2) {
-      console.log(type);
-
       blackCard = new NymPostfive({
-        width: 2475, // Default outer container width
-        height: 1155, // Default outer container height
-        nymFontSize: "160px", // Default font size for Nym text
-        nymLineHeight: "155px", // Default line height for Nym text
+        width: 2475,
+        height: 1155,
+        nymFontSize: "160px",
+        nymLineHeight: "155px",
         Nym: name,
         NymColor: "#000000",
-        formatNym: false, // Add this default parameter
-        top: 470, // Top position for the text
-        left: 76, // Left position for the text
-        nymWidth: 920, // Width for Nym text
-        nymHeight: 182, // Height for Nym text
+        formatNym: false,
+        top: 470,
+        left: 76,
+        nymWidth: 920,
+        nymHeight: 182,
       });
 
       redCard = new NymPostfive({
-        width: 2475, // Default outer container width
-        height: 1155, // Default outer container height
-        nymFontSize: "160px", // Default font size for Nym text
-        nymLineHeight: "155px", // Default line height for Nym text
+        width: 2475,
+        height: 1155,
+        nymFontSize: "160px",
+        nymLineHeight: "155px",
         Nym: name,
         NymColor: "#A92A1A",
-        formatNym: false, // Add this default parameter
-        top: 470, // Top position for the text
-        left: 76, // Left position for the text
-        nymWidth: 920, // Width for Nym text
-        nymHeight: 182, // Height for Nym text
+        formatNym: false,
+        top: 470,
+        left: 76,
+        nymWidth: 920,
+        nymHeight: 182,
       });
 
       blueCard = new NymPostfive({
-        width: 2475, // Default outer container width
-        height: 1155, // Default outer container height
-        nymFontSize: "160px", // Default font size for Nym text
-        nymLineHeight: "155px", // Default line height for Nym text
+        width: 2475,
+        height: 1155,
+        nymFontSize: "160px",
+        nymLineHeight: "155px",
         Nym: name,
         NymColor: "#4182A1",
-        formatNym: false, // Add this default parameter
-        top: 470, // Top position for the text
-        left: 76, // Left position for the text
-        nymWidth: 920, // Width for Nym text
-        nymHeight: 182, // Height for Nym text
+        formatNym: false,
+        top: 470,
+        left: 76,
+        nymWidth: 920,
+        nymHeight: 182,
       });
 
       pinkCard = new NymPostfive({
-        width: 2475, // Default outer container width
-        height: 1155, // Default outer container height
-        nymFontSize: "160px", // Default font size for Nym text
-        nymLineHeight: "155px", // Default line height for Nym text
+        width: 2475,
+        height: 1155,
+        nymFontSize: "160px",
+        nymLineHeight: "155px",
         Nym: name,
         NymColor: "#E0A19B",
-        formatNym: false, // Add this default parameter
-        top: 470, // Top position for the text
-        left: 76, // Left position for the text
-        nymWidth: 920, // Width for Nym text
-        nymHeight: 182, // Height for Nym text
+        formatNym: false,
+        top: 470,
+        left: 76,
+        nymWidth: 920,
+        nymHeight: 182,
       });
 
       navyCard = new NymPostfive({
-        width: 2475, // Default outer container width
-        height: 1155, // Default outer container height
-        nymFontSize: "160px", // Default font size for Nym text
-        nymLineHeight: "155px", // Default line height for Nym text
+        width: 2475,
+        height: 1155,
+        nymFontSize: "160px",
+        nymLineHeight: "155px",
         Nym: name,
         NymColor: "#191838",
-        formatNym: false, // Add this default parameter
-        top: 470, // Top position for the text
-        left: 76, // Left position for the text
-        nymWidth: 920, // Width for Nym text
-        nymHeight: 182, // Height for Nym text
+        formatNym: false,
+        top: 470,
+        left: 76,
+        nymWidth: 920,
+        nymHeight: 182,
+      });
+
+      //15oz
+
+      blackCard2 = new NymPostfive({
+        width: 2475,
+        height: 1275,
+        nymFontSize: "160px",
+        nymLineHeight: "155px",
+        Nym: name,
+        NymColor: "#000000",
+        formatNym: false,
+        top: 558,
+        left: 84,
+        nymWidth: 920,
+        nymHeight: 182,
+      });
+
+      redCard2 = new NymPostfive({
+        width: 2475,
+        height: 1275,
+        nymFontSize: "160px",
+        nymLineHeight: "155px",
+        Nym: name,
+        NymColor: "#A92A1A",
+        formatNym: false,
+        top: 558,
+        left: 84,
+        nymWidth: 920,
+        nymHeight: 182,
+      });
+
+      blueCard2 = new NymPostfive({
+        width: 2475,
+        height: 1275,
+        nymFontSize: "160px",
+        nymLineHeight: "155px",
+        Nym: name,
+        NymColor: "#4182A1",
+        formatNym: false,
+        top: 558,
+        left: 84,
+        nymWidth: 920,
+        nymHeight: 182,
+      });
+
+      pinkCard2 = new NymPostfive({
+        width: 2475,
+        height: 1275,
+        nymFontSize: "160px",
+        nymLineHeight: "155px",
+        Nym: name,
+        NymColor: "#E0A19B",
+        formatNym: false,
+        top: 558,
+        left: 84,
+        nymWidth: 920,
+        nymHeight: 182,
+      });
+
+      navyCard2 = new NymPostfive({
+        width: 2475,
+        height: 1275,
+        nymFontSize: "160px",
+        nymLineHeight: "155px",
+        Nym: name,
+        NymColor: "#191838",
+        formatNym: false,
+        top: 558,
+        left: 84,
+        nymWidth: 920,
+        nymHeight: 182,
       });
     }
 
     if (type == 3) {
-      console.log(type);
-
       blackCard = new NymPostfive({
-        width: 2475, // Default outer container width
-        height: 1155, // Default outer container height
-        nymFontSize: "160px", // Default font size for Nym text
-        nymLineHeight: "155px", // Default line height for Nym text
+        width: 2475,
+        height: 1155,
+        nymFontSize: "160px",
+        nymLineHeight: "155px",
         Nym: name,
         NymColor: "#000000",
-        formatNym: true, // Add this default parameter
-        top: 470, // Top position for the text
-        left: 76, // Left position for the text
-        nymWidth: 920, // Width for Nym text
-        nymHeight: 182, // Height for Nym text
+        formatNym: true,
+        top: 470,
+        left: 76,
+        nymWidth: 920,
+        nymHeight: 182,
       });
 
       redCard = new NymPostfive({
-        width: 2475, // Default outer container width
-        height: 1155, // Default outer container height
-        nymFontSize: "160px", // Default font size for Nym text
-        nymLineHeight: "155px", // Default line height for Nym text
+        width: 2475,
+        height: 1155,
+        nymFontSize: "160px",
+        nymLineHeight: "155px",
         Nym: name,
         NymColor: "#A92A1A",
-        formatNym: true, // Add this default parameter
-        top: 470, // Top position for the text
-        left: 76, // Left position for the text
-        nymWidth: 920, // Width for Nym text
-        nymHeight: 182, // Height for Nym text
+        formatNym: true,
+        top: 470,
+        left: 76,
+        nymWidth: 920,
+        nymHeight: 182,
       });
 
       pinkCard = new NymPostfive({
-        width: 2475, // Default outer container width
-        height: 1155, // Default outer container height
-        nymFontSize: "160px", // Default font size for Nym text
-        nymLineHeight: "155px", // Default line height for Nym text
+        width: 2475,
+        height: 1155,
+        nymFontSize: "160px",
+        nymLineHeight: "155px",
         Nym: name,
         NymColor: "#E0A19B",
-        formatNym: true, // Add this default parameter
-        top: 470, // Top position for the text
-        left: 76, // Left position for the text
-        nymWidth: 920, // Width for Nym text
-        nymHeight: 182, // Height for Nym text
+        formatNym: true,
+        top: 470,
+        left: 76,
+        nymWidth: 920,
+        nymHeight: 182,
       });
 
       blueCard = new NymPostfive({
-        width: 2475, // Default outer container width
-        height: 1155, // Default outer container height
-        nymFontSize: "160px", // Default font size for Nym text
-        nymLineHeight: "155px", // Default line height for Nym text
+        width: 2475,
+        height: 1155,
+        nymFontSize: "160px",
+        nymLineHeight: "155px",
         Nym: name,
         NymColor: "#4182A1",
-        formatNym: true, // Add this default parameter
-        top: 470, // Top position for the text
-        left: 76, // Left position for the text
-        nymWidth: 920, // Width for Nym text
-        nymHeight: 182, // Height for Nym text
+        formatNym: true,
+        top: 470,
+        left: 76,
+        nymWidth: 920,
+        nymHeight: 182,
       });
 
       navyCard = new NymPostfive({
-        width: 2475, // Default outer container width
-        height: 1155, // Default outer container height
-        nymFontSize: "160px", // Default font size for Nym text
-        nymLineHeight: "155px", // Default line height for Nym text
+        width: 2475,
+        height: 1155,
+        nymFontSize: "160px",
+        nymLineHeight: "155px",
         Nym: name,
         NymColor: "#191838",
-        formatNym: true, // Add this default parameter
-        top: 470, // Top position for the text
-        left: 76, // Left position for the text
-        nymWidth: 920, // Width for Nym text
-        nymHeight: 182, // Height for Nym text
+        formatNym: true,
+        top: 470,
+        left: 76,
+        nymWidth: 920,
+        nymHeight: 182,
+      });
+
+      //15oz
+
+      blackCard2 = new NymPostfive({
+        width: 2475,
+        height: 1275,
+        nymFontSize: "160px",
+        nymLineHeight: "155px",
+        Nym: name,
+        NymColor: "#000000",
+        formatNym: true,
+        top: 546,
+        left: 40,
+        nymWidth: 920,
+        nymHeight: 182,
+      });
+
+      redCard2 = new NymPostfive({
+        width: 2475,
+        height: 1275,
+        nymFontSize: "160px",
+        nymLineHeight: "155px",
+        Nym: name,
+        NymColor: "#A92A1A",
+        formatNym: true,
+        top: 546,
+        left: 40,
+        nymWidth: 920,
+        nymHeight: 182,
+      });
+
+      pinkCard2 = new NymPostfive({
+        width: 2475,
+        height: 1275,
+        nymFontSize: "160px",
+        nymLineHeight: "155px",
+        Nym: name,
+        NymColor: "#E0A19B",
+        formatNym: true,
+        top: 546,
+        left: 40,
+        nymWidth: 920,
+        nymHeight: 182,
+      });
+
+      blueCard2 = new NymPostfive({
+        width: 2475,
+        height: 1275,
+        nymFontSize: "160px",
+        nymLineHeight: "155px",
+        Nym: name,
+        NymColor: "#4182A1",
+        formatNym: true,
+        top: 546,
+        left: 40,
+        nymWidth: 920,
+        nymHeight: 182,
+      });
+
+      navyCard2 = new NymPostfive({
+        width: 2475,
+        height: 1275,
+        nymFontSize: "160px",
+        nymLineHeight: "155px",
+        Nym: name,
+        NymColor: "#191838",
+        formatNym: true,
+        top: 546,
+        left: 40,
+        nymWidth: 920,
+        nymHeight: 182,
       });
     }
-
-    // Separate variables to hold the image IDs
     let blackImageId = null;
     let redImageId = null;
     let pinkImageId = null;
     let blueImageId = null;
     let navyImageId = null;
 
-    // Create an array of cards for processing
+    let blackImageId2 = null;
+    let redImageId2 = null;
+    let pinkImageId2 = null;
+    let blueImageId2 = null;
+    let navyImageId2 = null;
+
     const cards = [
       { card: blackCard, color: "black", variable: "blackImageId" },
       { card: redCard, color: "red", variable: "redImageId" },
       { card: pinkCard, color: "pink", variable: "pinkImageId" },
       { card: blueCard, color: "blue", variable: "blueImageId" },
       { card: navyCard, color: "navy", variable: "navyImageId" },
+
+      { card: blackCard2, color: "black", variable: "blackImageId2" },
+      { card: redCard2, color: "red", variable: "redImageId2" },
+      { card: pinkCard2, color: "pink", variable: "pinkImageId2" },
+      { card: blueCard2, color: "blue", variable: "blueImageId2" },
+      { card: navyCard2, color: "navy", variable: "navyImageId2" },
     ];
 
-    // Loop through cards to build, save, convert to Base64, and upload
     for (const { card, color, variable } of cards) {
       const image = await card.build({ format: "png" });
       const fileName = generateUniqueFileName();
@@ -311,43 +564,60 @@ const createMug = async (name, type, definition) => {
         fileName
       );
 
-      // Save the image to the file system
       fs.writeFileSync(filePath, image);
-
-      // Convert the saved image to Base64 format
       const base64Image = await getBase64FromFile(filePath);
 
-      // Upload the card image to Printify and store the image ID in the corresponding variable
       if (variable === "blackImageId") {
         blackImageId = await uploadImageToPrintify(
           fileName,
           base64Image,
           token
         );
-        console.log(`Black card uploaded with ID: ${blackImageId}`);
       } else if (variable === "redImageId") {
         redImageId = await uploadImageToPrintify(fileName, base64Image, token);
-        console.log(`Red card uploaded with ID: ${redImageId}`);
       } else if (variable === "pinkImageId") {
         pinkImageId = await uploadImageToPrintify(fileName, base64Image, token);
-        console.log(`Pink card uploaded with ID: ${pinkImageId}`);
       } else if (variable === "blueImageId") {
         blueImageId = await uploadImageToPrintify(fileName, base64Image, token);
-        console.log(`Blue card uploaded with ID: ${blueImageId}`);
       } else if (variable === "navyImageId") {
         navyImageId = await uploadImageToPrintify(fileName, base64Image, token);
-        console.log(`Navy card uploaded with ID: ${navyImageId}`);
+      } else if (variable === "redImageId2") {
+        redImageId2 = await uploadImageToPrintify(fileName, base64Image, token);
+      } else if (variable === "pinkImageId2") {
+        pinkImageId2 = await uploadImageToPrintify(
+          fileName,
+          base64Image,
+          token
+        );
+      } else if (variable === "blueImageId2") {
+        blueImageId2 = await uploadImageToPrintify(
+          fileName,
+          base64Image,
+          token
+        );
+      } else if (variable === "navyImageId2") {
+        navyImageId2 = await uploadImageToPrintify(
+          fileName,
+          base64Image,
+          token
+        );
+      } else if (variable === "blackImageId2") {
+        blackImageId2 = await uploadImageToPrintify(
+          fileName,
+          base64Image,
+          token
+        );
       }
     }
-    console.log(`Black card uploaded with ID: ${blackImageId}`);
 
     // 4. Create a product in Printify
     const productResponse = await axios.post(
       `https://api.printify.com/v1/shops/${shopId}/products.json`,
       {
-        title: `Accent Coffee Mug (11, 15oz)`,
+        title: `${name} Coffee Mug`,
         description: `<div class="candle-description">
             <h2>Accent Coffee Mug</h2>
+            <p>${product_description}</p>
             <p>
               Meet your next favorite morning companion, the accented ceramic mug. This mug brings the perfect blend of style and functionality to elevate your coffee or tea ritual. Available in two generous sizes, 11oz (0.33 l) and 15oz (0.44 l), this mug offers ample space for your favorite brew. Made with white ceramic and sporting a sleek glossy finish with eye-catching contrast, this mug is a bliss both to use and to look at. The ergonomic C-shaped handle provides a comfortable grip, while the lead and BPA-free construction guarantee peace of mind with every sip.
             </p>
@@ -386,156 +656,250 @@ const createMug = async (name, type, definition) => {
             </div>`,
         blueprint_id: 635,
         print_provider_id: 28,
-        tags: ["whimnym"],
+        tags: tags,
         variants: [
           {
-            id: 72180, // variant ID Black
+            id: 72180,
             price: 899,
             is_enabled: true,
           },
           {
-            id: 72182, // variant ID Navy
+            id: 72182,
             price: 899,
             is_enabled: true,
           },
           {
-            id: 72183, // variant ID Pink
+            id: 72183,
             price: 899,
             is_enabled: true,
           },
           {
-            id: 72184, // variant ID Red
+            id: 72184,
             price: 899,
             is_enabled: true,
           },
           {
-            id: 105883, // variant ID Black
+            id: 105883,
             price: 1099,
             is_enabled: true,
           },
           {
-            id: 105885, // variant ID Navy
+            id: 105885,
             price: 1099,
             is_enabled: true,
           },
           {
-            id: 105886, // variant ID Pink
+            id: 105886,
             price: 1099,
             is_enabled: true,
           },
           {
-            id: 105887, // variant ID Red
+            id: 105887,
             price: 1099,
             is_enabled: true,
           },
           {
-            id: 105888, // variant ID Light Blue
+            id: 105888,
             price: 899,
             is_enabled: true,
           },
           {
-            id: 105889, // variant ID Light blue
+            id: 105889,
             price: 1099,
             is_enabled: true,
           },
         ],
         print_areas: [
           {
-            variant_ids: [72180, 105883], // 12oz variant
+            variant_ids: [72180],
             placeholders: [
               {
                 position: "front",
                 images: [
                   {
-                    id: blackImageId, // Image ID for black variant
+                    id: blackImageId,
                     x: 0.5,
                     y: 0.5,
                     scale: 1,
                     angle: 0,
                   },
                 ],
-                height: 1196, // Custom height for 12oz variant
-                width: 1988, // Custom width for 12oz variant
+                height: 1196,
+                width: 1988,
               },
             ],
           },
           {
-            variant_ids: [72182, 105885], // 12oz variant
+            variant_ids: [105883],
             placeholders: [
               {
                 position: "front",
                 images: [
                   {
-                    id: navyImageId, // Image ID for black variant
+                    id: blackImageId2,
                     x: 0.5,
                     y: 0.5,
                     scale: 1,
                     angle: 0,
                   },
                 ],
-                height: 1196, // Custom height for 12oz variant
-                width: 1988, // Custom width for 12oz variant
+                height: 1196,
+                width: 1988,
               },
             ],
           },
           {
-            variant_ids: [72183, 105886], // 12oz variant
+            variant_ids: [72182],
             placeholders: [
               {
                 position: "front",
                 images: [
                   {
-                    id: pinkImageId, // Image ID for black variant
+                    id: navyImageId,
                     x: 0.5,
                     y: 0.5,
                     scale: 1,
                     angle: 0,
                   },
                 ],
-                height: 1196, // Custom height for 12oz variant
-                width: 1988, // Custom width for 12oz variant
+                height: 1196,
+                width: 1988,
               },
             ],
           },
           {
-            variant_ids: [72184, 105887], // 12oz variant
+            variant_ids: [105885],
             placeholders: [
               {
                 position: "front",
                 images: [
                   {
-                    id: redImageId, // Image ID for black variant
+                    id: navyImageId2,
                     x: 0.5,
                     y: 0.5,
                     scale: 1,
                     angle: 0,
                   },
                 ],
-                height: 1196, // Custom height for 12oz variant
-                width: 1988, // Custom width for 12oz variant
+                height: 1196,
+                width: 1988,
+              },
+            ],
+          },
+          {
+            variant_ids: [72183],
+            placeholders: [
+              {
+                position: "front",
+                images: [
+                  {
+                    id: pinkImageId,
+                    x: 0.5,
+                    y: 0.5,
+                    scale: 1,
+                    angle: 0,
+                  },
+                ],
+                height: 1196,
+                width: 1988,
+              },
+            ],
+          },
+          {
+            variant_ids: [105886],
+            placeholders: [
+              {
+                position: "front",
+                images: [
+                  {
+                    id: pinkImageId2,
+                    x: 0.5,
+                    y: 0.5,
+                    scale: 1,
+                    angle: 0,
+                  },
+                ],
+                height: 1196,
+                width: 1988,
+              },
+            ],
+          },
+          {
+            variant_ids: [72184],
+            placeholders: [
+              {
+                position: "front",
+                images: [
+                  {
+                    id: redImageId,
+                    x: 0.5,
+                    y: 0.5,
+                    scale: 1,
+                    angle: 0,
+                  },
+                ],
+                height: 1196,
+                width: 1988,
+              },
+            ],
+          },
+          {
+            variant_ids: [105887],
+            placeholders: [
+              {
+                position: "front",
+                images: [
+                  {
+                    id: redImageId2,
+                    x: 0.5,
+                    y: 0.5,
+                    scale: 1,
+                    angle: 0,
+                  },
+                ],
+                height: 1196,
+                width: 1988,
               },
             ],
           },
 
           {
-            variant_ids: [105889, 105888], // 12oz variant
+            variant_ids: [105888],
             placeholders: [
               {
                 position: "front",
                 images: [
                   {
-                    id: blueImageId, // Image ID for black variant
+                    id: blueImageId,
                     x: 0.5,
                     y: 0.5,
                     scale: 1,
                     angle: 0,
                   },
                 ],
-                height: 1196, // Custom height for 12oz variant
-                width: 1988, // Custom width for 12oz variant
+                height: 1196,
+                width: 1988,
               },
             ],
-            // background: "#00000",
+          },
+          {
+            variant_ids: [105889],
+            placeholders: [
+              {
+                position: "front",
+                images: [
+                  {
+                    id: blueImageId2,
+                    x: 0.5,
+                    y: 0.5,
+                    scale: 1,
+                    angle: 0,
+                  },
+                ],
+                height: 1196,
+                width: 1988,
+              },
+            ],
           },
         ],
       },
@@ -547,17 +911,8 @@ const createMug = async (name, type, definition) => {
       }
     );
 
-    console.log("object: ", productResponse);
-
     const productId = productResponse.data.id;
-    console.log(productId);
-    const productImage1 = productResponse.data.images[0];
-    const productImage2 = productResponse.data.images[1];
     const productImage3 = productResponse.data.images[2];
-    console.log("product response 1: ", productImage1);
-    console.log("product response 2: ", productImage2);
-    console.log("product response 3: ", productImage3);
-    // 4. Publish the product to Shopify
 
     const data = await publishData(productId);
     if (data) {
@@ -565,7 +920,6 @@ const createMug = async (name, type, definition) => {
     } else {
       return;
     }
-    // 6. Post the product image to Instagram
   } catch (error) {
     return error;
   }

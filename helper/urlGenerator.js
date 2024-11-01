@@ -47,7 +47,7 @@ async function uploadAndGeneratePublicUrl(filePath) {
   });
 
   // Return the formatted public URL
-  return `https://drive.google.com/uc?export=view&id=${fileId}`;
+  return `https://drive.usercontent.google.com/download?id=${fileId}&export=view&authuser=0`;
 }
 
 module.exports = { uploadAndGeneratePublicUrl };

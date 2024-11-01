@@ -2,7 +2,7 @@ const fs = require("fs");
 const path = require("path");
 const axios = require("axios");
 const { Font } = require("canvacord");
-const { NymPost } = require("../../services/nymPost.jsx"); // Import your NymPost class
+const { NymPost } = require("../../services/nymPost.jsx");
 const { NymPosttwo } = require("../../services/nymPost_2.jsx");
 const { NymPostone } = require("../../services/nymPost_1.jsx");
 require("dotenv").config();
@@ -26,116 +26,117 @@ Font.fromFileSync(
   "Inter-Regular"
 );
 
-// Controller function to generate and upload image
-const createHoodie = async (name, type, definition) => {
+const createHoodie = async (
+  name,
+  type,
+  definition,
+  tags,
+  product_description
+) => {
   try {
-    // 1. Generate the image using Canvacord and save it locally
     let whiteCard;
     let blackCard;
     if (type == 1) {
-      console.log(type);
       whiteCard = new NymPostone({
-        width: 3531, // Outer border width from your provided data
-        height: 2352, // Outer border height from your provided data
-        nymFontSize: "520px", // Default font size for Nym text
-        nymLineHeight: "604.76px", // Default line height for Nym text
-        definitionFontSize: "240px", // Default font size for Definition text
-        definitionLineHeight: "281.76px", // Default line height for Definition text
+        width: 3531,
+        height: 2352,
+        nymFontSize: "520px",
+        nymLineHeight: "604.76px",
+        definitionFontSize: "240px",
+        definitionLineHeight: "281.76px",
         Nym: name,
         Definition: definition,
         NymColor: "#FFFFFF",
-        formatNym: false, // Whether to format Nym to uppercase
-        nymTop: 265, // Top position for Nym text
-        definitionTop: 904, // Top position for Definition text
-        left: 135, // Left position for both texts
-        nymWidth: 3263, // Width for Nym text
-        nymHeight: 558, // Height for Nym text
-        definitionWidth: 3263, // Width for Definition text
-        definitionHeight: 241, // Height for Definition text
-        distanceBetweenTexts: 20, // Distance between Nym and Definition
+        formatNym: false,
+        nymTop: 265,
+        definitionTop: 904,
+        left: 135,
+        nymWidth: 3263,
+        nymHeight: 558,
+        definitionWidth: 3263,
+        definitionHeight: 241,
+        distanceBetweenTexts: 20,
       });
 
       blackCard = new NymPostone({
-        width: 3531, // Outer border width from your provided data
-        height: 2352, // Outer border height from your provided data
-        nymFontSize: "520px", // Default font size for Nym text
-        nymLineHeight: "604.76px", // Default line height for Nym text
-        definitionFontSize: "240px", // Default font size for Definition text
-        definitionLineHeight: "281.76px", // Default line height for Definition text
+        width: 3531,
+        height: 2352,
+        nymFontSize: "520px",
+        nymLineHeight: "604.76px",
+        definitionFontSize: "240px",
+        definitionLineHeight: "281.76px",
         Nym: name,
         Definition: definition,
         NymColor: "#000000",
-        formatNym: false, // Whether to format Nym to uppercase
-        nymTop: 265, // Top position for Nym text
-        definitionTop: 904, // Top position for Definition text
-        left: 135, // Left position for both texts
-        nymWidth: 3263, // Width for Nym text
-        nymHeight: 558, // Height for Nym text
-        definitionWidth: 3263, // Width for Definition text
-        definitionHeight: 241, // Height for Definition text
-        distanceBetweenTexts: 20, // Distance between Nym and Definition
+        formatNym: false,
+        nymTop: 265,
+        definitionTop: 904,
+        left: 135,
+        nymWidth: 3263,
+        nymHeight: 558,
+        definitionWidth: 3263,
+        definitionHeight: 241,
+        distanceBetweenTexts: 20,
       });
     }
 
     if (type == 2) {
-      console.log(type);
       whiteCard = new NymPosttwo({
-        width: 3531, // Default outer container width
-        height: 2352, // Default outer container height
-        nymFontSize: "400px", // Default font size for Nym text
-        nymLineHeight: "385px", // Default line height for Nym text
+        width: 3531,
+        height: 2352,
+        nymFontSize: "400px",
+        nymLineHeight: "385px",
         Nym: name,
         NymColor: "#FFFFFF",
-        formatNym: false, // Add this default parameter
-        top: 356, // Top position for the text
-        left: 599, // Left position for the text
-        nymWidth: 2332, // Width for Nym text
-        nymHeight: 1859, // Height for Nym text
+        formatNym: false,
+        top: 356,
+        left: 599,
+        nymWidth: 2332,
+        nymHeight: 1859,
       });
 
       blackCard = new NymPosttwo({
-        width: 3531, // Default outer container width
-        height: 2352, // Default outer container height
-        nymFontSize: "400px", // Default font size for Nym text
-        nymLineHeight: "385px", // Default line height for Nym text
+        width: 3531,
+        height: 2352,
+        nymFontSize: "400px",
+        nymLineHeight: "385px",
         Nym: name,
         NymColor: "#000000",
-        formatNym: false, // Add this default parameter
-        top: 356, // Top position for the text
-        left: 599, // Left position for the text
-        nymWidth: 2332, // Width for Nym text
-        nymHeight: 1859, // Height for Nym text
+        formatNym: false,
+        top: 356,
+        left: 599,
+        nymWidth: 2332,
+        nymHeight: 1859,
       });
     }
 
     if (type == 3) {
-      console.log(type);
       whiteCard = new NymPost({
-        width: 3531, // Default outer container width
-        height: 2352, // Default outer container height
-        nymFontSize: "500px", // Default font size for Nym text
-        nymLineHeight: "470px", // Default line height for Nym text
+        width: 3531,
+        height: 2352,
+        nymFontSize: "500px",
+        nymLineHeight: "470px",
         Nym: name,
         NymColor: "#FFFFFF",
-        formatNym: false, // Add this default parameter
-        top: 251, // Top position for the text
-        left: 290, // Left position for the text
-        nymWidth: 2951, // Width for Nym text
-        nymHeight: 1989, // Height for Nym text
+        formatNym: false,
+        top: 251,
+        left: 290,
+        nymWidth: 2951,
+        nymHeight: 1989,
       });
 
       blackCard = new NymPost({
-        width: 3531, // Default outer container width
-        height: 2352, // Default outer container height
-        nymFontSize: "500px", // Default font size for Nym text
-        nymLineHeight: "470px", // Default line height for Nym text
+        width: 3531,
+        height: 2352,
+        nymFontSize: "500px",
+        nymLineHeight: "470px",
         Nym: name,
         NymColor: "#000000",
-        formatNym: false, // Add this default parameter
-        top: 251, // Top position for the text
-        left: 290, // Left position for the text
-        nymWidth: 2951, // Width for Nym text
-        nymHeight: 1989, // Height for Nym text
+        formatNym: false,
+        top: 251,
+        left: 290,
+        nymWidth: 2951,
+        nymHeight: 1989,
       });
     }
     const whiteImage = await whiteCard.build({ format: "png" });
@@ -146,19 +147,15 @@ const createHoodie = async (name, type, definition) => {
       whiteFileName
     );
 
-    // Save the white image to the file system
     fs.writeFileSync(whiteFilePath, whiteImage);
 
-    // Convert the saved white image to Base64 format
     const whiteBase64Image = await getBase64FromFile(whiteFilePath);
 
-    // Upload white card image to Printify
     const whiteImageId = await uploadImageToPrintify(
       whiteFileName,
       whiteBase64Image,
       token
     );
-    console.log(`White card uploaded with ID: ${whiteImageId}`);
 
     const blackImage = await blackCard.build({ format: "png" });
     const blackFileName = generateUniqueFileName();
@@ -168,26 +165,22 @@ const createHoodie = async (name, type, definition) => {
       blackFileName
     );
 
-    // Save the black image to the file system
     fs.writeFileSync(blackFilePath, blackImage);
-
-    // Convert the saved black image to Base64 format
     const blackBase64Image = await getBase64FromFile(blackFilePath);
 
-    // Upload black card image to Printify
     const blackImageId = await uploadImageToPrintify(
       blackFileName,
       blackBase64Image,
       token
     );
-    console.log(`Black card uploaded with ID: ${blackImageId}`);
-    console.log("1");
-    // 4. Create a product in Printify
+
     const productResponse = await axios.post(
       `https://api.printify.com/v1/shops/${shopId}/products.json`,
       {
-        title: `Unisex Heavy Blend™ Hooded Sweatshirt`,
-        description: `This unisex heavy blend hooded sweatshirt is relaxation itself. Made with a thick blend of cotton and polyester, it feels plush, soft and warm, a perfect choice for any cold day. In the front, the spacious kangaroo pocket adds daily practicality while the hood's drawstring is the same color as the base sweater for extra style points.<div>.:Made with a medium-heavy fabric (8.0 oz/yd² (271 g/m²)) that consists of 50% cotton and 50% polyester for that cozy feel and warmth you need in a hoodie.</div><div>.:The classic fit along with the pouch pocket and the tear-away label make for a highly comfortable, scratch-free wearing experience. </div><div>.:The color-matched drawcord and the double-lined hood add a stylish flair and durability that tie everything together.</div><div>.:Made using 100% ethically grown US cotton. Gildan is also a proud member of the US Cotton Trust Protocol ensuring ethical and sustainable means of production. The blank tee's dyes are OEKO-TEX-certified dyes with low environmental impact.</div><div>.:Fabric blends: Heather Sport colors - 60% polyester, 40% cotton</div>
+        title: `${name} Hooded Sweatshirt`,
+        description: `
+        <p>${product_description}</p>
+        This unisex heavy blend hooded sweatshirt is relaxation itself. Made with a thick blend of cotton and polyester, it feels plush, soft and warm, a perfect choice for any cold day. In the front, the spacious kangaroo pocket adds daily practicality while the hood's drawstring is the same color as the base sweater for extra style points.<div>.:Made with a medium-heavy fabric (8.0 oz/yd² (271 g/m²)) that consists of 50% cotton and 50% polyester for that cozy feel and warmth you need in a hoodie.</div><div>.:The classic fit along with the pouch pocket and the tear-away label make for a highly comfortable, scratch-free wearing experience. </div><div>.:The color-matched drawcord and the double-lined hood add a stylish flair and durability that tie everything together.</div><div>.:Made using 100% ethically grown US cotton. Gildan is also a proud member of the US Cotton Trust Protocol ensuring ethical and sustainable means of production. The blank tee's dyes are OEKO-TEX-certified dyes with low environmental impact.</div><div>.:Fabric blends: Heather Sport colors - 60% polyester, 40% cotton</div>
         <div><strong>Size Chart:</strong></div>
   <div style="overflow-x:auto;">
     <table style="border-collapse: collapse; width: 100%; text-align: left; min-width: 600px;">
@@ -254,276 +247,276 @@ const createHoodie = async (name, type, definition) => {
   </div>`,
         blueprint_id: 77,
         print_provider_id: 99,
-        tags: ["whimnym"],
+        tags: tags,
         is_printify_express_enabled: true,
         variants: [
           {
-            id: 42219, // Dark Chocolate S
+            id: 42219,
             price: 2860,
             is_enabled: true,
           },
           {
-            id: 42220, // Dark Chocolate M
+            id: 42220,
             price: 2860,
             is_enabled: true,
           },
           {
-            id: 42221, // Dark Chocolate L
+            id: 42221,
             price: 2860,
             is_enabled: true,
           },
           {
-            id: 42222, // Dark Chocolate XL
+            id: 42222,
             price: 2860,
             is_enabled: true,
           },
           {
-            id: 42223, // Dark Chocolate 2XL
+            id: 42223,
             price: 3150,
             is_enabled: true,
           },
           {
-            id: 42224, // Dark Chocolate 3XL
+            id: 42224,
             price: 3300,
             is_enabled: true,
           },
           {
-            id: 42225, // Dark Chocolate 4XL
+            id: 42225,
             price: 3380,
             is_enabled: true,
           },
           {
-            id: 42226, // Dark Chocolate 5XL
+            id: 42226,
             price: 3380,
             is_enabled: true,
           },
           {
-            id: 32910, // White S
+            id: 32910,
             price: 2860,
             is_enabled: true,
           },
           {
-            id: 32911, // White M
+            id: 32911,
             price: 2860,
             is_enabled: true,
           },
           {
-            id: 32912, // White L
+            id: 32912,
             price: 2860,
             is_enabled: true,
           },
           {
-            id: 32913, // White XL
+            id: 32913,
             price: 2860,
             is_enabled: true,
           },
           {
-            id: 32914, // White 2XL
+            id: 32914,
             price: 3150,
             is_enabled: true,
           },
           {
-            id: 32915, // White 3XL
+            id: 32915,
             price: 3300,
             is_enabled: true,
           },
           {
-            id: 32916, // White 4XL
+            id: 32916,
             price: 3380,
             is_enabled: true,
           },
           {
-            id: 32917, // White 5XL
+            id: 32917,
             price: 3380,
             is_enabled: true,
           },
           {
-            id: 32902, // Sport Grey S
+            id: 32902,
             price: 2860,
             is_enabled: true,
           },
           {
-            id: 32903, // Sport Grey M
+            id: 32903,
             price: 2860,
             is_enabled: true,
           },
           {
-            id: 32904, // Sport Grey L
+            id: 32904,
             price: 2860,
             is_enabled: true,
           },
           {
-            id: 32905, // Sport Grey XL
+            id: 32905,
             price: 2860,
             is_enabled: true,
           },
           {
-            id: 32906, // Sport Grey 2XL
+            id: 32906,
             price: 3150,
             is_enabled: true,
           },
           {
-            id: 32907, // Sport Grey 3XL
+            id: 32907,
             price: 3300,
             is_enabled: true,
           },
           {
-            id: 32908, // Sport Grey 4XL
+            id: 32908,
             price: 3380,
             is_enabled: true,
           },
           {
-            id: 32909, // Sport Grey 5XL
+            id: 32909,
             price: 3380,
             is_enabled: true,
           },
           {
-            id: 33409, // Cardinal Red S
+            id: 33409,
             price: 2860,
             is_enabled: true,
           },
           {
-            id: 33410, // Cardinal Red M
+            id: 33410,
             price: 2860,
             is_enabled: true,
           },
           {
-            id: 33411, // Cardinal Red L
+            id: 33411,
             price: 2860,
             is_enabled: true,
           },
           {
-            id: 33412, // Cardinal Red XL
+            id: 33412,
             price: 2860,
             is_enabled: true,
           },
           {
-            id: 33413, // Cardinal Red 2XL
+            id: 33413,
             price: 3150,
             is_enabled: true,
           },
           {
-            id: 33414, // Cardinal Red 3XL
+            id: 33414,
             price: 3300,
             is_enabled: true,
           },
           {
-            id: 33415, // Cardinal Red 4XL
+            id: 33415,
             price: 3380,
             is_enabled: true,
           },
           {
-            id: 33416, // Cardinal Red 5XL
+            id: 33416,
             price: 3380,
             is_enabled: true,
           },
           {
-            id: 32918, // Black S
+            id: 32918,
             price: 2860,
             is_enabled: true,
           },
           {
-            id: 32919, // Black M
+            id: 32919,
             price: 2860,
             is_enabled: true,
           },
           {
-            id: 32920, // Black L
+            id: 32920,
             price: 2860,
             is_enabled: true,
           },
           {
-            id: 32921, // Black XL
+            id: 32921,
             price: 2860,
             is_enabled: true,
           },
           {
-            id: 32922, // Black 2XL
+            id: 32922,
             price: 3150,
             is_enabled: true,
           },
           {
-            id: 32923, // Black 3XL
+            id: 32923,
             price: 3300,
             is_enabled: true,
           },
           {
-            id: 32924, // Black 4XL
+            id: 32924,
             price: 3380,
             is_enabled: true,
           },
           {
-            id: 32925, // Black 5XL
+            id: 32925,
             price: 3380,
             is_enabled: true,
           },
           {
-            id: 32886, // Maroon S
+            id: 32886,
             price: 2860,
             is_enabled: true,
           },
           {
-            id: 32887, // Maroon M
+            id: 32887,
             price: 2860,
             is_enabled: true,
           },
           {
-            id: 32888, // Maroon L
+            id: 32888,
             price: 2860,
             is_enabled: true,
           },
           {
-            id: 32889, // Maroon XL
+            id: 32889,
             price: 2860,
             is_enabled: true,
           },
           {
-            id: 32890, // Maroon 2XL
+            id: 32890,
             price: 3150,
             is_enabled: true,
           },
           {
-            id: 32891, // Maroon 3XL
+            id: 32891,
             price: 3300,
             is_enabled: true,
           },
           {
-            id: 32892, // Maroon 4XL
+            id: 32892,
             price: 3380,
             is_enabled: true,
           },
           {
-            id: 32893, // Maroon 5XL
+            id: 32893,
             price: 3380,
             is_enabled: true,
           },
           {
-            id: 66363, // Heather Navy S
+            id: 66363,
             price: 2860,
             is_enabled: true,
           },
           {
-            id: 66364, // Heather Navy M
+            id: 66364,
             price: 2860,
             is_enabled: true,
           },
           {
-            id: 66365, // Heather Navy L
+            id: 66365,
             price: 2860,
             is_enabled: true,
           },
           {
-            id: 66366, // Heather Navy XL
+            id: 66366,
             price: 2860,
             is_enabled: true,
           },
           {
-            id: 66367, // Heather Navy 2XL
+            id: 66367,
             price: 3150,
             is_enabled: true,
           },
           {
-            id: 66368, // Heather Navy 3XL
+            id: 66368,
             price: 3300,
             is_enabled: true,
           },
@@ -533,13 +526,13 @@ const createHoodie = async (name, type, definition) => {
             variant_ids: [
               32902, 32903, 32904, 32905, 32906, 32907, 32908, 32909, 32910,
               32911, 32912, 32913, 32914, 32915, 32916, 32917,
-            ], // Assign black image to these variants
+            ],
             placeholders: [
               {
                 position: "front",
                 images: [
                   {
-                    id: blackImageId, // Black image ID goes here
+                    id: blackImageId,
                     x: 0.5,
                     y: 0.5,
                     scale: 1,
@@ -551,51 +544,18 @@ const createHoodie = async (name, type, definition) => {
           },
           {
             variant_ids: [
-              66363,
-              66364,
-              66365,
-              66366,
-              66367,
-              66368,
-              32886,
-              32887,
-              32888,
-              32889,
-              32890,
-              32891,
-              32892,
-              32893,
-              32918,
-              32919,
-              32920,
-              32921,
-              32922,
-              32923,
-              32924,
-              32925,
-              33409,
-              33410,
-              33411,
-              33412,
-              33413,
-              33414,
-              33415,
-              33416,
-              42219,
-              42220,
-              42221,
-              42222,
-              42223,
-              42224,
-              42225,
-              42226, // 5XL
+              66363, 66364, 66365, 66366, 66367, 66368, 32886, 32887, 32888,
+              32889, 32890, 32891, 32892, 32893, 32918, 32919, 32920, 32921,
+              32922, 32923, 32924, 32925, 33409, 33410, 33411, 33412, 33413,
+              33414, 33415, 33416, 42219, 42220, 42221, 42222, 42223, 42224,
+              42225, 42226,
             ],
             placeholders: [
               {
                 position: "front",
                 images: [
                   {
-                    id: whiteImageId, // White image ID goes here
+                    id: whiteImageId,
                     x: 0.5,
                     y: 0.5,
                     scale: 1,
@@ -615,14 +575,9 @@ const createHoodie = async (name, type, definition) => {
       }
     );
     const productId = productResponse.data.id;
-    console.log("Hoodie id:", productId);
-    // 4. Publish the product to Shopify
     const data = await publishData(productId);
     if (data) {
-      console.log("Product published to Shopify");
-      // 5. Fetch the image URL for the white variant
       const whiteImageUrl = getImageUrlForColor(productResponse.data);
-      console.log("Image url:", whiteImageUrl);
       return whiteImageUrl;
     } else {
       return;

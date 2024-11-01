@@ -2,7 +2,7 @@
 const { JSX, Builder } = require("canvacord");
 const { Font } = require("canvacord");
 const { createCanvas } = require("canvas");
-// Load fonts from file
+
 Font.fromFileSync(
   "public/assets/fonts/BubbleGum/BubblegumSans-Regular.ttf",
   "BubbleGum"
@@ -117,19 +117,16 @@ class NymPostfour extends Builder {
       bottomLineHeight,
     } = this.styles;
 
-    // Create a canvas to measure text dimensions
-    const canvas = createCanvas(1, 1); // Create a blank canvas
+    const canvas = createCanvas(1, 1);
     const context = canvas.getContext("2d");
 
-    // Function to get the adjusted font size
     const getAdjustedFontSize = (text) => {
       context.font = `${nymFontSize} BubbleGum`;
       let measuredTextWidth = context.measureText(text).width;
 
-      // If the text is too wide, decrease the font size until it fits
       let currentFontSize = parseFloat(nymFontSize);
       while (measuredTextWidth > nymWidth) {
-        currentFontSize -= 1; // Decrease font size by 1px
+        currentFontSize -= 1;
         context.font = `${currentFontSize}px BubbleGum`;
         measuredTextWidth = context.measureText(text).width;
       }
@@ -137,7 +134,7 @@ class NymPostfour extends Builder {
     };
 
     const adjustedNymFontSize = getAdjustedFontSize(Nym);
-    const adjustedLineHeight = parseFloat(adjustedNymFontSize) * 1.15; // Set line height as needed
+    const adjustedLineHeight = parseFloat(adjustedNymFontSize) * 1.15;
 
     const formattedNym = this.formatNym ? Nym.split(" ").join("\n") : Nym;
 
@@ -155,7 +152,6 @@ class NymPostfour extends Builder {
           justifyContent: "center",
         },
       },
-      // Inner boundary
       JSX.createElement(
         "div",
         {
@@ -169,11 +165,10 @@ class NymPostfour extends Builder {
             top: `${innerBorderTop}px`,
             left: `${innerBorderLeft}px`,
             alignItems: "center",
-            justifyContent: "center", // Centering the contents
-            padding: "20px 0", // "20px 0"
+            justifyContent: "center",
+            padding: "20px 0",
           },
         },
-        // Nym Text
         JSX.createElement(
           "h1",
           {
@@ -183,18 +178,17 @@ class NymPostfour extends Builder {
               color: NymColor,
               lineHeight: `${adjustedLineHeight}px`,
               textAlign: "center",
-              whiteSpace: "pre-wrap", // Enable line breaks
+              whiteSpace: "pre-wrap",
               width: `${nymWidth}px`,
               display: "flex",
-              justifyContent: "center", // Horizontal centering
+              justifyContent: "center",
               alignItems: "center",
-              flexDirection: "column", // Stack lines in a column
+              flexDirection: "column",
               textTransform: "uppercase",
             },
           },
           formattedNym
         ),
-        // Definition Text
         JSX.createElement(
           "p",
           {
@@ -204,19 +198,18 @@ class NymPostfour extends Builder {
               color: NymColor,
               lineHeight: definitionLineHeight,
               textAlign: "center",
-              whiteSpace: "pre-wrap", // Enable line breaks
+              whiteSpace: "pre-wrap",
               width: `${definitionWidth}px`,
               display: "flex",
-              justifyContent: "center", // Horizontal centering
+              justifyContent: "center",
               alignItems: "center",
-              flexDirection: "column", // Stack lines in a column
-              marginTop: "-20px", // Adjust the distance between Nym and Definition if needed
+              flexDirection: "column",
+              marginTop: "-20px",
             },
           },
           Definition
         )
       ),
-      // Bottom Text
       JSX.createElement(
         "p",
         {

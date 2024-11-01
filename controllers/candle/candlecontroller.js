@@ -24,14 +24,17 @@ Font.fromFileSync(
   "Inter-Regular"
 );
 
-// Controller function to generate and upload image
-const createCandle = async (name, type, definition) => {
+const createCandle = async (
+  name,
+  type,
+  definition,
+  tags,
+  product_description
+) => {
   try {
     let black4oz;
     let black9oz;
     if (type == 1) {
-      console.log(type);
-
       black4oz = new NymPostfour({
         width: 624,
         height: 546,
@@ -88,8 +91,6 @@ const createCandle = async (name, type, definition) => {
     }
 
     if (type == 2) {
-      console.log(type);
-
       black4oz = new NymPostthree({
         width: 624,
         height: 546,
@@ -141,11 +142,9 @@ const createCandle = async (name, type, definition) => {
     }
 
     if (type == 3) {
-      console.log(type);
-
       black4oz = new NymPostthree({
-        width: 645, // Define specific width for 4oz
-        height: 546, // Define specific height for 4oz
+        width: 645,
+        height: 546,
         innerBorderWidth: 458,
         innerBorderHeight: 400,
         innerBorderTop: 73,
@@ -154,15 +153,15 @@ const createCandle = async (name, type, definition) => {
         nymHeight: 250,
         nymTop: 148,
         nymLeft: 133,
-        nymFontSize: "60px", // Responsive font size
-        nymLineHeight: "55px", // Responsive line height
+        nymFontSize: "60px",
+        nymLineHeight: "55px",
         bottomTextWidth: 252,
         bottomTextHeight: 45,
         bottomTextTop: 350,
         bottomTextLeft: 186,
-        bottomFontSize: "17px", // Responsive font size for bottom text
+        bottomFontSize: "17px",
         bottomLineHeight: "17px",
-        Nym: name, // Use the provided name variable
+        Nym: name,
         BottomText: "Soy Wax Candle \n 4 oz / 20+ hours",
         NymColor: "#000000",
         formatNym: true,
@@ -202,19 +201,15 @@ const createCandle = async (name, type, definition) => {
       blackFileName_1
     );
 
-    // Save the black image to the file system
     fs.writeFileSync(blackFilePath_1, blackImage_1);
 
-    // Convert the saved black image to Base64 format
     const blackBase64Image_1 = await getBase64FromFile(blackFilePath_1);
 
-    // Upload black card image to Printify
     const blackImageId_1 = await uploadImageToPrintify(
       blackFileName_1,
       blackBase64Image_1,
       token
     );
-    console.log(`Black card uploaded with ID: ${blackImageId_1}`);
 
     const blackImage_2 = await black9oz.build({ format: "png" });
     const blackFileName_2 = generateUniqueFileName();
@@ -224,27 +219,23 @@ const createCandle = async (name, type, definition) => {
       blackFileName_2
     );
 
-    // Save the black image to the file system
     fs.writeFileSync(blackFilePath_2, blackImage_2);
 
-    // Convert the saved black image to Base64 format
     const blackBase64Image_2 = await getBase64FromFile(blackFilePath_2);
 
-    // Upload black card image to Printify
     const blackImageId_2 = await uploadImageToPrintify(
       blackFileName_2,
       blackBase64Image_2,
       token
     );
-    console.log(`Black card uploaded with ID: ${blackImageId_2}`);
 
-    // 4. Create a product in Printify
     const productResponse = await axios.post(
       `https://api.printify.com/v1/shops/${shopId}/products.json`,
       {
-        title: `Scented Coconut Apricot Candles (4oz, 9oz)`,
+        title: `${name} Scented Coconut Apricot Candles`,
         description: `<div class="candle-description">
             <h2>Scented Coconut Apricot Candles</h2>
+            <p>${product_description}</p>
             <p>
               These scented candles are hand-poured in the USA, and made from premium coconut apricot wax with cotton wicks that are lead and zinc-free. With a burn time of approximately 20 hours, they provide long-lasting fragrance and warmth. The candles come in 9 scents, as well as in elegant amber and classic clear vessels, topped with a stylish gold lid, making them a beautiful, ambient addition to any space.
             </p>
@@ -283,185 +274,185 @@ const createCandle = async (name, type, definition) => {
             </div>`,
         blueprint_id: 1488,
         print_provider_id: 70,
-        tags: ["whimnym"],
+        tags: tags,
         variants: [
           {
-            id: 107587, // variant ID a
+            id: 107587,
             price: 999,
             is_enabled: true,
           },
           {
-            id: 107588, // variant ID b
+            id: 107588,
             price: 999,
             is_enabled: true,
           },
           {
-            id: 107589, // variant ID c
+            id: 107589,
             price: 999,
             is_enabled: true,
           },
           {
-            id: 107590, // variant ID d
+            id: 107590,
             price: 999,
             is_enabled: true,
           },
           {
-            id: 107591, // variant ID e
+            id: 107591,
             price: 999,
             is_enabled: true,
           },
           {
-            id: 107592, // variant ID f
+            id: 107592,
             price: 999,
             is_enabled: true,
           },
           {
-            id: 107593, // variant ID g
+            id: 107593,
             price: 999,
             is_enabled: true,
           },
           {
-            id: 107594, // variant ID h
+            id: 107594,
             price: 999,
             is_enabled: true,
           },
           {
-            id: 107595, // variant ID i
+            id: 107595,
             price: 999,
             is_enabled: true,
           },
           {
-            id: 107596, // variant ID j
+            id: 107596,
             price: 1499,
             is_enabled: true,
           },
           {
-            id: 107597, // variant ID k
+            id: 107597,
             price: 1499,
             is_enabled: true,
           },
           {
-            id: 107598, // variant ID l
+            id: 107598,
             price: 1499,
             is_enabled: true,
           },
           {
-            id: 107599, // variant ID m
+            id: 107599,
             price: 1499,
             is_enabled: true,
           },
           {
-            id: 107600, // variant ID n
+            id: 107600,
             price: 1499,
             is_enabled: true,
           },
           {
-            id: 107601, // variant ID o
+            id: 107601,
             price: 1499,
             is_enabled: true,
           },
           {
-            id: 107602, // variant ID p
+            id: 107602,
             price: 1499,
             is_enabled: true,
           },
           {
-            id: 107603, // variant ID q
+            id: 107603,
             price: 1499,
             is_enabled: true,
           },
           {
-            id: 107604, // variant ID r
+            id: 107604,
             price: 1499,
             is_enabled: true,
           },
           {
-            id: 107605, // variant ID s
+            id: 107605,
             price: 999,
             is_enabled: true,
           },
           {
-            id: 107606, // variant ID t
+            id: 107606,
             price: 999,
             is_enabled: true,
           },
           {
-            id: 107607, // variant ID u
+            id: 107607,
             price: 999,
             is_enabled: true,
           },
           {
-            id: 107608, // variant ID v
+            id: 107608,
             price: 999,
             is_enabled: true,
           },
           {
-            id: 107609, // variant ID w
+            id: 107609,
             price: 999,
             is_enabled: true,
           },
           {
-            id: 107610, // variant ID x
+            id: 107610,
             price: 999,
             is_enabled: true,
           },
           {
-            id: 107611, // variant ID y
+            id: 107611,
             price: 999,
             is_enabled: true,
           },
           {
-            id: 107612, // variant ID z
+            id: 107612,
             price: 999,
             is_enabled: true,
           },
           {
-            id: 107613, // variant ID aa
+            id: 107613,
             price: 999,
             is_enabled: true,
           },
           {
-            id: 107614, // variant ID bb
+            id: 107614,
             price: 1499,
             is_enabled: true,
           },
           {
-            id: 107615, // variant ID cc
+            id: 107615,
             price: 1499,
             is_enabled: true,
           },
           {
-            id: 107616, // variant ID dd
+            id: 107616,
             price: 1499,
             is_enabled: true,
           },
           {
-            id: 107617, // variant ID ee
+            id: 107617,
             price: 1499,
             is_enabled: true,
           },
           {
-            id: 107618, // variant ID ff
+            id: 107618,
             price: 1499,
             is_enabled: true,
           },
           {
-            id: 107619, // variant ID gg
+            id: 107619,
             price: 1499,
             is_enabled: true,
           },
           {
-            id: 107620, // variant ID hh
+            id: 107620,
             price: 1499,
             is_enabled: true,
           },
           {
-            id: 107621, // variant ID ii
+            id: 107621,
             price: 1499,
             is_enabled: true,
           },
           {
-            id: 107622, // variant ID jj
+            id: 107622,
             price: 1499,
             is_enabled: true,
           },
@@ -469,77 +460,47 @@ const createCandle = async (name, type, definition) => {
         print_areas: [
           {
             variant_ids: [
-              107587, // variant ID a
-              107588, // variant ID b
-              107589, // variant ID c
-              107590, // variant ID d
-              107591, // variant ID e
-              107592, // variant ID f
-              107593, // variant ID g
-              107594, // variant ID h
-              107595, // variant ID i
-              107605, // variant ID s
-              107606, // variant ID t
-              107607, // variant ID u
-              107608, // variant ID v
-              107609, // variant ID w
-              107610, // variant ID x
-              107611, // variant ID y
-              107612, // variant ID z
-              107613, // variant ID aa
-            ], // 12oz variant
+              107587, 107588, 107589, 107590, 107591, 107592, 107593, 107594,
+              107595, 107605, 107606, 107607, 107608, 107609, 107610, 107611,
+              107612, 107613,
+            ],
             placeholders: [
               {
                 position: "front",
                 images: [
                   {
-                    id: blackImageId_1, // Image ID for black variant
+                    id: blackImageId_1,
                     x: 0.5,
                     y: 0.5,
                     scale: 1,
                     angle: 0,
                   },
                 ],
-                height: 1196, // Custom height for 12oz variant
-                width: 1988, // Custom width for 12oz variant
+                height: 1196,
+                width: 1988,
               },
             ],
           },
           {
             variant_ids: [
-              107596, // variant ID j
-              107597, // variant ID k
-              107598, // variant ID l
-              107599, // variant ID m
-              107600, // variant ID n
-              107601, // variant ID o
-              107602, // variant ID p
-              107603, // variant ID q
-              107604, // variant ID r
-              107614, // variant ID bb
-              107615, // variant ID cc
-              107616, // variant ID dd
-              107617, // variant ID ee
-              107618, // variant ID ff
-              107619, // variant ID gg
-              107620, // variant ID hh
-              107621, // variant ID ii
-              107622, // variant ID jj
-            ], // 12oz variant
+              107596, 107597, 107598, 107599, 107600, 107601, 107602, 107603,
+              107604, 107614, 107615, 107616, 107617, 107618, 107619, 107620,
+              107621, 107622,
+            ],
             placeholders: [
               {
                 position: "front",
                 images: [
                   {
-                    id: blackImageId_2, // Image ID for black variant
+                    id: blackImageId_2,
                     x: 0.5,
                     y: 0.5,
                     scale: 1,
                     angle: 0,
                   },
                 ],
-                height: 1196, // Custom height for 12oz variant
-                width: 1988, // Custom width for 12oz variant
+                height: 1196,
+                width: 1988,
               },
             ],
           },
@@ -554,25 +515,18 @@ const createCandle = async (name, type, definition) => {
     );
 
     const productId = productResponse.data.id;
-    // Assume productResponse.data.images contains the list of images
     const images = productResponse.data.images;
 
-    // Generate a random index between 0 and 4 (for 5 images)
     const randomIndex = Math.floor(Math.random() * 5);
 
-    // Log the randomly selected image
     const selectedImage = images[randomIndex];
-    console.log("Randomly selected product image: ", selectedImage);
 
-    // Publish the product to Shopify
-    console.log(selectedImage.src);
     const data = await publishData(productId);
     if (data) {
       return selectedImage.src;
     } else {
       return;
     }
-    // 6. Post the product image to Instagram
   } catch (error) {
     return error;
   }

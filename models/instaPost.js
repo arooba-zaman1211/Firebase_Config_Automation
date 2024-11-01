@@ -8,19 +8,20 @@ const postsSchema = new Schema({
   },
   text_1: {
     type: String,
-    default: null,
+    required: true,
   },
   text_2: {
     type: String,
-    required: true,
+    default: null,
   },
   product_title: {
     type: String,
     required: true,
   },
   product_description: {
-    type: String,
+    type: [String],
     required: true,
+    default: [],
   },
   date_time: {
     type: Date,
@@ -35,11 +36,11 @@ const postsSchema = new Schema({
     enum: ["pending", "ready", "posted", "failed"],
     default: "pending",
   },
-  printifyProductId: {
-    type: String,
-    default: null,
-  },
   images: {
+    type: [String],
+    default: [],
+  },
+  tags: {
     type: [String],
     default: [],
   },

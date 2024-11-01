@@ -3,7 +3,6 @@ const { JSX, Builder } = require("canvacord");
 const { Font } = require("canvacord");
 const { createCanvas } = require("canvas");
 
-// Load fonts from file
 Font.fromFileSync(
   "public/assets/fonts/BubbleGum/BubblegumSans-Regular.ttf",
   "BubbleGum"
@@ -11,17 +10,17 @@ Font.fromFileSync(
 
 class NymPostfive extends Builder {
   constructor({
-    width = 2475, // Default outer container width
-    height = 1155, // Default outer container height
-    nymFontSize = "160px", // Default font size for Nym text
-    nymLineHeight = "155px", // Default line height for Nym text
+    width = 2475,
+    height = 1155,
+    nymFontSize = "160px",
+    nymLineHeight = "155px",
     Nym = "HI, I'M NAT",
     NymColor = "#000000",
-    formatNym = false, // Add this default parameter
-    top = 470, // Top position for the text
-    left = 76, // Left position for the text
-    nymWidth = 920, // Width for Nym text
-    nymHeight = 182, // Height for Nym text
+    formatNym = false,
+    top = 470,
+    left = 76,
+    nymWidth = 920,
+    nymHeight = 182,
   } = {}) {
     super(width, height);
     this.bootstrap({
@@ -62,42 +61,34 @@ class NymPostfive extends Builder {
       nymHeight,
     } = this.styles;
 
-    // Fixed width for text wrapping
-    const fixedTextWidth = 960; // Set text wrapping width to 960px
-    const innerBorderHeight = height - 120; // Inner height remains dynamic
+    const fixedTextWidth = 960;
+    const innerBorderHeight = height - 120;
 
-    // Parse font size and line height
     const nymFontSizeNum = parseFloat(nymFontSize);
     const nymLineHeightNum = parseFloat(nymLineHeight);
 
-    // Calculate a potential font size based on the fixed text width
     const lineHeightRatio = nymLineHeightNum / nymFontSizeNum;
     const calculatedNymFontSize = `${
       Math.min(fixedTextWidth, innerBorderHeight) * 0.15
-    }px`; // Adjust multiplier for scaling
+    }px`;
     const calculatedNymLineHeight = `${
       parseFloat(calculatedNymFontSize) * lineHeightRatio
     }px`;
 
-    // Create a canvas to measure text dimensions
-    const canvas = createCanvas(1, 1); // Create a blank canvas
+    const canvas = createCanvas(1, 1);
     const context = canvas.getContext("2d");
 
-    // Set the font to measure the text
-    context.font = `${nymFontSize} BubbleGum`; // Initial font size
+    context.font = `${nymFontSize} BubbleGum`;
     const measuredTextWidth = context.measureText(Nym.toUpperCase()).width;
 
-    // Measure height based on the potential font size
-    context.font = calculatedNymFontSize; // Use calculated font size
+    context.font = calculatedNymFontSize;
     const measuredTextHeight =
       parseFloat(calculatedNymFontSize) * lineHeightRatio;
 
-    // Check if the Nym text fits within the available width and height
     const isNymTextFitting =
       measuredTextWidth < fixedTextWidth &&
       measuredTextHeight < innerBorderHeight;
 
-    // Set the final font size based on whether it fits
     const finalNymFontSize = isNymTextFitting
       ? nymFontSize
       : calculatedNymFontSize;
@@ -105,14 +96,9 @@ class NymPostfive extends Builder {
       ? nymLineHeight
       : calculatedNymLineHeight;
 
-    console.log("Final Font Size:", finalNymFontSize);
-    console.log("Final Line Height:", finalNymLineHeight);
-
-    // Format Nym text to uppercase
     const formattedNym = formatNym ? Nym.toUpperCase() : Nym;
 
-    // Calculate vertical centering
-    const verticalCenterOffset = (nymHeight - measuredTextHeight) / 2; // Calculate the offset for vertical centering
+    const verticalCenterOffset = (nymHeight - measuredTextHeight) / 2;
 
     return JSX.createElement(
       "div",
@@ -129,7 +115,6 @@ class NymPostfive extends Builder {
           padding: "10px",
         },
       },
-      // Middle Text (Nym Text)
       JSX.createElement(
         "h1",
         {
@@ -138,18 +123,18 @@ class NymPostfive extends Builder {
             fontFamily: "BubbleGum",
             color: NymColor,
             lineHeight: finalNymLineHeight,
-            whiteSpace: "pre-wrap", // Enable line breaks
-            width: `${nymWidth}px`, // Fixed width for wrapping text
-            height: `${nymHeight}px`, // Set height for the text element
-            margin: 0, // Remove default margins
+            whiteSpace: "pre-wrap",
+            width: `${nymWidth}px`,
+            height: `${nymHeight}px`,
+            margin: 0,
             textTransform: formatNym ? "uppercase" : "none",
-            position: "absolute", // Positioning based on top and left
-            top: `${top + verticalCenterOffset}px`, // Adjust top for vertical centering
+            position: "absolute",
+            top: `${top + verticalCenterOffset}px`,
             left: `${left}px`,
             alignItems: "center",
           },
         },
-        formattedNym // Text with line breaks if formatting is enabled
+        formattedNym
       )
     );
   }
