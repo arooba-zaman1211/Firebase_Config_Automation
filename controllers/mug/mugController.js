@@ -566,47 +566,71 @@ const createMug = async (name, type, definition, tags, product_description) => {
 
       fs.writeFileSync(filePath, image);
       const base64Image = await getBase64FromFile(filePath);
-
-      if (variable === "blackImageId") {
-        blackImageId = await uploadImageToPrintify(
-          fileName,
-          base64Image,
-          token
-        );
-      } else if (variable === "redImageId") {
-        redImageId = await uploadImageToPrintify(fileName, base64Image, token);
-      } else if (variable === "pinkImageId") {
-        pinkImageId = await uploadImageToPrintify(fileName, base64Image, token);
-      } else if (variable === "blueImageId") {
-        blueImageId = await uploadImageToPrintify(fileName, base64Image, token);
-      } else if (variable === "navyImageId") {
-        navyImageId = await uploadImageToPrintify(fileName, base64Image, token);
-      } else if (variable === "redImageId2") {
-        redImageId2 = await uploadImageToPrintify(fileName, base64Image, token);
-      } else if (variable === "pinkImageId2") {
-        pinkImageId2 = await uploadImageToPrintify(
-          fileName,
-          base64Image,
-          token
-        );
-      } else if (variable === "blueImageId2") {
-        blueImageId2 = await uploadImageToPrintify(
-          fileName,
-          base64Image,
-          token
-        );
-      } else if (variable === "navyImageId2") {
-        navyImageId2 = await uploadImageToPrintify(
-          fileName,
-          base64Image,
-          token
-        );
-      } else if (variable === "blackImageId2") {
-        blackImageId2 = await uploadImageToPrintify(
-          fileName,
-          base64Image,
-          token
-        );
+      try {
+        if (variable === "blackImageId") {
+          blackImageId = await uploadImageToPrintify(
+            fileName,
+            base64Image,
+            token
+          );
+        } else if (variable === "redImageId") {
+          redImageId = await uploadImageToPrintify(
+            fileName,
+            base64Image,
+            token
+          );
+        } else if (variable === "pinkImageId") {
+          pinkImageId = await uploadImageToPrintify(
+            fileName,
+            base64Image,
+            token
+          );
+        } else if (variable === "blueImageId") {
+          blueImageId = await uploadImageToPrintify(
+            fileName,
+            base64Image,
+            token
+          );
+        } else if (variable === "navyImageId") {
+          navyImageId = await uploadImageToPrintify(
+            fileName,
+            base64Image,
+            token
+          );
+        } else if (variable === "redImageId2") {
+          redImageId2 = await uploadImageToPrintify(
+            fileName,
+            base64Image,
+            token
+          );
+        } else if (variable === "pinkImageId2") {
+          pinkImageId2 = await uploadImageToPrintify(
+            fileName,
+            base64Image,
+            token
+          );
+        } else if (variable === "blueImageId2") {
+          blueImageId2 = await uploadImageToPrintify(
+            fileName,
+            base64Image,
+            token
+          );
+        } else if (variable === "navyImageId2") {
+          navyImageId2 = await uploadImageToPrintify(
+            fileName,
+            base64Image,
+            token
+          );
+        } else if (variable === "blackImageId2") {
+          blackImageId2 = await uploadImageToPrintify(
+            fileName,
+            base64Image,
+            token
+          );
+        }
+        fs.unlinkSync(filePath);
+      } catch (error) {
+        return;
       }
     }
 

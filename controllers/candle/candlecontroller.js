@@ -523,6 +523,8 @@ const createCandle = async (
 
     const data = await publishData(productId);
     if (data) {
+      fs.unlinkSync(blackFilePath_1);
+      fs.unlinkSync(blackFilePath_2);
       return selectedImage.src;
     } else {
       return;

@@ -578,6 +578,8 @@ const createHoodie = async (
     const data = await publishData(productId);
     if (data) {
       const whiteImageUrl = getImageUrlForColor(productResponse.data);
+      fs.unlinkSync(whiteFilePath);
+      fs.unlinkSync(blackFilePath);
       return whiteImageUrl;
     } else {
       return;

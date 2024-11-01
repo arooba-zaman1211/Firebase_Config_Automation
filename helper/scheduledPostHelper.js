@@ -28,7 +28,7 @@ const checkForScheduledPosts = async () => {
           image_urls: post.images,
         });
 
-        if (response.status === 200) {
+        if (response.status === 200 && post.images.length > 0) {
           post.status = "posted";
           await post.save();
 
@@ -47,7 +47,7 @@ const checkForScheduledPosts = async () => {
   }
 };
 
-cron.schedule("* * * * *", () => {
+cron.schedule("0 */5 * * *", () => {
   console.log("Checking for scheduled posts...");
   checkForScheduledPosts();
 });
