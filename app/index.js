@@ -5,8 +5,9 @@ dotenv.config();
 const app = express();
 const productRoutes = require("../routes/Products_Routes");
 const connectDB = require("../config/dbConnection.js");
-const { watchPostCollection } = require("../helper/changeStreamHandler.js");
 const cronHelper = require("../helper/cronHelper.js");
+const { checkForScheduledPosts } = require("../helper/scheduledPostHelper.js");
+const { checkForPendingPosts } = require("../helper/changeStreamHandler.js");
 
 app.use(express.json());
 
@@ -43,8 +44,10 @@ async function tokenCheckWithRetry() {
 
 async function initializeApp() {
   await connectWithRetry();
-  watchPostCollection();
   await tokenCheckWithRetry();
+
+  checkForScheduledPosts();
+  checkForPendingPosts();
 }
 
 app.use("/api/product", productRoutes);
