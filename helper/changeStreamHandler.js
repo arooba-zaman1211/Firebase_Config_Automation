@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const cron = require("node-cron");
 const postsSchema = require("../models/instaPost");
 const {
   createAndUploadImage,
@@ -20,7 +21,7 @@ async function connectWithRetry() {
         "Failed to connect to MongoDB. Retrying in 10 seconds...",
         error
       );
-      await new Promise((resolve) => setTimeout(resolve, 10000));
+      await delay(10000);
     }
   }
 }
@@ -55,5 +56,10 @@ async function checkForPendingPosts() {
     console.error("Error checking for pending posts:", error.message);
   }
 }
+
+cron.schedule("*/10 * * * *", () => {
+  console.log("Checking for pending posts...");
+  checkForPendingPosts();
+});
 
 module.exports = { checkForPendingPosts };
