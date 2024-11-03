@@ -1,6 +1,8 @@
 {
   "scripts": {
-    "start": "node app/index.js"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js",
+    "dev": "nodemon server.js"
   },
   "dependencies": {
     "axios": "^1.7.7",
@@ -16,7 +18,9 @@
     "moment-timezone": "^0.5.46",
     "mongoose": "^8.7.0",
     "node-cron": "^3.0.3",
+    "nodemon": "^3.1.7",
     "path": "^0.12.7",
-    "request-promise": "^4.2.6"
+    "request-promise": "^4.2.6",
+    "vercel": "^37.14.0"
   }
 }

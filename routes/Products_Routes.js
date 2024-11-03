@@ -13,11 +13,6 @@ router.get("/check-for-pending-posts", async (req, res) => {
 router.get("/check-for-scheduled-posts", async (req, res) => {
   console.log("Triggered check for scheduled posts ");
   await checkForScheduledPosts();
-  res.status(200).send("Check for scheduled posts completed.");
-});
-
-router.get("/check-for-token", async (req, res) => {
-  console.log("Triggered check for token refresh ");
   await checkTokenAndRefresh();
   res.status(200).send("Check for scheduled posts completed.");
 });

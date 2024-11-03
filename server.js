@@ -3,9 +3,9 @@ const dotenv = require("dotenv");
 dotenv.config();
 
 const app = express();
-const connectDB = require("../config/dbConnection.js");
-const cronHelper = require("../helper/cronHelper.js");
-const checkForPendingPostsRoute = require("../routes/Products_Routes.js"); // Adjust path as necessary
+const connectDB = require("./config/dbConnection.js");
+const cronHelper = require("./helper/cronHelper.js");
+const checkForPendingPostsRoute = require("./routes/Products_Routes.js"); // Adjust path as necessary
 
 app.use(express.json());
 
