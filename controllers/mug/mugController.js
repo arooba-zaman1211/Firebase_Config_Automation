@@ -937,9 +937,20 @@ const createMug = async (name, type, definition, tags, product_description) => {
 
     const productId = productResponse.data.id;
     const productImage3 = productResponse.data.images[2];
-
+    console.log(productImage3.src);
     const data = await publishData(productId);
     if (data) {
+      if (productImage3.src == null) {
+        const productResponse = await axios.delete(
+          `https://api.printify.com/v1/shops/${shopId}/products/${productId}.json`,
+          {
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+      }
       return productImage3.src;
     } else {
       return;

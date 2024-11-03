@@ -33,7 +33,7 @@ const postsSchema = new Schema({
   },
   status: {
     type: String,
-    enum: ["pending", "ready", "posted", "failed"],
+    enum: ["pending", "processing", "processed", "posted", "posting"],
     default: "pending",
   },
   images: {

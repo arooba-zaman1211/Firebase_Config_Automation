@@ -128,6 +128,8 @@ const createAndUploadImage = async (req, res) => {
       });
     }
 
+    console.log("card: ", Card);
+
     let blackImage_1;
     try {
       blackImage_1 = await Card.build({ format: "jpeg" });
@@ -147,24 +149,24 @@ const createAndUploadImage = async (req, res) => {
       return;
     }
     let coverImage;
+    /*
     try {
       coverImage = await uploadAndGeneratePublicUrl(blackFilePath_1);
     } catch (error) {
       return;
-    }
+    }*/
 
     const images_url = [
-      coverImage,
+      // coverImage,
       candle,
       mug,
       tshirt,
       hoodie,
       "https://drive.usercontent.google.com/download?id=1n1KTEDWMTiQhVs9rKJ-NF7QYcMg4u01J&export=view&authuser=0",
     ];
-
     const db = await postsSchema.updateOne(
       { _id: objectId },
-      { $push: { images: { $each: images_url } } }
+      { $push: { images: { $each: images_url } }, status: "processed" }
     );
 
     if (db.modifiedCount === 0) {

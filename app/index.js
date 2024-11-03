@@ -3,16 +3,15 @@ const dotenv = require("dotenv");
 dotenv.config();
 
 const app = express();
-const productRoutes = require("../routes/Products_Routes");
 const connectDB = require("../config/dbConnection.js");
 const cronHelper = require("../helper/cronHelper.js");
-const { checkForScheduledPosts } = require("../helper/scheduledPostHelper.js");
-const { checkForPendingPosts } = require("../helper/changeStreamHandler.js");
+const checkForPendingPostsRoute = require("../routes/Products_Routes.js"); // Adjust path as necessary
 
 app.use(express.json());
 
 const RETRY_INTERVAL = 10000;
 
+// Connect to MongoDB with retry logic
 async function connectWithRetry() {
   while (true) {
     try {
@@ -29,6 +28,7 @@ async function connectWithRetry() {
   }
 }
 
+// Token check with retry logic
 async function tokenCheckWithRetry() {
   while (true) {
     try {
@@ -42,15 +42,14 @@ async function tokenCheckWithRetry() {
   }
 }
 
+// Initialization function to connect to the database and handle token refresh
 async function initializeApp() {
   await connectWithRetry();
   await tokenCheckWithRetry();
-
-  checkForScheduledPosts();
-  checkForPendingPosts();
 }
 
-app.use("/api/product", productRoutes);
+// Use the route for checking pending posts
+app.use("/api", checkForPendingPostsRoute);
 
 const PORT = process.env.PORT || 3000;
 initializeApp().then(() => {

@@ -1,65 +1,68 @@
-const mongoose = require("mongoose");
-const cron = require("node-cron");
 const postsSchema = require("../models/instaPost");
 const {
   createAndUploadImage,
-} = require("../controllers/products/productController.js");
-const connectDB = require("../config/dbConnection.js");
+} = require("../controllers/products/productController");
 
-function delay(ms) {
+async function delay(ms) {
   return new Promise((resolve) => setTimeout(resolve, ms));
 }
 
-async function connectWithRetry() {
-  while (true) {
-    try {
-      await connectDB();
-      console.log("Connected to MongoDB");
-      break;
-    } catch (error) {
-      console.error(
-        "Failed to connect to MongoDB. Retrying in 10 seconds...",
-        error
+async function processPost(post) {
+  try {
+    console.log(`Processing post with ID: ${post._id}`);
+    const req = { body: post };
+    let responseStatus;
+
+    const res = {
+      status: (code) => {
+        responseStatus = code;
+        return {
+          send: (message) =>
+            console.log(`Response status: ${code}, message: ${message}`),
+        };
+      },
+    };
+
+    await createAndUploadImage(req, res);
+
+    if (responseStatus === 400 || responseStatus === 500) {
+      post.status = "pending";
+      await post.save();
+      console.log(
+        `Post with ID ${post._id} encountered an error and is set back to pending.`
       );
-      await delay(10000);
+    } else if (responseStatus === 200) {
+      console.log(`Post with ID ${post._id} processed successfully.`);
     }
+  } catch (error) {
+    console.error(`Failed to process post with ID ${post._id}:`, error.message);
+    post.status = "pending";
+    await post.save();
   }
 }
 
 async function checkForPendingPosts() {
-  await connectWithRetry();
   try {
-    const pendingPosts = await postsSchema.find({ status: "pending" });
+    const processingPost = await postsSchema.findOne({ status: "processing" });
+    if (processingPost) {
+      console.log("A post is already being processed. Skipping this cycle.");
+      return;
+    }
 
-    for (let post of pendingPosts) {
-      try {
-        console.log(`Processing post with ID: ${post._id}`);
+    const post = await postsSchema.findOneAndUpdate(
+      { status: "pending" },
+      { status: "processing" },
+      { new: true }
+    );
 
-        const req = { body: post };
-        const res = {
-          status: (code) => ({
-            send: (message) =>
-              console.log(`Response status: ${code}, message: ${message}`),
-          }),
-          json: (data) => console.log("Response data:", data),
-        };
-        await createAndUploadImage(req, res);
-        await delay(5000);
-      } catch (error) {
-        console.error(
-          `Failed to process post with ID ${post._id}:`,
-          error.message
-        );
-      }
+    if (post) {
+      await processPost(post);
+    } else {
+      console.log("No pending posts found.");
     }
   } catch (error) {
     console.error("Error checking for pending posts:", error.message);
   }
 }
-
-cron.schedule("*/10 * * * *", () => {
-  console.log("Checking for pending posts...");
-  checkForPendingPosts();
-});
 
 module.exports = { checkForPendingPosts };

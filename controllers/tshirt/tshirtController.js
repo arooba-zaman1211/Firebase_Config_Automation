@@ -662,6 +662,19 @@ const createTShirt = async (
 
     if (data) {
       const whiteImageUrl = getImageUrlForColor(productResponse.data);
+      if (whiteImageUrl == null) {
+        const productResponse = await axios.delete(
+          `https://api.printify.com/v1/shops/${shopId}/products/${productId}.json`,
+          {
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+      }
+      fs.unlinkSync(blackFilePath);
+      fs.unlinkSync(whiteFilePath);
       return whiteImageUrl;
     } else {
       return;

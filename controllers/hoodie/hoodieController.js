@@ -578,6 +578,18 @@ const createHoodie = async (
     const data = await publishData(productId);
     if (data) {
       const whiteImageUrl = getImageUrlForColor(productResponse.data);
+      if (whiteImageUrl == null) {
+        const productResponse = await axios.delete(
+          `https://api.printify.com/v1/shops/${shopId}/products/${productId}.json`,
+          {
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+      }
+      console.log(whiteImageUrl);
       fs.unlinkSync(whiteFilePath);
       fs.unlinkSync(blackFilePath);
       return whiteImageUrl;

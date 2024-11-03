@@ -520,7 +520,18 @@ const createCandle = async (
     const randomIndex = Math.floor(Math.random() * 5);
 
     const selectedImage = images[randomIndex];
-
+    console.log(selectedImage.src);
+    if (selectedImage.src == null) {
+      const productResponse = await axios.delete(
+        `https://api.printify.com/v1/shops/${shopId}/products/${productId}.json`,
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+    }
     const data = await publishData(productId);
     if (data) {
       fs.unlinkSync(blackFilePath_1);

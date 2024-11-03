@@ -19,6 +19,4 @@ async function checkTokenAndRefresh() {
   }
 }
 
-cron.schedule("0 0 * * *", checkTokenAndRefresh);
-
 module.exports = { checkTokenAndRefresh };
