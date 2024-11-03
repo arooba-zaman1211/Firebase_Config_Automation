@@ -51,6 +51,11 @@ async function initializeApp() {
 // Use the route for checking pending posts
 app.use("/api", checkForPendingPostsRoute);
 
+app.get("/", (req, res) => {
+  console.log("enter1");
+  res.send("API is running!");
+});
+
 const PORT = process.env.PORT || 3000;
 initializeApp().then(() => {
   app.listen(PORT, () => {
