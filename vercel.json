@@ -1,8 +1,16 @@
 {
-    "crons": [
-	  {
-		"path": "/api/check-for-pending-posts",
-		"schedule": "30 16 * * *"
-	  }
-	]
-  }
+    "version":2,
+    "builds": [
+        {
+            "src":"server.js",
+            "use":"@vercel/node"
+           
+        }
+    ],
+    "routes":[
+        {
+            "src":"/(.*)",
+        "dest":"server.js"
+    }
+    ]
+}
