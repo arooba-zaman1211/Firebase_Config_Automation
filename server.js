@@ -5,13 +5,13 @@ dotenv.config();
 const app = express();
 const connectDB = require("./config/dbConnection.js");
 const cronHelper = require("./helper/cronHelper.js");
-const checkForPendingPostsRoute = require("./routes/Products_Routes.js"); // Adjust path as necessary
+const pending = require("./routes/pending_route.js");
+const scheduled = require("./routes/scheduling_route.js");
 
 app.use(express.json());
 
 const RETRY_INTERVAL = 10000;
 
-// Connect to MongoDB with retry logic
 async function connectWithRetry() {
   while (true) {
     try {
@@ -27,8 +27,6 @@ async function connectWithRetry() {
     }
   }
 }
-
-// Token check with retry logic
 async function tokenCheckWithRetry() {
   while (true) {
     try {
@@ -41,22 +39,19 @@ async function tokenCheckWithRetry() {
     }
   }
 }
-
-// Initialization function to connect to the database and handle token refresh
 async function initializeApp() {
   await connectWithRetry();
   await tokenCheckWithRetry();
 }
-
-// Use the route for checking pending posts
-app.use("/api", checkForPendingPostsRoute);
+app.use("/api", pending);
+app.use("/api", scheduled);
 
 app.get("/", (req, res) => {
   console.log("enter1");
   res.send("API is running!");
 });
 
-const PORT = process.env.PORT || 3000;
+const PORT = 3000;
 initializeApp().then(() => {
   app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`);

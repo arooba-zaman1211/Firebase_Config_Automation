@@ -1,4 +1,3 @@
-const cron = require("node-cron");
 const tokenHelper = require("./tokenHelper");
 
 async function checkTokenAndRefresh() {

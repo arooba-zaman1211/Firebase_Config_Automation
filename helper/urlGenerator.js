@@ -1,5 +1,4 @@
-const { google } = require("googleapis");
-const fs = require("fs");
+/*const fs = require("fs");
 const path = require("path");
 const apikeys = require("../exalted-booster-439614-a6-9c58c1977fdf.json");
 const SCOPE = ["https://www.googleapis.com/auth/drive"];
@@ -50,4 +49,4 @@ async function uploadAndGeneratePublicUrl(filePath) {
   return `https://drive.usercontent.google.com/download?id=${fileId}&export=view&authuser=0`;
 }
 
-module.exports = { uploadAndGeneratePublicUrl };
+module.exports = { uploadAndGeneratePublicUrl };*/

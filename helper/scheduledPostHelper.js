@@ -2,7 +2,6 @@ const {
   postToInsta,
 } = require("../controllers/instagrampost/instaController.js");
 const postsSchema = require("../models/instaPost.js");
-const cron = require("node-cron");
 const moment = require("moment-timezone");
 
 const checkForScheduledPosts = async () => {
