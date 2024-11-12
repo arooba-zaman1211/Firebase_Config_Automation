@@ -1,9 +1,13 @@
 const { JSX, Builder } = require("canvacord");
 const { Font } = require("canvacord");
 const { createCanvas } = require("@napi-rs/canvas");
+const path = require("path");
 
 Font.fromFileSync(
-  "public/assets/fonts/BubbleGum/BubblegumSans-Regular.ttf",
+  path.join(
+    __dirname,
+    "../public/assets/fonts/BubbleGum/BubblegumSans-Regular.ttf"
+  ),
   "BubbleGum"
 );
 

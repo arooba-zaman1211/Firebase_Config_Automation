@@ -1,13 +1,20 @@
 // T-shirt and hoodie design 1
 const { JSX, Builder } = require("canvacord");
 const { Font } = require("canvacord");
-const { createCanvas } = require('@napi-rs/canvas');
+const { createCanvas } = require("@napi-rs/canvas");
+const path = require("path");
 
 Font.fromFileSync(
-  "public/assets/fonts/BubbleGum/BubblegumSans-Regular.ttf",
+  path.join(
+    __dirname,
+    "../public/assets/fonts/BubbleGum/BubblegumSans-Regular.ttf"
+  ),
   "BubbleGum"
 );
-Font.fromFileSync("public/assets/fonts/Raleway/Raleway-Regular.ttf", "Raleway");
+Font.fromFileSync(
+  path.join(__dirname, "../public/assets/fonts/Raleway/Raleway-Regular.ttf"),
+  "Raleway"
+);
 
 class NymPostone extends Builder {
   constructor({
