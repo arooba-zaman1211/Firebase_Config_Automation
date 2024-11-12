@@ -19,13 +19,6 @@ const { publishData } = require("../shopify/shopifyController.js");
 const token = process.env.PRINTIFY_ACCESS_TOKEN;
 const shopId = process.env.PRINTIFY_SHOP_ID;
 
-Font.fromFileSync("public/assets/fonts/Cardo/Cardo-Bold.ttf", "Cardo-Bold");
-Font.fromFileSync("public/assets/fonts/Inter/Inter-Italic.ttf", "Inter-Italic");
-Font.fromFileSync(
-  "public/assets/fonts/Inter/Inter-Regular.ttf",
-  "Inter-Regular"
-);
-
 const createHoodie = async (
   name,
   type,
