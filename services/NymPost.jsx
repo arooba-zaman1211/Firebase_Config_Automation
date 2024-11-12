@@ -1,7 +1,7 @@
 // t-shirt 3 and hoodie 3
 const { JSX, Builder } = require("canvacord");
 const { Font } = require("canvacord");
-const { createCanvas } = require("canvas");
+const { createCanvas } = require("@napi-rs/canvas");
 
 Font.fromFileSync(
   "public/assets/fonts/BubbleGum/BubblegumSans-Regular.ttf",
