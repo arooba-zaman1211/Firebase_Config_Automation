@@ -20,9 +20,16 @@ const checkForScheduledPosts = async () => {
       images: { $not: { $size: 0 } },
     });
 
+    if (postsToPost.length === 0) {
+      console.log("No posts to process.");
+      return { success: true };
+    }
+
+    let allPostsPosted = true;
+
     for (let post of postsToPost) {
       try {
-        // Update status to "posting" to prevent other processes from picking it up
+        console.log(`Updating status of post ${post._id} to 'posting'`);
         post.status = "posting";
         await post.save();
 
@@ -31,10 +38,17 @@ const checkForScheduledPosts = async () => {
           image_urls: post.images,
         });
 
+        console.log(
+          `Response for post ${post._id}: ${JSON.stringify(response)}`
+        );
+
         if (response.status === 200 && post.images.length > 0) {
+          console.log(`Post ${post._id} successfully posted.`);
           post.status = "posted";
           await post.save();
+
           await postsSchema.findByIdAndDelete(post._id);
+          console.log(`Post ${post._id} deleted.`);
         } else {
           console.error(
             `Failed to post with ID ${post._id}: Received status ${response.status}`
@@ -42,16 +56,21 @@ const checkForScheduledPosts = async () => {
           post.status = "pending";
           post.images = [];
           await post.save();
+          allPostsPosted = false;
         }
       } catch (error) {
         console.error(`Failed to post with ID ${post._id}:`, error.message);
         post.status = "pending";
         post.images = [];
         await post.save();
+        allPostsPosted = false;
       }
     }
+
+    return { success: allPostsPosted };
   } catch (error) {
-    console.error("Error posting scheduled post:", error.message);
+    console.error("Error posting scheduled posts:", error.message);
+    return { success: false };
   }
 };
 

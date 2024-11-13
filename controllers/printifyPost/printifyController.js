@@ -1,4 +1,5 @@
 const axios = require("axios");
+const token2 = process.env.PRINTIFY_ACCESS_TOKEN;
 
 const uploadImageToPrintify = async (fileName, base64Image, token) => {
   try {
@@ -9,7 +10,7 @@ const uploadImageToPrintify = async (fileName, base64Image, token) => {
       {
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
+          Authorization: `Bearer ${token2}`,
         },
       }
     );
