@@ -7,6 +7,7 @@ const connectDB = require("./config/dbConnection.js");
 const cronHelper = require("./helper/cronHelper.js");
 const pending = require("./routes/pending_route.js");
 const scheduled = require("./routes/scheduling_route.js");
+const instaPost = require("./routes/posttoInsta.js");
 
 app.use(express.json());
 
@@ -45,6 +46,7 @@ async function initializeApp() {
 }
 app.use("/api", pending);
 app.use("/api", scheduled);
+app.use("/api", instaPost);
 
 app.get("/", (req, res) => {
   console.log("enter1");
